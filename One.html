@@ -1,4 +1,4 @@
-		<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,23 +8,37 @@
     <style>
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 2 equal columns */
-            grid-gap: 20px; /* Space between items */
-            max-width: 1000px;
-	    margin: 0 auto;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 20px;
+            justify-items: center;
         }
+
         .grid-item {
-            background: black;
-		    border-radius: 8px;
-            padding: 15px;
             text-align: center;
+            color: white;
         }
-        .grid-item img {
-            width: 90%;
-            height: 65%;
-            border-radius: 8px;
+
+        .circle {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
         }
+
+        .circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         .download-btn {
             display: inline-block;
             margin-top: 10px;
@@ -34,108 +48,121 @@
             text-decoration: none;
             border-radius: 5px;
         }
+
         .download-btn:hover {
             background-color: #45a049;
         }
-		body {
-            background-color: black; /* Light blue background */
+
+        body {
+            background-color: black;
+            font-family: Arial, sans-serif;
         }
-        
+
         h3 {
-            color: white; /* Text color (e.g., red-orange) */
+            margin: 0;
+            padding: 5px 0;
         }
     </style>
 </head>
 <body>
 
     <div class="grid-container">
-
-	    <div class="grid-item">
+        <div class="grid-item">
+            <div class="circle">
+                <img src="https://img.freepik.com/premium-photo/facebook-logo_1080029-107.jpg?semt=ais_hybrid&w=740" alt="Facebook">
+            </div>
             <h3>Facebook</h3>
-            <img height="500" src="https://img.freepik.com/premium-photo/facebook-logo_1080029-107.jpg?semt=ais_hybrid&w=740" alt="Image 2">
-	    <a href="https://www.facebook.com/" class="download-btn" download>View</a>
-            <!--a href="player.html" target="_blank" class="download-btn" download>Download</a> -->	      
-            </div>
-	          
-	    <div class="grid-item">
-            <h3>Instagram</h3>
-            <img height="500" src="https://img.freepik.com/free-vector/instagram-logo_1045-436.jpg" alt="Image 1">
-             <!--a href="https://movietimedotcom.github.io/page/assets/videos/1.mp4" class="download-btn" download>Download</a>-->
-            <!-- <button class="download-btn" onclick="downloadVideo()">Download</button> -->
-	    <a href="https://www.instagram.com/" class="download-btn" download>View</a>	
-            </div>
-        
-	    <div class="grid-item">
-            <h3>X</h3>
-            <img height="500" src="https://img.freepik.com/free-vector/new-2023-twitter-logo-x-icon-design_1017-45418.jpg?semt=ais_hybrid&w=740" alt="Image 2">
-            <!--a href="https://download2393.mediafire.com/rg6981sv3j9gXB-e4-75YnA9oty72HTIpInZ3JfAVZU2Luul1f4RNbkh4grWQJBo12EzZhg5lEYYUA8us9OGLXAio6C2gOndswSC5nNmHDWXWksp5Apf6c2uN5FZHO6Cmn9ylHuZbKgWLRj82jpLqYYGfc00pgCNSysgjUvyP3Zl/r9bmubc9pp3vm8q/Nilavuku_Enmel_Ennadi_Kobam.mp4" class="download-btn" download>Download</a>-->
-            <a href="https://x.com/" class="download-btn" download>View</a>	    
-            </div>
-     
-	    <div class="grid-item">
-            <h3>Youtube</h3>
-            <img src="https://i.pinimg.com/736x/ac/75/c9/ac75c98ef8199d2257a017c031df327b.jpg" alt="Image 3">
-            <a href="https://www.youtube.com/" class="download-btn" download>View</a>
-            </div>
-        
-	    <div class="grid-item">
-            <h3>Linkedin</h3>
-            <img src="https://i.pinimg.com/736x/d0/24/2f/d0242fc3351571f8243a1db4ac0370c6.jpg" alt="Image 4">
-            <a href="https://www.linkedin.com/" class="download-btn" download>View</a>
-            </div>
-	    
-	    <div class="grid-item">
-            <h3>pinterest</h3>
-            <img src="https://img.freepik.com/premium-vector/square-pinterest-logo-isolated-white-background_469489-896.jpg" alt="Image 4">
-            <a href="https://www.pinterest.com/" class="download-btn" download>View</a>
-            </div>
-	
-	    <div class="grid-item">
-            <h3>Whatsapp</h3>
-            <img src="https://i.pinimg.com/736x/46/86/85/468685ef85240bb3dbe28e15d66a2de5.jpg" alt="Image 4">
-            <a href="https://web.whatsapp.com/" class="download-btn" download>View</a>
-            </div>
-	
-	    <div class="grid-item">
-            <h3>reddit</h3>
-            <img src="https://ih1.redbubble.net/image.946777752.1120/fposter,small,wall_texture,square_product,600x600.u2.jpg" alt="Image 4">
-            <a href="https://www.reddit.com/" class="download-btn" download>View</a>
-            </div>
-	
-	    <div class="grid-item">
-            <h3>Messenger</h3>
-            <img src="https://i.pinimg.com/474x/22/56/e2/2256e29f46f0dd2813f783dbb68fde70.jpg" alt="Image 4">
-            <a href="https://www.messenger.com/" class="download-btn" download>View</a>
-            </div>
-	
-	    <div class="grid-item">
-            <h3>Telegram</h3>
-            <img src="https://ih1.redbubble.net/image.4181749921.6339/fposter,small,wall_texture,square_product,600x600.jpg" alt="Image 4">
-            <a href="https://telegram.org/" class="download-btn" download>View</a>
-            </div>
-	
-	    <div class="grid-item">
-            <h3>Snapchat</h3>
-            <img src="https://img.freepik.com/premium-vector/snapchat-logo_628407-1682.jpg" alt="Image 4">
-            <a href="https://www.snapchat.com/" class="download-btn" download>View</a>
-            </div>  
-	    
-	     <div class="grid-item">
-            <h3>Threads</h3>
-            <img src="https://img.freepik.com/premium-vector/threads-logo-vector-eps-svg-ai-free-download-threads-app-logotype-logo-threads-instagram-meta_691560-10841.jpg?semt=ais_hybrid&w=740" alt="Image 4">
-            <a href="https://www.threads.net/" class="download-btn" download>View</a>
-            </div> 
-	    
-    </div>
-	
+            <a href="https://www.facebook.com/" class="download-btn" download>View</a>
+        </div>
 
-    <!-- <script>
-        function downloadVideo() {
-            var link = document.createElement('a');
-            link.href = 'https://www.mediafire.com/file_premium/wclj98m77jcljjk/Mr_HouseKeeping.mp4/file'; // Path to your video file
-            link.download = 'https://www.mediafire.com/file_premium/wclj98m77jcljjk/Mr_HouseKeeping.mp4/file'; // Download filename
-            link.click(); // Simulate click to trigger download
-        }
-    </script> -->
+        <div class="grid-item">
+            <div class="circle">
+                <img src="https://img.freepik.com/free-vector/instagram-logo_1045-436.jpg" alt="Instagram">
+            </div>
+            <h3>Instagram</h3>
+            <a href="https://www.instagram.com/" class="download-btn" download>View</a>
+        </div>
+
+        <div class="grid-item">
+            <div class="circle">
+                <img src="https://img.freepik.com/free-vector/new-2023-twitter-logo-x-icon-design_1017-45418.jpg?semt=ais_hybrid&w=740" alt="X">
+            </div>
+            <h3>X</h3>
+            <a href="https://x.com/" class="download-btn" download>View</a>
+        </div>
+
+        <div class="grid-item">
+            <div class="circle">
+                <img src="https://i.pinimg.com/736x/ac/75/c9/ac75c98ef8199d2257a017c031df327b.jpg" alt="Youtube">
+            </div>
+            <h3>Youtube</h3>
+            <a href="https://www.youtube.com/" class="download-btn" download>View</a>
+        </div>
+
+        <div class="grid-item">
+            <div class="circle">
+                <img src="https://i.pinimg.com/736x/d0/24/2f/d0242fc3351571f8243a1db4ac0370c6.jpg" alt="LinkedIn">
+            </div>
+            <h3>LinkedIn</h3>
+            <a href="https://www.linkedin.com/" class="download-btn" download>View</a>
+        </div>
+
+        <div class="grid-item">
+            <div class="circle">
+                <img src="https://img.freepik.com/premium-vector/square-pinterest-logo-isolated-white-background_469489-896.jpg" alt="Pinterest">
+            </div>
+            <h3>Pinterest</h3>
+            <a href="https://www.pinterest.com/" class="download-btn" download>View</a>
+        </div>
+
+        <div class="grid-item">
+            <div class="circle">
+                <img src="https://i.pinimg.com/736x/46/86/85/468685ef85240bb3dbe28e15d66a2de5.jpg" alt="Whatsapp">
+            </div>
+            <h3>Whatsapp</h3>
+            <a href="https://web.whatsapp.com/" class="download-btn" download>View</a>
+        </div>
+
+        <div class="grid-item">
+            <div class="circle">
+                <img src="https://ih1.redbubble.net/image.946777752.1120/fposter,small,wall_texture,square_product,600x600.u2.jpg" alt="Reddit">
+            </div>
+            <h3>Reddit</h3>
+            <a href="https://www.reddit.com/" class="download-btn" download>View</a>
+        </div>
+
+        <div class="grid-item">
+            <div class="circle">
+                <img src="https://i.pinimg.com/474x/22/56/e2/2256e29f46f0dd2813f783dbb68fde70.jpg" alt="Messenger">
+            </div>
+            <h3>Messenger</h3>
+            <a href="https://www.messenger.com/" class="download-btn" download>View</a>
+        </div>
+
+        <div class="grid-item">
+            <div class="circle">
+                <img src="https://ih1.redbubble.net/image.4181749921.6339/fposter,small,wall_texture,square_product,600x600.jpg" alt="Telegram">
+            </div>
+            <h3>Telegram</h3>
+            <a href="https://telegram.org/" class="download-btn" download>View</a>
+        </div>
+
+        <div class="grid-item">
+            <div class="circle">
+                <img src="https://img.freepik.com/premium-vector/snapchat-logo_628407-1682.jpg" alt="Snapchat">
+            </div>
+            <h3>Snapchat</h3>
+            <a href="https://www.snapchat.com/" class="download-btn" download>View</a>
+        </div>
+
+        <div class="grid-item">
+            <div class="circle">
+                <img src="https://img.freepik.com/premium-vector/threads-logo-vector-eps-svg-ai-free-download-threads-app-logotype-logo-threads-instagram-meta_691560-10841.jpg?semt=ais_hybrid&w=740" alt="Threads">
+            </div>
+            <h3>Threads</h3>
+            <a href="https://www.threads.net/" class="download-btn" download>View</a>
+        </div>
+    </div>
+
 </body>
 </html>
