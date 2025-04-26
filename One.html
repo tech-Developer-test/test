@@ -1,211 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="5">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>One App</title>
-    <style>
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            grid-gap: 20px;
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 20px;
-            justify-items: center;
-        }
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="5">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>One App - AI Tools</title>
+  <style>
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 20px;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 20px;
+      justify-items: center;
+    }
 
-        .grid-item {
-            text-align: center;
-            color: white;
-        }
+    .grid-item {
+      text-align: center;
+      color: white;
+    }
 
-        .circle {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            overflow: hidden;
-            background: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 10px;
-        }
+    .circle {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 10px;
+    }
 
-        .circle img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+    .circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-        .download-btn {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
+    .download-btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
 
-        .download-btn:hover {
-            background-color: #45a049;
-        }
+    .download-btn:hover {
+      background-color: #45a049;
+    }
 
-        body {
-            background-color: black;
-            font-family: Arial, sans-serif;
-        }
+    body {
+      background-color: black;
+      font-family: Arial, sans-serif;
+    }
 
-        h3 {
-            margin: 0;
-            padding: 5px 0;
-        }
+    h3 {
+      margin: 0;
+      padding: 5px 0;
+    }
 
-        .category-select {
-            display: block;
-            margin: 20px auto;
-            padding: 10px;
-            font-size: 16px;
-        }
-    </style>
+    .category-select {
+      display: block;
+      margin: 20px auto;
+      padding: 10px;
+      font-size: 16px;
+    }
+  </style>
 </head>
 <body>
 
-    <select class="category-select" onchange="filterCategory(this.value)">
-        <option value="all">All Categories</option>
-        <option value="social">Image & Design AI</option>
-        <option value="messaging">Video & Audio AI</option>
-        <option value="video">Developer & Coding AI</option>
-        <option value="forum">Business & Productivity AI</option>
-        <option value="forum">Writing & Content Creation</option>
-        <option value="forum">Customer Service & Sales AI</option>
-        <option value="forum">Data, Analytics & Automation</option>
-        <option value="forum">AI Avatars, Cloning & Realism</option>
-       
-    </select>
+  <select class="category-select" onchange="filterCategory(this.value)">
+    <option value="all">All Categories</option>
+    <option value="design">Image & Design AI</option>
+    <option value="video">Video & Audio AI</option>
+    <option value="dev">Developer & Coding AI</option>
+    <option value="productivity">Business & Productivity AI</option>
+    <option value="writing">Writing & Content Creation</option>
+    <option value="sales">Customer Service & Sales AI</option>
+    <option value="data">Data, Analytics & Automation</option>
+    <option value="avatars">AI Avatars, Cloning & Realism</option>
+  </select>
 
-    <div class="grid-container">
-        <div class="grid-item" data-category="social">
-            <h3>Facebook</h3>
-            <div class="circle">
-                <img src="https://img.freepik.com/premium-photo/facebook-logo_1080029-107.jpg?semt=ais_hybrid&w=740" alt="Facebook">
-            </div>
-            <a href="https://www.facebook.com/" class="download-btn" download>View</a>
-        </div>
-
-        <div class="grid-item" data-category="social">
-            <h3>Instagram</h3>
-            <div class="circle">
-                <img src="https://img.freepik.com/free-vector/instagram-logo_1045-436.jpg" alt="Instagram">
-            </div>
-            <a href="https://www.instagram.com/" class="download-btn" download>View</a>
-        </div>
-
-        <div class="grid-item" data-category="social">
-            <h3>X</h3>
-            <div class="circle">
-                <img src="https://img.freepik.com/free-vector/new-2023-twitter-logo-x-icon-design_1017-45418.jpg?semt=ais_hybrid&w=740" alt="X">
-            </div>
-            <a href="https://x.com/" class="download-btn" download>View</a>
-        </div>
-
-        <div class="grid-item" data-category="video">
-            <h3>Youtube</h3>
-            <div class="circle">
-                <img src="https://i.pinimg.com/736x/ac/75/c9/ac75c98ef8199d2257a017c031df327b.jpg" alt="Youtube">
-            </div>
-            <a href="https://www.youtube.com/" class="download-btn" download>View</a>
-        </div>
-
-        <div class="grid-item" data-category="social">
-            <h3>LinkedIn</h3>
-            <div class="circle">
-                <img src="https://i.pinimg.com/736x/d0/24/2f/d0242fc3351571f8243a1db4ac0370c6.jpg" alt="LinkedIn">
-            </div>
-            <a href="https://www.linkedin.com/" class="download-btn" download>View</a>
-        </div>
-
-        <div class="grid-item" data-category="social">
-            <h3>Pinterest</h3>
-            <div class="circle">
-                <img src="https://img.freepik.com/premium-vector/square-pinterest-logo-isolated-white-background_469489-896.jpg" alt="Pinterest">
-            </div>
-            <a href="https://www.pinterest.com/" class="download-btn" download>View</a>
-        </div>
-
-        <div class="grid-item" data-category="messaging">
-            <h3>Whatsapp</h3>
-            <div class="circle">
-                <img src="https://i.pinimg.com/736x/46/86/85/468685ef85240bb3dbe28e15d66a2de5.jpg" alt="Whatsapp">
-            </div>
-            <a href="https://web.whatsapp.com/" class="download-btn" download>View</a>
-        </div>
-
-        <div class="grid-item" data-category="forum">
-            <h3>Reddit</h3>
-            <div class="circle">
-                <img src="https://ih1.redbubble.net/image.946777752.1120/fposter,small,wall_texture,square_product,600x600.u2.jpg" alt="Reddit">
-            </div>
-            <a href="https://www.reddit.com/" class="download-btn" download>View</a>
-        </div>
-
-        <div class="grid-item" data-category="messaging">
-            <h3>Messenger</h3>
-            <div class="circle">
-                <img src="https://i.pinimg.com/474x/22/56/e2/2256e29f46f0dd2813f783dbb68fde70.jpg" alt="Messenger">
-            </div>
-            <a href="https://www.messenger.com/" class="download-btn" download>View</a>
-        </div>
-
-        <div class="grid-item" data-category="messaging">
-            <h3>Telegram</h3>
-            <div class="circle">
-                <img src="https://ih1.redbubble.net/image.4181749921.6339/fposter,small,wall_texture,square_product,600x600.jpg" alt="Telegram">
-            </div>
-            <a href="https://telegram.org/" class="download-btn" download>View</a>
-        </div>
-
-        <div class="grid-item" data-category="messaging">
-            <h3>Snapchat</h3>
-            <div class="circle">
-                <img src="https://img.freepik.com/premium-vector/snapchat-logo_628407-1682.jpg" alt="Snapchat">
-            </div>
-            <a href="https://www.snapchat.com/" class="download-btn" download>View</a>
-        </div>
-
-        <div class="grid-item" data-category="social">
-            <h3>Threads</h3>
-            <div class="circle">
-                <img src="https://img.freepik.com/premium-vector/threads-logo-vector-eps-svg-ai-free-download-threads-app-logotype-logo-threads-instagram-meta_691560-10841.jpg?semt=ais_hybrid&w=740" alt="Threads">
-            </div>
-            <a href="https://www.threads.net/" class="download-btn" download>View</a>
-        </div>
+  <div class="grid-container">
+    <div class="grid-item" data-category="design">
+      <h3>Canva AI</h3>
+      <div class="circle">
+        <img src="https://logowik.com/content/uploads/images/canva.jpg" alt="Canva AI">
+      </div>
+      <a href="https://www.canva.com/ai-image-generator/" class="download-btn">View</a>
     </div>
 
-   <script>
+    <div class="grid-item" data-category="design">
+      <h3>Adobe Firefly</h3>
+      <div class="circle">
+        <img src="https://1000logos.net/wp-content/uploads/2023/03/Adobe-Firefly-Logo.png" alt="Adobe Firefly">
+      </div>
+      <a href="https://firefly.adobe.com/" class="download-btn">View</a>
+    </div>
+
+    <div class="grid-item" data-category="video">
+      <h3>Runway ML</h3>
+      <div class="circle">
+        <img src="https://avatars.githubusercontent.com/u/48375842?s=280&v=4" alt="Runway">
+      </div>
+      <a href="https://runwayml.com/" class="download-btn">View</a>
+    </div>
+
+    <div class="grid-item" data-category="video">
+      <h3>Descript</h3>
+      <div class="circle">
+        <img src="https://images.g2crowd.com/uploads/product/image/large_detail/large_detail_2edeb4201f0e3e00b1ac04df4e81e1b1/descript.png" alt="Descript">
+      </div>
+      <a href="https://www.descript.com/" class="download-btn">View</a>
+    </div>
+
+    <div class="grid-item" data-category="dev">
+      <h3>GitHub Copilot</h3>
+      <div class="circle">
+        <img src="https://cdn.thenewstack.io/media/2022/07/2a423dc6-github-copilot-logo.png" alt="GitHub Copilot">
+      </div>
+      <a href="https://github.com/features/copilot" class="download-btn">View</a>
+    </div>
+
+    <div class="grid-item" data-category="dev">
+      <h3>Replit AI</h3>
+      <div class="circle">
+        <img src="https://replit.com/public/images/logo/replit-logo.png" alt="Replit AI">
+      </div>
+      <a href="https://replit.com/" class="download-btn">View</a>
+    </div>
+
+    <div class="grid-item" data-category="productivity">
+      <h3>Notion AI</h3>
+      <div class="circle">
+        <img src="https://cdn.iconscout.com/icon/free/png-256/notion-2296040-1911999.png" alt="Notion AI">
+      </div>
+      <a href="https://www.notion.so/product/ai" class="download-btn">View</a>
+    </div>
+
+    <div class="grid-item" data-category="productivity">
+      <h3>ClickUp AI</h3>
+      <div class="circle">
+        <img src="https://seeklogo.com/images/C/clickup-logo-70902875C4-seeklogo.com.png" alt="ClickUp AI">
+      </div>
+      <a href="https://clickup.com/ai" class="download-btn">View</a>
+    </div>
+
+    <div class="grid-item" data-category="writing">
+      <h3>Jasper AI</h3>
+      <div class="circle">
+        <img src="https://images.g2crowd.com/uploads/product/image/social_landscape/social_landscape_16ad948eb9f1778e16f02e51df0ce07c/jasper.png" alt="Jasper AI">
+      </div>
+      <a href="https://www.jasper.ai/" class="download-btn">View</a>
+    </div>
+
+    <div class="grid-item" data-category="writing">
+      <h3>Copy.ai</h3>
+      <div class="circle">
+        <img src="https://assets-global.website-files.com/617e61d5a7f12d0641ecbd9b/64ee9380ce7ab615b7b963ad_Copy.ai-icon-white.png" alt="Copy AI">
+      </div>
+      <a href="https://www.copy.ai/" class="download-btn">View</a>
+    </div>
+
+    <div class="grid-item" data-category="sales">
+      <h3>Drift</h3>
+      <div class="circle">
+        <img src="https://seeklogo.com/images/D/drift-logo-B1F056C67E-seeklogo.com.png" alt="Drift AI">
+      </div>
+      <a href="https://www.drift.com/" class="download-btn">View</a>
+    </div>
+
+    <div class="grid-item" data-category="sales">
+      <h3>Intercom</h3>
+      <div class="circle">
+        <img src="https://images.g2crowd.com/uploads/product/image/social_landscape/social_landscape_1622737551/intercom.png" alt="Intercom AI">
+      </div>
+      <a href="https://www.intercom.com/ai" class="download-btn">View</a>
+    </div>
+
+    <div class="grid-item" data-category="data">
+      <h3>Zapier AI</h3>
+      <div class="circle">
+        <img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/zapier_logo_icon_170953.png" alt="Zapier">
+      </div>
+      <a href="https://zapier.com/blog/ai/" class="download-btn">View</a>
+    </div>
+
+    <div class="grid-item" data-category="data">
+      <h3>MonkeyLearn</h3>
+      <div class="circle">
+        <img src="https://cdn.monkeylearn.com/static/img/monkeylearn-icon.svg" alt="MonkeyLearn">
+      </div>
+      <a href="https://monkeylearn.com/" class="download-btn">View</a>
+    </div>
+
+    <div class="grid-item" data-category="avatars">
+      <h3>Synthesia</h3>
+      <div class="circle">
+        <img src="https://avatars.githubusercontent.com/u/41588904?s=280&v=4" alt="Synthesia AI">
+      </div>
+      <a href="https://www.synthesia.io/" class="download-btn">View</a>
+    </div>
+
+    <div class="grid-item" data-category="avatars">
+      <h3>Hour One</h3>
+      <div class="circle">
+        <img src="https://d1fdloi71mui9q.cloudfront.net/JzIGT1MQRCW8EXMJidpF_HourOne_AvatarIcon.png" alt="Hour One">
+      </div>
+      <a href="https://www.hourone.ai/" class="download-btn">View</a>
+    </div>
+  </div>
+
+  <script>
     function filterCategory(category) {
-        const items = document.querySelectorAll('.grid-item');
-        items.forEach(item => {
-            if (category === 'all' || item.dataset.category === category) {
-                item.style.display = 'block';
-            } else {
-                item.style.display = 'none';
-            }
-        });
-        // Store selection
-        localStorage.setItem('selectedCategory', category);
+      const items = document.querySelectorAll('.grid-item');
+      items.forEach(item => {
+        if (category === 'all' || item.dataset.category === category) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+      localStorage.setItem('selectedCategory', category);
     }
 
-    // Load stored category on page load
     window.addEventListener('DOMContentLoaded', () => {
-        const savedCategory = localStorage.getItem('selectedCategory') || 'all';
-        document.querySelector('.category-select').value = savedCategory;
-        filterCategory(savedCategory);
+      const savedCategory = localStorage.getItem('selectedCategory') || 'all';
+      document.querySelector('.category-select').value = savedCategory;
+      filterCategory(savedCategory);
     });
-</script>
-
-
+  </script>
 </body>
 </html>
