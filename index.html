@@ -50,19 +50,17 @@
 
     <div class="grid-container">
 
-	     <div class="grid-item">
-        <h3>Empuraan</h3>
-        <img src="https://m.media-amazon.com/images/M/MV5BZTQ1YWZjYTAtNGVjYi00YjkwLTk0N2UtYmMzM2NkZjlmODIwXkEyXkFqcGc@._V1_.jpg" alt="Empuraan">
-        <p>👁️‍🗨️ <span id="count-empuraan">0</span></p>
-        <a href="https://download2389.mediafire.com/2eb46f10nxrg3dm-zAf7yUNnCFV85tNjPZrALRNqj48fmtii74c_knNjhCG6vYzBNUmsier8E54c_jRtCtsQmm-znWazUPLe7DtS3ztnhjpPbZf0ya8Hk7c0MBSLAD2gsTppn7oMEX7AnXTJNYtPp6GAjHRQKL0RVQ22cLpVfeY/7ey4ah8hi996olo/L2_Empuraan.mp4" class="download-btn" download onclick="increaseCount('empuraan')">Download</a>
-    </div>
+	    <div class="grid-item">
+            <h3>Empuraan</h3>
+            <img src="https://m.media-amazon.com/images/M/MV5BZTQ1YWZjYTAtNGVjYi00YjkwLTk0N2UtYmMzM2NkZjlmODIwXkEyXkFqcGc@._V1_.jpg" alt="Image 4">
+            <a href="https://download2389.mediafire.com/2eb46f10nxrg3dm-zAf7yUNnCFV85tNjPZrALRNqj48fmtii74c_knNjhCG6vYzBNUmsier8E54c_jRtCtsQmm-znWazUPLe7DtS3ztnhjpPbZf0ya8Hk7c0MBSLAD2gsTppn7oMEX7AnXTJNYtPp6GAjHRQKL0RVQ22cLpVfeY/7ey4ah8hi996olo/L2_Empuraan.mp4" class="download-btn" download>Download</a>
+            </div>
 
-    <div class="grid-item">
-        <h3>Kingston</h3>
-        <img src="https://m.media-amazon.com/images/M/MV5BYjIwMTAzOGItMjIzNC00ZDlkLTg5NDctMDhkMjhmYmRkMGU2XkEyXkFqcGc@._V1_.jpg" alt="Kingston">
-        <p>👁️‍🗨️ <span id="count-kingston">0</span></p>
-        <a href="https://download2389.mediafire.com/xmhlouwn8gmgQmI0KSSuZUupT4tLLzZLN_EYDn2hKlWInmhCz2K_k8xyuuiZ4N9t_48j_h8-Zbtvp61rtckCtgPPzTgLB5KHHADWxE1rdwb2VHSXw4JED6GWxlB5G2LAvJroHuhIxqGpz6inhQyRezVuK6_AGDRkYkOxO4JARfYhHw/6j3f90i6xqp8jki/Kingston.mp4" class="download-btn" download onclick="increaseCount('kingston')">Download</a>
-    </div>
+	       <div class="grid-item">
+            <h3>Kingston</h3>
+            <img src="https://m.media-amazon.com/images/M/MV5BYjIwMTAzOGItMjIzNC00ZDlkLTg5NDctMDhkMjhmYmRkMGU2XkEyXkFqcGc@._V1_.jpg" alt="Image 4">
+            <a href="https://download2389.mediafire.com/xmhlouwn8gmgQmI0KSSuZUupT4tLLzZLN_EYDn2hKlWInmhCz2K_k8xyuuiZ4N9t_48j_h8-Zbtvp61rtckCtgPPzTgLB5KHHADWxE1rdwb2VHSXw4JED6GWxlB5G2LAvJroHuhIxqGpz6inhQyRezVuK6_AGDRkYkOxO4JARfYhHw/6j3f90i6xqp8jki/Kingston.mp4" class="download-btn" download>Download</a>
+            </div>
 
 	       <div class="grid-item">
             <h3>Test</h3>
@@ -424,26 +422,5 @@
             </div>
 	    
     </div>
-	
-
-   <script>
-    function increaseCount(movie) {
-        const key = 'downloads-' + movie;
-        let count = localStorage.getItem(key);
-        count = count ? parseInt(count) + 1 : 1;
-        localStorage.setItem(key, count);
-        document.getElementById('count-' + movie).innerText = count;
-    }
-
-    function loadCounts() {
-        const movies = ['empuraan', 'kingston'];
-        movies.forEach(movie => {
-            const count = localStorage.getItem('downloads-' + movie) || 0;
-            document.getElementById('count-' + movie).innerText = count;
-        });
-    }
-
-    window.onload = loadCounts;
-</script>
 </body>
 </html>
