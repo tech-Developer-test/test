@@ -6,31 +6,67 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>One App - AI Tools</title>
   <style>
-    .grid-container {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-gap: 20px;
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 20px;
-      justify-items: center;
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #0d0d0d;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #ffffff;
     }
 
-    .grid-item {
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+	  
+    }
+
+    .category-select {
+      display: block;
+      width: 90%;
+      max-width: 300px;
+      margin: 20px auto;
+      padding: 10px 15px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: none;
+      background: #1f1f1f;
+      color: #fff;
+    }
+
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+	  grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card {
+      background: #1c1c1c;
+      border-radius: 12px;
+      width: 220px;
+      padding: 20px;
       text-align: center;
-      color: white;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
     }
 
     .circle {
-      width: 180px;
-      height: 180px;
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 15px;
       border-radius: 50%;
       overflow: hidden;
-      background: #000;
+      background-color: #000;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 10px;
     }
 
     .circle img {
@@ -39,207 +75,186 @@
       object-fit: cover;
     }
 
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
     .download-btn {
       display: inline-block;
       margin-top: 10px;
-      padding: 10px 20px;
+      padding: 10px 16px;
       background-color: #4CAF50;
       color: white;
       text-decoration: none;
-      border-radius: 5px;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
     }
 
     .download-btn:hover {
-      background-color: #45a049;
+      background-color: #3e9142;
     }
 
-    body {
-      background-color: black;
-      font-family: Arial, sans-serif;
-    }
-
-    h3 {
-      margin: 0;
-      padding: 5px 0;
-    }
-
-    .category-select {
-      display: block;
-      margin: 20px auto;
-      padding: 10px;
-      font-size: 16px;
+    @media (max-width: 600px) {
+      .card {
+        width: 90%;
+      }
     }
   </style>
 </head>
 <body>
 
-  <select class="category-select" onchange="filterCategory(this.value)">
-    <option value="all">All Categories</option>
-    <option value="design">Image & Design AI</option>
-    <option value="video">Video & Audio AI</option>
-    <option value="dev">Developer & Coding AI</option>
-    <option value="productivity">Business & Productivity AI</option>
-    <option value="writing">Writing & Content Creation</option>
-    <option value="sales">Customer Service & Sales AI</option>
-    <option value="data">Data, Analytics & Automation</option>
-    <option value="avatars">AI Avatars, Cloning & Realism</option>
-  </select>
+  <div class="container">
+    <select class="category-select" onchange="filterCategory(this.value)">
+      <option value="all">All Categories</option>
+      <option value="design">Image & Design AI</option>
+      <option value="video">Video & Audio AI</option>
+      <option value="dev">Developer & Coding AI</option>
+      <option value="productivity">Business & Productivity AI</option>
+      <option value="writing">Writing & Content Creation</option>
+      <option value="sales">Customer Service & Sales AI</option>
+      <option value="data">Data, Analytics & Automation</option>
+      <option value="avatars">AI Avatars, Cloning & Realism</option>
+    </select>
 
-  <div class="grid-container">
-    <div class="grid-item" data-category="all">
-      <h3>ChatGPT</h3>
-      <div class="circle">
-        <img src="https://styles.redditmedia.com/t5_7hqomg/styles/communityIcon_bzj6d1z1oizc1.png" alt="ChatGPT">
-      </div>
-      <a href="https://chatgpt.com/" class="download-btn">View</a>
-    </div>
-
-    <div class="grid-item" data-category="all">
-      <h3>Gemini</h3>
-      <div class="circle">
-        <img src="https://img.freepik.com/premium-vector/gemini-logo-icon_1273375-853.jpg" alt="Adobe Firefly">
-      </div>
-      <a href="https://gemini.google.com/app" class="download-btn">View</a>
-    </div>
-
-    <div class="grid-item" data-category="all">
-      <h3>Copilot </h3>
-      <div class="circle">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGfLQ7BDlTF4mqmzJ6vVZIl8xdfSMuD3GjNaLtsWDVm7rZoyQ1Q241BSbbVsdNlzeoZz0&usqp=CAU" alt="Runway">
-      </div>
-      <a href="https://copilot.microsoft.com/chats/zrXgrk1xhFicyQ51oX19t" class="download-btn">View</a>
-    </div>
-
-    <div class="grid-item" data-category="all">
-      <h3>Claude</h3>
-      <div class="circle">
-        <img src="https://10web.io/wp-content/uploads/2024/07/Claude.png" alt="Descript">
-      </div>
-      <a href="https://claude.ai/new" class="download-btn">View</a>
-    </div>
-
-    <div class="grid-item" data-category="all">
-      <h3>Deepseek</h3>
-      <div class="circle">
-        <img src="https://crystalpng.com/wp-content/uploads/2025/01/deepseek-logo-03.png" alt="Descript">
-      </div>
-      <a href="https://chat.deepseek.com/" class="download-btn">View</a>
-    </div>
-
-    <div class="grid-item" data-category="dev">
-      <h3>GitHub Copilot</h3>
-      <div class="circle">
-        <img src="https://cdn.thenewstack.io/media/2022/07/2a423dc6-github-copilot-logo.png" alt="GitHub Copilot">
-      </div>
-      <a href="https://github.com/features/copilot" class="download-btn">View</a>
-    </div>
-
-    <div class="grid-item" data-category="dev">
-      <h3>Replit AI</h3>
-      <div class="circle">
-        <img src="https://replit.com/public/images/logo/replit-logo.png" alt="Replit AI">
-      </div>
-      <a href="https://replit.com/" class="download-btn">View</a>
-    </div>
-
-    <div class="grid-item" data-category="productivity">
-      <h3>Notion AI</h3>
-      <div class="circle">
-        <img src="https://cdn.iconscout.com/icon/free/png-256/notion-2296040-1911999.png" alt="Notion AI">
-      </div>
-      <a href="https://www.notion.so/product/ai" class="download-btn">View</a>
-    </div>
-
-    <div class="grid-item" data-category="productivity">
-      <h3>ClickUp AI</h3>
-      <div class="circle">
-        <img src="https://seeklogo.com/images/C/clickup-logo-70902875C4-seeklogo.com.png" alt="ClickUp AI">
-      </div>
-      <a href="https://clickup.com/ai" class="download-btn">View</a>
-    </div>
-
-    <div class="grid-item" data-category="writing">
-      <h3>Jasper AI</h3>
-      <div class="circle">
-        <img src="https://images.g2crowd.com/uploads/product/image/social_landscape/social_landscape_16ad948eb9f1778e16f02e51df0ce07c/jasper.png" alt="Jasper AI">
-      </div>
-      <a href="https://www.jasper.ai/" class="download-btn">View</a>
-    </div>
-
-    <div class="grid-item" data-category="writing">
-      <h3>Copy.ai</h3>
-      <div class="circle">
-        <img src="https://assets-global.website-files.com/617e61d5a7f12d0641ecbd9b/64ee9380ce7ab615b7b963ad_Copy.ai-icon-white.png" alt="Copy AI">
-      </div>
-      <a href="https://www.copy.ai/" class="download-btn">View</a>
-    </div>
-
-    <div class="grid-item" data-category="sales">
-      <h3>Drift</h3>
-      <div class="circle">
-        <img src="https://seeklogo.com/images/D/drift-logo-B1F056C67E-seeklogo.com.png" alt="Drift AI">
-      </div>
-      <a href="https://www.drift.com/" class="download-btn">View</a>
-    </div>
-
-    <div class="grid-item" data-category="sales">
-      <h3>Intercom</h3>
-      <div class="circle">
-        <img src="https://images.g2crowd.com/uploads/product/image/social_landscape/social_landscape_1622737551/intercom.png" alt="Intercom AI">
-      </div>
-      <a href="https://www.intercom.com/ai" class="download-btn">View</a>
-    </div>
-
-    <div class="grid-item" data-category="data">
-      <h3>Zapier AI</h3>
-      <div class="circle">
-        <img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/zapier_logo_icon_170953.png" alt="Zapier">
-      </div>
-      <a href="https://zapier.com/blog/ai/" class="download-btn">View</a>
-    </div>
-
-    <div class="grid-item" data-category="data">
-      <h3>MonkeyLearn</h3>
-      <div class="circle">
-        <img src="https://cdn.monkeylearn.com/static/img/monkeylearn-icon.svg" alt="MonkeyLearn">
-      </div>
-      <a href="https://monkeylearn.com/" class="download-btn">View</a>
-    </div>
-
-    <div class="grid-item" data-category="avatars">
-      <h3>Synthesia</h3>
-      <div class="circle">
-        <img src="https://avatars.githubusercontent.com/u/41588904?s=280&v=4" alt="Synthesia AI">
-      </div>
-      <a href="https://www.synthesia.io/" class="download-btn">View</a>
-    </div>
-
-    <div class="grid-item" data-category="avatars">
-      <h3>Hour One</h3>
-      <div class="circle">
-        <img src="https://d1fdloi71mui9q.cloudfront.net/JzIGT1MQRCW8EXMJidpF_HourOne_AvatarIcon.png" alt="Hour One">
-      </div>
-      <a href="https://www.hourone.ai/" class="download-btn">View</a>
+    <div class="grid" id="grid">
+      <!-- Your grid items go here - REUSE your existing <div class="grid-item" ...> blocks
+           by replacing class="grid-item" with class="card" -->
     </div>
   </div>
 
   <script>
-    function filterCategory(category) {
-      const items = document.querySelectorAll('.grid-item');
-      items.forEach(item => {
-        if (category === 'all' || item.dataset.category === category) {
-          item.style.display = 'block';
-        } else {
-          item.style.display = 'none';
+    // Populate grid items (simplified example - you can continue adding the rest)
+    const tools = [
+      {
+        name: "ChatGPT",
+        img: "https://styles.redditmedia.com/t5_7hqomg/styles/communityIcon_bzj6d1z1oizc1.png",
+        url: "https://chatgpt.com/",
+        category: "all"
+      },
+      {
+        name: "Gemini",
+        img: "https://img.freepik.com/premium-vector/gemini-logo-icon_1273375-853.jpg",
+        url: "https://gemini.google.com/app",
+        category: "all"
+      },
+	   {
+        name: "Gemini",
+        img: "https://img.freepik.com/premium-vector/gemini-logo-icon_1273375-853.jpg",
+        url: "https://gemini.google.com/app",
+        category: "all"
+      },
+	   {
+        name: "Gemini",
+        img: "https://img.freepik.com/premium-vector/gemini-logo-icon_1273375-853.jpg",
+        url: "https://gemini.google.com/app",
+        category: "all"
+      },
+	   {
+        name: "Gemini",
+        img: "https://img.freepik.com/premium-vector/gemini-logo-icon_1273375-853.jpg",
+        url: "https://gemini.google.com/app",
+        category: "all"
+      },
+	   {
+        name: "Gemini",
+        img: "https://img.freepik.com/premium-vector/gemini-logo-icon_1273375-853.jpg",
+        url: "https://gemini.google.com/app",
+        category: "all"
+      },
+	   {
+        name: "Gemini",
+        img: "https://img.freepik.com/premium-vector/gemini-logo-icon_1273375-853.jpg",
+        url: "https://gemini.google.com/app",
+        category: "all"
+      },
+	   {
+        name: "Gemini",
+        img: "https://img.freepik.com/premium-vector/gemini-logo-icon_1273375-853.jpg",
+        url: "https://gemini.google.com/app",
+        category: "all"
+      },
+	   {
+        name: "Gemini",
+        img: "https://img.freepik.com/premium-vector/gemini-logo-icon_1273375-853.jpg",
+        url: "https://gemini.google.com/app",
+        category: "all"
+      },
+	   {
+        name: "Gemini",
+        img: "https://img.freepik.com/premium-vector/gemini-logo-icon_1273375-853.jpg",
+        url: "https://gemini.google.com/app",
+        category: "all"
+      },
+	   {
+        name: "Gemini",
+        img: "https://img.freepik.com/premium-vector/gemini-logo-icon_1273375-853.jpg",
+        url: "https://gemini.google.com/app",
+        category: "all"
+      },
+	   {
+        name: "Gemini",
+        img: "https://img.freepik.com/premium-vector/gemini-logo-icon_1273375-853.jpg",
+        url: "https://gemini.google.com/app",
+        category: "all"
+      },
+	   {
+        name: "Gemini",
+        img: "https://img.freepik.com/premium-vector/gemini-logo-icon_1273375-853.jpg",
+        url: "https://gemini.google.com/app",
+        category: "all"
+      },
+	   {
+        name: "Gemini",
+        img: "https://img.freepik.com/premium-vector/gemini-logo-icon_1273375-853.jpg",
+        url: "https://gemini.google.com/app",
+        category: "all"
+      },
+	   {
+        name: "Gemini",
+        img: "https://img.freepik.com/premium-vector/gemini-logo-icon_1273375-853.jpg",
+        url: "https://gemini.google.com/app",
+        category: "all"
+      },
+	   {
+        name: "Gemini",
+        img: "https://img.freepik.com/premium-vector/gemini-logo-icon_1273375-853.jpg",
+        url: "https://gemini.google.com/app",
+        category: "all"
+      },
+      // Add more tools here...
+    ];
+
+    const grid = document.getElementById('grid');
+
+    function renderTools(category = 'all') {
+      grid.innerHTML = '';
+      tools.forEach(tool => {
+        if (category === 'all' || tool.category === category) {
+          const item = document.createElement('div');
+          item.className = 'card';
+          item.dataset.category = tool.category;
+          item.innerHTML = `
+            <h3>${tool.name}</h3>
+            <div class="circle">
+              <img src="${tool.img}" alt="${tool.name}">
+            </div>
+            <a href="${tool.url}" class="download-btn" target="_blank">View</a>
+          `;
+          grid.appendChild(item);
         }
       });
+    }
+
+    function filterCategory(category) {
+      renderTools(category);
       localStorage.setItem('selectedCategory', category);
     }
 
     window.addEventListener('DOMContentLoaded', () => {
       const savedCategory = localStorage.getItem('selectedCategory') || 'all';
       document.querySelector('.category-select').value = savedCategory;
-      filterCategory(savedCategory);
+      renderTools(savedCategory);
     });
   </script>
 </body>
