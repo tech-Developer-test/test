@@ -152,6 +152,31 @@
 
     .btn-retail:hover { opacity: .9; }
 
+    /* Cart Modal */
+    #cart-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    #cart-modal .modal-content {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 10px;
+      max-width: 500px;
+      width: 90%;
+    }
+
+    #cart-modal input[type="number"] {
+      width: 60px;
+    }
+
     @media (max-width: 640px) {
       .product-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
       .carousel-slide img { aspect-ratio: 2 / 1; }
@@ -193,6 +218,19 @@
 
   <footer>&copy; 2025 Nutri Hub</footer>
 
+  <!-- Cart Modal -->
+  <div id="cart-modal">
+    <div class="modal-content">
+      <h2>Your Cart</h2>
+      <div id="cart-items"></div>
+      <p id="cart-total" style="font-weight: bold; margin-top: 1rem;"></p>
+      <div style="margin-top:1rem; display:flex; justify-content:space-between;">
+        <button onclick="closeCart()">Close</button>
+        <button onclick="checkoutCart()" style="background:green;color:#fff;border:none;padding:.5rem 1rem;">Checkout</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     const phoneNumber = '919345586790';
     const products = [
@@ -202,6 +240,7 @@
       { id: 4, name: 'Walnuts',  retailPrice: 900, unit: 'kg', img: 'https://m.media-amazon.com/images/I/71643abOSLL._AC_UF894,1000_QL80_.jpg' },
       { id: 5, name: 'ABC Malt Powder', retailPrice: 450, unit: 'kg', img: 'https://agasthiaherbs.com/wp-content/uploads/2023/08/9ap5ybmS.webp' }
     ];
+
     let cart = [];
 
     function renderProducts() {
@@ -235,12 +274,61 @@
       updateCartCount();
     }
 
+    function updateCartCount() {
+      document.getElementById('cart-count').textContent = cart.length;
+    }
+
     function toggleCart() {
-      alert('Cart feature is under development.');
+      document.getElementById('cart-modal').style.display = 'flex';
+      renderCart();
+    }
+
+    function closeCart() {
+      document.getElementById('cart-modal').style.display = 'none';
+    }
+
+    function renderCart() {
+      const container = document.getElementById('cart-items');
+      const totalElement = document.getElementById('cart-total');
+      container.innerHTML = '';
+      if (cart.length === 0) {
+        container.innerHTML = '<p>Your cart is empty.</p>';
+        totalElement.textContent = '';
+        return;
+      }
+
+      cart.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.innerHTML = `
+          <strong>${item.name}</strong><br/>
+          Qty: <input type="number" min="1" value="${item.qty}" onchange="updateItemQty(${index}, this.value)" />
+          <button onclick="removeItem(${index})" style="color:red;margin-left:5px;">Remove</button>
+        `;
+        container.appendChild(div);
+      });
+
+      const total = cart.reduce((sum, i) => sum + i.qty * i.retailPrice, 0);
+      totalElement.textContent = `Total: ₹${total}`;
+    }
+
+    function updateItemQty(index, value) {
+      const qty = parseFloat(value);
+      if (qty <= 0 || isNaN(qty)) return alert('Invalid quantity.');
+      cart[index].qty = qty;
+      renderCart();
+    }
+
+    function removeItem(index) {
+      if (confirm('Remove this item from cart?')) {
+        cart.splice(index, 1);
+        updateCartCount();
+        renderCart();
+      }
     }
 
     function checkoutCart() {
       if (!cart.length) return alert('Cart is empty!');
+      closeCart();
       const lines = ['Hello, I would like to place an order:'];
       cart.forEach(i => lines.push(`• ${i.name}: ${i.qty} ${i.unit} – ₹${i.retailPrice * i.qty}`));
       lines.push(`\nTotal: ₹${cart.reduce((s, i) => s + i.retailPrice * i.qty, 0)}`);
@@ -249,10 +337,6 @@
       cart = [];
       updateCartCount();
       alert('Order placed. Cart has been cleared.');
-    }
-
-    function updateCartCount() {
-      document.getElementById('cart-count').textContent = cart.length;
     }
 
     // Carousel logic
