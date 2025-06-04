@@ -23,11 +23,7 @@
       padding: clamp(1rem, 3vw, 1.5rem);
       box-shadow: 0 2px 6px rgba(0,0,0,.1);
     }
-    header h1 {
-      margin: 0 0 .3rem;
-      font-size: clamp(1.6rem, 4vw, 2.2rem);
-      letter-spacing: .5px;
-    }
+    header h1 { margin: 0 0 .3rem; font-size: clamp(1.6rem, 4vw, 2.2rem); }
     header p { margin: 0; opacity: .9; font-size: .9rem; }
     .btn-cart {
       margin-top: .8rem;
@@ -128,24 +124,41 @@
     }
     .btn-retail:hover { opacity:.9; }
 
-    #cart {
-      background: white;
-      max-width: 600px;
-      margin: 2rem auto;
-      padding: 1rem 1.25rem;
+    /* ==== Modal Popup Styles ==== */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+    .modal-content {
+      background: #fff;
+      width: 90%;
+      max-width: 500px;
       border-radius: 8px;
-      box-shadow: 0 1px 8px rgba(0,0,0,0.1);
+      padding: 1rem;
+      position: relative;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.25);
     }
-    #cart h2 {
-      margin-top: 0;
-      font-size: 1.3rem;
-      border-bottom: 2px solid #2980b9;
-      padding-bottom: .25rem;
+    .close-btn {
+      position: absolute;
+      top: .5rem;
+      right: .75rem;
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: #555;
     }
+
     #cart-list {
       list-style: none;
       padding: 0;
-      margin: 0;
+      margin: 1rem 0 0;
     }
     #cart-list li {
       display: flex;
@@ -156,6 +169,7 @@
       font-size: 1rem;
     }
     #cart-list li:last-child { border-bottom: none; }
+
     .remove-btn {
       background: #c0392b;
       border: none;
@@ -164,26 +178,17 @@
       border-radius: 4px;
       cursor: pointer;
       font-size: 0.85rem;
-      transition: background-color 0.2s;
     }
-    .remove-btn:hover {
-      background-color: #e74c3c;
-    }
+    .remove-btn:hover { background-color: #e74c3c; }
 
     @media (max-width: 640px) {
-      .product-grid {
-        grid-template-columns: 1fr;
-      }
+      .product-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 480px) {
       .btn-cart { width: 100%; margin: .5rem 0 0 0; }
       .actions input[type="number"],
       .btn-retail { flex: 1 1 100%; }
-      #cart {
-        width: 90%;
-        margin: 1rem auto;
-      }
     }
 
     footer {
@@ -204,17 +209,22 @@
 
   <div class="horizontal-banner">
     <div class="scrolling-row">
-      <img src="https://images7.alphacoders.com/436/436244.jpg" alt="Banner 1" />
-      <img src="https://t4.ftcdn.net/jpg/03/07/00/75/360_F_307007568_JwLoLkiZiSWv2xR4e8kERNz2I5qqcN8l.jpg" alt="Banner 2" />
-      <img src="https://img.freepik.com/free-photo/raisin-currant_1339-7227.jpg" alt="Banner 3" />
-      <img src="https://m.media-amazon.com/images/I/71643abOSLL._AC_UF894,1000_QL80_.jpg" alt="Banner 4" />
-      <img src="https://agasthiaherbs.com/wp-content/uploads/2023/08/9ap5ybmS.webp" alt="Banner 5" />
+      <img src="https://images7.alphacoders.com/436/436244.jpg" />
+      <img src="https://t4.ftcdn.net/jpg/03/07/00/75/360_F_307007568_JwLoLkiZiSWv2xR4e8kERNz2I5qqcN8l.jpg" />
+      <img src="https://img.freepik.com/free-photo/raisin-currant_1339-7227.jpg" />
+      <img src="https://m.media-amazon.com/images/I/71643abOSLL._AC_UF894,1000_QL80_.jpg" />
+      <img src="https://agasthiaherbs.com/wp-content/uploads/2023/08/9ap5ybmS.webp" />
     </div>
   </div>
 
   <div class="container">
     <div class="product-grid" id="product-list"></div>
-    <div id="cart" style="display:none;">
+  </div>
+
+  <!-- Modal Popup Cart -->
+  <div id="cart-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button class="close-btn" onclick="toggleCart()">✖</button>
       <h2>Your Cart</h2>
       <ul id="cart-list"></ul>
     </div>
@@ -229,17 +239,12 @@
       { id: 2, name: 'Cashews',  retailPrice: 800, unit: 'kg', img: 'https://t4.ftcdn.net/jpg/03/07/00/75/360_F_307007568_JwLoLkiZiSWv2xR4e8kERNz2I5qqcN8l.jpg' },
       { id: 3, name: 'Raisins',  retailPrice: 350, unit: 'kg', img: 'https://img.freepik.com/free-photo/raisin-currant_1339-7227.jpg' },
       { id: 4, name: 'Walnuts',  retailPrice: 900, unit: 'kg', img: 'https://m.media-amazon.com/images/I/71643abOSLL._AC_UF894,1000_QL80_.jpg' },
-      { id: 5, name: 'ABC Malt Powder', retailPrice: 450, unit: 'kg', img: 'https://agasthiaherbs.com/wp-content/uploads/2023/08/9ap5ybmS.webp' },
-      { id: 6, name: 'Almonds',  retailPrice: 700, unit: 'kg', img: 'https://images7.alphacoders.com/436/436244.jpg' },
-      { id: 7, name: 'Cashews',  retailPrice: 800, unit: 'kg', img: 'https://t4.ftcdn.net/jpg/03/07/00/75/360_F_307007568_JwLoLkiZiSWv2xR4e8kERNz2I5qqcN8l.jpg' },
-      { id: 8, name: 'Raisins',  retailPrice: 350, unit: 'kg', img: 'https://img.freepik.com/free-photo/raisin-currant_1339-7227.jpg' },
-      { id: 9, name: 'Walnuts',  retailPrice: 900, unit: 'kg', img: 'https://m.media-amazon.com/images/I/71643abOSLL._AC_UF894,1000_QL80_.jpg' },
-      { id: 10, name: 'ABC Malt Powder', retailPrice: 450, unit: 'kg', img: 'https://agasthiaherbs.com/wp-content/uploads/2023/08/9ap5ybmS.webp' }
+      { id: 5, name: 'ABC Malt Powder', retailPrice: 450, unit: 'kg', img: 'https://agasthiaherbs.com/wp-content/uploads/2023/08/9ap5ybmS.webp' }
     ];
 
     let cart = [];
 
-    function renderProducts () {
+    function renderProducts() {
       const list = document.getElementById('product-list');
       list.innerHTML = '';
       products.forEach(p => {
@@ -251,7 +256,7 @@
             <h3>${p.name}</h3>
             <p class="price">Retail: ₹${p.retailPrice}/${p.unit}</p>
             <div class="actions">
-              <label>Qty&nbsp;(${p.unit}): 
+              <label>Qty (${p.unit}): 
                 <input type="number" id="qty-${p.id}" min="1" value="1">
               </label>
               <button class="btn-retail" onclick="addToCart(${p.id})">Add to Cart</button>
@@ -261,7 +266,7 @@
       });
     }
 
-    function addToCart (id) {
+    function addToCart(id) {
       const product = products.find(p => p.id === id);
       const qty = parseFloat(document.getElementById(`qty-${id}`).value);
       if (isNaN(qty) || qty <= 0) return alert('Enter a valid quantity.');
@@ -283,7 +288,6 @@
     }
 
     function renderCart() {
-      const cartDiv = document.getElementById('cart');
       const cartList = document.getElementById('cart-list');
       if (!cart.length) {
         cartList.innerHTML = '<li>Your cart is empty.</li>';
@@ -301,16 +305,16 @@
     }
 
     function toggleCart() {
-      const cartDiv = document.getElementById('cart');
-      if (cartDiv.style.display === 'none' || cartDiv.style.display === '') {
-        cartDiv.style.display = 'block';
-        renderCart();
+      const modal = document.getElementById('cart-modal');
+      if (modal.style.display === 'flex') {
+        modal.style.display = 'none';
       } else {
-        cartDiv.style.display = 'none';
+        renderCart();
+        modal.style.display = 'flex';
       }
     }
 
-    function checkoutCart () {
+    function checkoutCart() {
       if (!cart.length) return alert('Cart is empty!');
       const lines = ['Hello, I would like to place an order:'];
       cart.forEach(i => lines.push(`• ${i.name}: ${i.qty} ${i.unit} – ₹${i.retailPrice * i.qty}`));
@@ -320,6 +324,7 @@
       cart = [];
       updateCartCount();
       renderCart();
+      toggleCart();
       alert('Order placed. Cart has been cleared.');
     }
 
