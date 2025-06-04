@@ -6,7 +6,6 @@
   <title>Nutri Hub</title>
 
   <style>
-    /* ========== RESET & BASE ========== */
     *, *::before, *::after { box-sizing: border-box; }
     html { font-size: clamp(14px, 1.2vw + .5rem, 18px); }
     body {
@@ -17,7 +16,6 @@
       line-height: 1.45;
     }
 
-    /* ========== HEADER ========== */
     header {
       background: #2c3e50;
       color: #fff;
@@ -41,10 +39,10 @@
       font-size: .95rem;
       cursor: pointer;
       transition: opacity .2s;
+      margin-left: .5rem;
     }
     .btn-cart:hover { opacity: .9; }
 
-    /* ========== BANNER ========== */
     .horizontal-banner {
       width: 100%;
       overflow: hidden;
@@ -53,10 +51,13 @@
       padding: .4rem 0;
       box-shadow: inset 0 -1px 5px rgba(0,0,0,.05);
     }
-    .scrolling-row { display: inline-block; animation: scroll-horizontal 30s linear infinite; }
+    .scrolling-row {
+      display: inline-block;
+      animation: scroll-horizontal 30s linear infinite;
+    }
     .scrolling-row img {
-      height: 30vw;         /* fluid */
-      max-height: 120px;    /* but never bigger than original */
+      height: 30vw;
+      max-height: 120px;
       margin-right: 1rem;
       border-radius: 8px;
     }
@@ -65,35 +66,38 @@
       100% { transform: translateX(-100%); }
     }
 
-    /* ========== LAYOUT CONTAINER ========== */
-    .container { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
-
-    /* ========== PRODUCT GRID ========== */
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(280px,100%), 1fr));
-      gap: 1.25rem;
+    .container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
     }
 
-    /* ========== PRODUCT CARD ========== */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
     .product-card {
-      display: flex;
-      align-items: center;
       background: #fff;
       border-radius: 8px;
       padding: 1rem;
       box-shadow: 0 1px 4px rgba(0,0,0,.08);
       transition: transform .15s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
     }
     .product-card:hover { transform: translateY(-2px); }
 
     .product-card img {
-      width: 110px;
-      height: 110px;
+      width: 100%;
+      max-width: 200px;
+      height: auto;
       object-fit: cover;
       border-radius: 8px;
-      margin-right: 1rem;
-      flex-shrink: 0;
+      margin-bottom: 1rem;
     }
 
     .product-info h3 { margin: 0 0 .4rem; font-size: 1.1rem; }
@@ -103,7 +107,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: .5rem;
-      align-items: center;
+      justify-content: center;
     }
     .actions input[type="number"] {
       width: 68px;
@@ -124,24 +128,64 @@
     }
     .btn-retail:hover { opacity:.9; }
 
-    /* ------- MOBILE TWEAKS ------- */
-    @media (max-width: 600px) {
-      .product-card { flex-direction: column; text-align: center; }
-      .product-card img {
-        width: 80%;
-        height: auto;
-        max-width: 220px;
-        margin: 0 0 .9rem;
-      }
-      .actions { justify-content: center; }
+    #cart {
+      background: white;
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.1);
     }
-    @media (max-width: 480px) {
-      .btn-cart { width: 100%; }
-      .actions input[type="number"],
-      .btn-retail { flex: 1 1 100%; }
+    #cart h2 {
+      margin-top: 0;
+      font-size: 1.3rem;
+      border-bottom: 2px solid #2980b9;
+      padding-bottom: .25rem;
+    }
+    #cart-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    #cart-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: .4rem 0;
+      border-bottom: 1px solid #eee;
+      font-size: 1rem;
+    }
+    #cart-list li:last-child { border-bottom: none; }
+    .remove-btn {
+      background: #c0392b;
+      border: none;
+      color: white;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: background-color 0.2s;
+    }
+    .remove-btn:hover {
+      background-color: #e74c3c;
     }
 
-    /* ========== FOOTER ========== */
+    @media (max-width: 640px) {
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .btn-cart { width: 100%; margin: .5rem 0 0 0; }
+      .actions input[type="number"],
+      .btn-retail { flex: 1 1 100%; }
+      #cart {
+        width: 90%;
+        margin: 1rem auto;
+      }
+    }
+
     footer {
       text-align: center;
       font-size: .8rem;
@@ -155,6 +199,7 @@
     <h1>Nutri Hub</h1>
     <p>Premium quality Dry Fruits & Malt Store</p>
     <button class="btn-cart" onclick="checkoutCart()">🛒 Checkout Cart</button>
+    <button class="btn-cart" onclick="toggleCart()">🛍️ View Cart (<span id="cart-count">0</span>)</button>
   </header>
 
   <div class="horizontal-banner">
@@ -169,11 +214,14 @@
 
   <div class="container">
     <div class="product-grid" id="product-list"></div>
+    <div id="cart" style="display:none;">
+      <h2>Your Cart</h2>
+      <ul id="cart-list"></ul>
+    </div>
   </div>
 
   <footer>&copy; 2025 Nutri Hub</footer>
 
-  <!-- ========== JS ========== -->
   <script>
     const phoneNumber = '919791617467';
     const products = [
@@ -182,7 +230,7 @@
       { id: 3, name: 'Raisins',  retailPrice: 350, unit: 'kg', img: 'https://img.freepik.com/free-photo/raisin-currant_1339-7227.jpg' },
       { id: 4, name: 'Walnuts',  retailPrice: 900, unit: 'kg', img: 'https://m.media-amazon.com/images/I/71643abOSLL._AC_UF894,1000_QL80_.jpg' },
       { id: 5, name: 'ABC Malt Powder', retailPrice: 450, unit: 'kg', img: 'https://agasthiaherbs.com/wp-content/uploads/2023/08/9ap5ybmS.webp' },
-	  { id: 6, name: 'Almonds',  retailPrice: 700, unit: 'kg', img: 'https://images7.alphacoders.com/436/436244.jpg' },
+      { id: 6, name: 'Almonds',  retailPrice: 700, unit: 'kg', img: 'https://images7.alphacoders.com/436/436244.jpg' },
       { id: 7, name: 'Cashews',  retailPrice: 800, unit: 'kg', img: 'https://t4.ftcdn.net/jpg/03/07/00/75/360_F_307007568_JwLoLkiZiSWv2xR4e8kERNz2I5qqcN8l.jpg' },
       { id: 8, name: 'Raisins',  retailPrice: 350, unit: 'kg', img: 'https://img.freepik.com/free-photo/raisin-currant_1339-7227.jpg' },
       { id: 9, name: 'Walnuts',  retailPrice: 900, unit: 'kg', img: 'https://m.media-amazon.com/images/I/71643abOSLL._AC_UF894,1000_QL80_.jpg' },
@@ -218,8 +266,48 @@
       const qty = parseFloat(document.getElementById(`qty-${id}`).value);
       if (isNaN(qty) || qty <= 0) return alert('Enter a valid quantity.');
       const idx = cart.findIndex(item => item.id === id);
-      idx > -1 ? cart[idx].qty += qty : cart.push({ ...product, qty });
+      if (idx > -1) {
+        cart[idx].qty += qty;
+      } else {
+        cart.push({ ...product, qty });
+      }
       alert(`${product.name} added to cart.`);
+      updateCartCount();
+      renderCart();
+    }
+
+    function removeFromCart(id) {
+      cart = cart.filter(item => item.id !== id);
+      updateCartCount();
+      renderCart();
+    }
+
+    function renderCart() {
+      const cartDiv = document.getElementById('cart');
+      const cartList = document.getElementById('cart-list');
+      if (!cart.length) {
+        cartList.innerHTML = '<li>Your cart is empty.</li>';
+        return;
+      }
+      cartList.innerHTML = '';
+      cart.forEach(item => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          ${item.name} - ${item.qty} ${item.unit} - ₹${item.retailPrice * item.qty}
+          <button class="remove-btn" onclick="removeFromCart(${item.id})">Remove</button>
+        `;
+        cartList.appendChild(li);
+      });
+    }
+
+    function toggleCart() {
+      const cartDiv = document.getElementById('cart');
+      if (cartDiv.style.display === 'none' || cartDiv.style.display === '') {
+        cartDiv.style.display = 'block';
+        renderCart();
+      } else {
+        cartDiv.style.display = 'none';
+      }
     }
 
     function checkoutCart () {
@@ -230,10 +318,17 @@
       lines.push('Thank you!');
       window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(lines.join('\n'))}`, '_blank');
       cart = [];
+      updateCartCount();
+      renderCart();
       alert('Order placed. Cart has been cleared.');
     }
 
+    function updateCartCount() {
+      document.getElementById('cart-count').textContent = cart.length;
+    }
+
     renderProducts();
+    updateCartCount();
   </script>
 </body>
 </html>
