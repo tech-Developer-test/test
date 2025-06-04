@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Nutri Hub</title>
-
   <style>
     *, *::before, *::after { box-sizing: border-box; }
     html { font-size: clamp(14px, 1.2vw + .5rem, 18px); }
@@ -16,15 +15,30 @@
       line-height: 1.45;
     }
 
+    /* ======= Animated Header ======= */
     header {
-      background: #2c3e50;
+      background: linear-gradient(270deg, #ff416c, #ff4b2b, #1e90ff, #32cd32);
+      background-size: 800% 800%;
+      animation: gradient-animation 12s ease infinite;
       color: #fff;
       text-align: center;
       padding: clamp(1rem, 3vw, 1.5rem);
       box-shadow: 0 2px 6px rgba(0,0,0,.1);
     }
-    header h1 { margin: 0 0 .3rem; font-size: clamp(1.6rem, 4vw, 2.2rem); }
-    header p { margin: 0; opacity: .9; font-size: .9rem; }
+    @keyframes gradient-animation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header h1 {
+      margin: 0 0 .3rem;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+    }
+
+    header p { margin: 0; opacity: .95; font-size: .95rem; }
+
     .btn-cart {
       margin-top: .8rem;
       background: #2980b9;
@@ -122,9 +136,8 @@
       cursor: pointer;
       transition: opacity .2s;
     }
-    .btn-retail:hover { opacity:.9; }
+    .btn-retail:hover { opacity: .9; }
 
-    /* ==== Modal Popup Styles ==== */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0;
@@ -135,6 +148,7 @@
       justify-content: center;
       z-index: 999;
     }
+
     .modal-content {
       background: #fff;
       width: 90%;
@@ -144,6 +158,7 @@
       position: relative;
       box-shadow: 0 2px 12px rgba(0,0,0,0.25);
     }
+
     .close-btn {
       position: absolute;
       top: .5rem;
@@ -203,8 +218,8 @@
   <header>
     <h1>Nutri Hub</h1>
     <p>Premium quality Dry Fruits & Malt Store</p>
-    <button class="btn-cart" onclick="checkoutCart()">🛒 Checkout Cart</button>
-    <button class="btn-cart" onclick="toggleCart()">🛍️ View Cart (<span id="cart-count">0</span>)</button>
+    <button class="btn-cart" onclick="checkoutCart()">Checkout</button>
+    <button class="btn-cart" onclick="toggleCart()">Cart (<span id="cart-count">0</span>)</button>
   </header>
 
   <div class="horizontal-banner">
@@ -221,7 +236,6 @@
     <div class="product-grid" id="product-list"></div>
   </div>
 
-  <!-- Modal Popup Cart -->
   <div id="cart-modal" class="modal-overlay">
     <div class="modal-content">
       <button class="close-btn" onclick="toggleCart()">✖</button>
@@ -241,7 +255,6 @@
       { id: 4, name: 'Walnuts',  retailPrice: 900, unit: 'kg', img: 'https://m.media-amazon.com/images/I/71643abOSLL._AC_UF894,1000_QL80_.jpg' },
       { id: 5, name: 'ABC Malt Powder', retailPrice: 450, unit: 'kg', img: 'https://agasthiaherbs.com/wp-content/uploads/2023/08/9ap5ybmS.webp' }
     ];
-
     let cart = [];
 
     function renderProducts() {
@@ -271,11 +284,8 @@
       const qty = parseFloat(document.getElementById(`qty-${id}`).value);
       if (isNaN(qty) || qty <= 0) return alert('Enter a valid quantity.');
       const idx = cart.findIndex(item => item.id === id);
-      if (idx > -1) {
-        cart[idx].qty += qty;
-      } else {
-        cart.push({ ...product, qty });
-      }
+      if (idx > -1) cart[idx].qty += qty;
+      else cart.push({ ...product, qty });
       alert(`${product.name} added to cart.`);
       updateCartCount();
       renderCart();
@@ -289,36 +299,28 @@
 
     function renderCart() {
       const cartList = document.getElementById('cart-list');
-      if (!cart.length) {
-        cartList.innerHTML = '<li>Your cart is empty.</li>';
-        return;
-      }
+      if (!cart.length) return cartList.innerHTML = '<li>Your cart is empty.</li>';
       cartList.innerHTML = '';
       cart.forEach(item => {
         const li = document.createElement('li');
         li.innerHTML = `
           ${item.name} - ${item.qty} ${item.unit} - ₹${item.retailPrice * item.qty}
-          <button class="remove-btn" onclick="removeFromCart(${item.id})">Remove</button>
-        `;
+          <button class="remove-btn" onclick="removeFromCart(${item.id})">Remove</button>`;
         cartList.appendChild(li);
       });
     }
 
     function toggleCart() {
       const modal = document.getElementById('cart-modal');
-      if (modal.style.display === 'flex') {
-        modal.style.display = 'none';
-      } else {
-        renderCart();
-        modal.style.display = 'flex';
-      }
+      modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+      renderCart();
     }
 
     function checkoutCart() {
       if (!cart.length) return alert('Cart is empty!');
       const lines = ['Hello, I would like to place an order:'];
       cart.forEach(i => lines.push(`• ${i.name}: ${i.qty} ${i.unit} – ₹${i.retailPrice * i.qty}`));
-      lines.push(`\nTotal: ₹${cart.reduce((s,i)=>s+i.retailPrice*i.qty,0)}`);
+      lines.push(`\nTotal: ₹${cart.reduce((s, i) => s + i.retailPrice * i.qty, 0)}`);
       lines.push('Thank you!');
       window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(lines.join('\n'))}`, '_blank');
       cart = [];
