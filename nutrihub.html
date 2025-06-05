@@ -37,8 +37,16 @@
       text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
     }
 
+    /* New container for the buttons side-by-side */
+    .header-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 0.8rem;
+      flex-wrap: wrap; /* Allows wrapping on very small widths */
+    }
+
     .btn-cart {
-      margin-top: .8rem;
       background: #2980b9;
       color: #fff;
       border: none;
@@ -46,7 +54,10 @@
       padding: .55rem 1.2rem;
       font-size: .95rem;
       cursor: pointer;
-      margin-left: .5rem;
+      /* Remove margin-top to prevent stacking */
+      margin: 0;
+      flex: none; /* Buttons keep their natural size */
+      white-space: nowrap; /* Prevent button text from breaking */
     }
 
     .btn-cart:hover { opacity: .9; }
@@ -195,8 +206,10 @@
   <header>
     <h1>Nutri Hub</h1>
     <p>Premium quality Dry Fruits & Malt Store</p>
-    <button class="btn-cart" onclick="checkoutCart()">Checkout</button>
-    <button class="btn-cart" onclick="toggleCart()">Cart (<span id="cart-count">0</span>)</button>
+    <div class="header-buttons">
+      <button class="btn-cart" onclick="checkoutCart()">Checkout</button>
+      <button class="btn-cart" onclick="toggleCart()">Cart (<span id="cart-count">0</span>)</button>
+    </div>
   </header>
 
   <div class="carousel-container">
@@ -236,7 +249,7 @@
       { id: 3, name: 'Raisins', retailPrice: 350, unit: 'kg', img: 'https://img.freepik.com/free-photo/raisin-currant_1339-7227.jpg' },
       { id: 4, name: 'Walnuts', retailPrice: 900, unit: 'kg', img: 'https://m.media-amazon.com/images/I/71643abOSLL._AC_UF894,1000_QL80_.jpg' },
       { id: 5, name: 'ABC Malt Powder', retailPrice: 450, unit: 'kg', img: 'https://orgoshops.com/cdn/shop/files/1000083092.jpg?v=1735020004' },
-	  { id: 6, name: 'Red Banana Malt', retailPrice: 700, unit: 'kg', img: 'https://images7.alphacoders.com/436/436244.jpg' },
+      { id: 6, name: 'Red Banana Malt', retailPrice: 700, unit: 'kg', img: 'https://images7.alphacoders.com/436/436244.jpg' },
       { id: 7, name: 'Dry Nuts Powder', retailPrice: 800, unit: 'kg', img: 'https://t4.ftcdn.net/jpg/03/07/00/75/360_F_307007568_JwLoLkiZiSWv2xR4e8kERNz2I5qqcN8l.jpg' },
       { id: 8, name: 'Sprouted Health Mix', retailPrice: 350, unit: 'kg', img: 'https://img.freepik.com/free-photo/raisin-currant_1339-7227.jpg' },
       { id: 9, name: 'Baby Weight Gain Mix', retailPrice: 900, unit: 'kg', img: 'https://m.media-amazon.com/images/I/71643abOSLL._AC_UF894,1000_QL80_.jpg' },
