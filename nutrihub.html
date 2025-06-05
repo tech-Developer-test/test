@@ -270,7 +270,7 @@
       const idx = cart.findIndex(item => item.id === id);
       if (idx > -1) cart[idx].qty += qty;
       else cart.push({ ...product, qty });
-      alert(`${product.name} added to cart.`);
+      console.log(`${product.name} added to cart.`);
       updateCartCount();
     }
 
