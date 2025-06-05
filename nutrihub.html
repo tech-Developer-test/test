@@ -336,7 +336,7 @@
       window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(lines.join('\n'))}`, '_blank');
       cart = [];
       updateCartCount();
-      alert('Order placed. Cart has been cleared.');
+      console.log('Order placed. Cart has been cleared.');
     }
 
     // Carousel logic
