@@ -152,7 +152,6 @@
 
     .btn-retail:hover { opacity: .9; }
 
-    /* Cart Modal */
     #cart-modal {
       display: none;
       position: fixed;
@@ -216,7 +215,7 @@
     <div class="product-grid" id="product-list"></div>
   </div>
 
-  <!-- Cart Modal -->
+  
   <div id="cart-modal">
     <div class="modal-content">
       <h2>Your Cart</h2>
@@ -232,16 +231,16 @@
   <script>
     const phoneNumber = '919345586790';
     const products = [
-      { id: 1, name: 'Almonds',  retailPrice: 700, unit: 'kg', img: 'https://images7.alphacoders.com/436/436244.jpg' },
-      { id: 2, name: 'Cashews',  retailPrice: 800, unit: 'kg', img: 'https://t4.ftcdn.net/jpg/03/07/00/75/360_F_307007568_JwLoLkiZiSWv2xR4e8kERNz2I5qqcN8l.jpg' },
-      { id: 3, name: 'Raisins',  retailPrice: 350, unit: 'kg', img: 'https://img.freepik.com/free-photo/raisin-currant_1339-7227.jpg' },
-      { id: 4, name: 'Walnuts',  retailPrice: 900, unit: 'kg', img: 'https://m.media-amazon.com/images/I/71643abOSLL._AC_UF894,1000_QL80_.jpg' },
+      { id: 1, name: 'Almonds', retailPrice: 700, unit: 'kg', img: 'https://images7.alphacoders.com/436/436244.jpg' },
+      { id: 2, name: 'Cashews', retailPrice: 800, unit: 'kg', img: 'https://t4.ftcdn.net/jpg/03/07/00/75/360_F_307007568_JwLoLkiZiSWv2xR4e8kERNz2I5qqcN8l.jpg' },
+      { id: 3, name: 'Raisins', retailPrice: 350, unit: 'kg', img: 'https://img.freepik.com/free-photo/raisin-currant_1339-7227.jpg' },
+      { id: 4, name: 'Walnuts', retailPrice: 900, unit: 'kg', img: 'https://m.media-amazon.com/images/I/71643abOSLL._AC_UF894,1000_QL80_.jpg' },
       { id: 5, name: 'ABC Malt Powder', retailPrice: 450, unit: 'kg', img: 'https://agasthiaherbs.com/wp-content/uploads/2023/08/9ap5ybmS.webp' },
-      { id: 6, name: 'Almonds',  retailPrice: 700, unit: 'kg', img: 'https://images7.alphacoders.com/436/436244.jpg' },
-      { id: 7, name: 'Cashews',  retailPrice: 800, unit: 'kg', img: 'https://t4.ftcdn.net/jpg/03/07/00/75/360_F_307007568_JwLoLkiZiSWv2xR4e8kERNz2I5qqcN8l.jpg' },
-      { id: 8, name: 'Raisins',  retailPrice: 350, unit: 'kg', img: 'https://img.freepik.com/free-photo/raisin-currant_1339-7227.jpg' },
-      { id: 9, name: 'Walnuts',  retailPrice: 900, unit: 'kg', img: 'https://m.media-amazon.com/images/I/71643abOSLL._AC_UF894,1000_QL80_.jpg' },
-      { id: 10, name: 'ABC Malt Powder', retailPrice: 450, unit: 'kg', img: 'https://agasthiaherbs.com/wp-content/uploads/2023/08/9ap5ybmS.webp' }
+	  { id: 6, name: 'Red Banana Malt', retailPrice: 700, unit: 'kg', img: 'https://images7.alphacoders.com/436/436244.jpg' },
+      { id: 7, name: 'Dry Nuts Powder', retailPrice: 800, unit: 'kg', img: 'https://t4.ftcdn.net/jpg/03/07/00/75/360_F_307007568_JwLoLkiZiSWv2xR4e8kERNz2I5qqcN8l.jpg' },
+      { id: 8, name: 'Sprouted Health Mix', retailPrice: 350, unit: 'kg', img: 'https://img.freepik.com/free-photo/raisin-currant_1339-7227.jpg' },
+      { id: 9, name: 'Baby Weight Gain Mix', retailPrice: 900, unit: 'kg', img: 'https://m.media-amazon.com/images/I/71643abOSLL._AC_UF894,1000_QL80_.jpg' },
+      { id: 10, name: 'Ragi Malt', retailPrice: 450, unit: 'kg', img: 'https://agasthiaherbs.com/wp-content/uploads/2023/08/9ap5ybmS.webp' }
     ];
 
     let cart = [];
@@ -269,11 +268,10 @@
     function addToCart(id) {
       const product = products.find(p => p.id === id);
       const qty = parseFloat(document.getElementById(`qty-${id}`).value);
-      if (isNaN(qty) || qty <= 0) return alert('Enter a valid quantity.');
+      if (isNaN(qty) || qty <= 0) return;
       const idx = cart.findIndex(item => item.id === id);
       if (idx > -1) cart[idx].qty += qty;
       else cart.push({ ...product, qty });
-      console.log(`${product.name} added to cart.`);
       updateCartCount();
     }
 
@@ -316,21 +314,19 @@
 
     function updateItemQty(index, value) {
       const qty = parseFloat(value);
-      if (qty <= 0 || isNaN(qty)) return alert('Invalid quantity.');
+      if (qty <= 0 || isNaN(qty)) return;
       cart[index].qty = qty;
       renderCart();
     }
 
     function removeItem(index) {
-      if (confirm('Remove this item from cart?')) {
-        cart.splice(index, 1);
-        updateCartCount();
-        renderCart();
-      }
+      cart.splice(index, 1);
+      updateCartCount();
+      renderCart();
     }
 
     function checkoutCart() {
-      if (!cart.length) return alert('Cart is empty!');
+      if (!cart.length) return;
       closeCart();
       const lines = ['Hello, I would like to place an order:'];
       cart.forEach(i => lines.push(`• ${i.name}: ${i.qty} ${i.unit} – ₹${i.retailPrice * i.qty}`));
@@ -339,10 +335,8 @@
       window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(lines.join('\n'))}`, '_blank');
       cart = [];
       updateCartCount();
-      console.log('Order placed. Cart has been cleared.');
     }
 
-    // Carousel logic
     let currentSlide = 0;
     const slides = document.querySelectorAll('.carousel-slide img');
     const slideContainer = document.querySelector('.carousel-slide');
