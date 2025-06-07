@@ -37,13 +37,12 @@
       text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
     }
 
-    /* New container for the buttons side-by-side */
     .header-buttons {
       display: flex;
       justify-content: center;
       gap: 0.5rem;
       margin-top: 0.8rem;
-      flex-wrap: wrap; /* Allows wrapping on very small widths */
+      flex-wrap: wrap;
     }
 
     .btn-cart {
@@ -54,10 +53,9 @@
       padding: .55rem 1.2rem;
       font-size: .95rem;
       cursor: pointer;
-      /* Remove margin-top to prevent stacking */
       margin: 0;
-      flex: none; /* Buttons keep their natural size */
-      white-space: nowrap; /* Prevent button text from breaking */
+      flex: none;
+      white-space: nowrap;
     }
 
     .btn-cart:hover { opacity: .9; }
@@ -212,6 +210,11 @@
     </div>
   </header>
 
+  <!-- 🔍 Search Box -->
+  <div style="text-align: center; margin: 1rem;">
+    <input type="text" id="search-input" placeholder="Search products..." oninput="renderProducts()" style="padding: 0.5rem 1rem; font-size: 1rem; width: 90%; max-width: 400px; border: 1px solid #ccc; border-radius: 5px;" />
+  </div>
+
   <div class="carousel-container">
     <div class="carousel-slide" id="carousel-slide">
       <img src="https://images7.alphacoders.com/436/436244.jpg" />
@@ -228,7 +231,6 @@
     <div class="product-grid" id="product-list"></div>
   </div>
 
-  
   <div id="cart-modal">
     <div class="modal-content">
       <h2>Your Cart</h2>
@@ -260,8 +262,17 @@
 
     function renderProducts() {
       const list = document.getElementById('product-list');
+      const searchTerm = document.getElementById('search-input')?.value?.toLowerCase() || '';
       list.innerHTML = '';
-      products.forEach(p => {
+
+      const filtered = products.filter(p => p.name.toLowerCase().includes(searchTerm));
+
+      if (filtered.length === 0) {
+        list.innerHTML = '<p style="grid-column: 1 / -1; text-align: center;">No products found.</p>';
+        return;
+      }
+
+      filtered.forEach(p => {
         const card = document.createElement('div');
         card.className = 'product-card';
         card.innerHTML = `
