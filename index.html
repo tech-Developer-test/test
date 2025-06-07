@@ -24,20 +24,30 @@
 
     header h1 {
       color: #fff;
-      font-size: 2em;
+      font-size: 2.5em;
       margin: 0;
     }
 
     header p {
       color: #ccc;
+      font-size: 1.2em;
+      margin: 0.5em 0 1em;
+    }
+
+    #searchInput {
+      padding: 10px;
       font-size: 1em;
-      margin: 0.5em 0 0;
+      width: 80%;
+      max-width: 400px;
+      border-radius: 8px;
+      border: none;
+      margin-top: 10px;
     }
 
     .grid-container {
       display: grid;
-      grid-template-columns: repeat(2, 1fr); /* Always 2 equal columns */
-      gap: 2px; /* Space between items */
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
       padding: 8px;
       max-width: 1000px;
       margin: auto;
@@ -86,63 +96,65 @@
         padding: 6px 12px;
         font-size: 0.8em;
       }
+
+      #searchInput {
+        width: 90%;
+      }
     }
   </style>
 </head>
 <body>
-<header style="text-align: center; padding: 5px 5px; background-color: #000000;">
-      <h1 style="font-size: 2.5em; margin: 0;">
-  🎬 <span style="color: #4CAF50;">Movie</span> <span style="color: #4CAF50;">Time</span> 🍿
-      </h1>
 
+<header>
+  <h1>🎬 <span style="color: #4CAF50;">Movie</span> <span style="color: #4CAF50;">Time</span> 🍿</h1>
+  <p>Watch your favorite movies</p>
+  <input type="text" id="searchInput" placeholder="Search movie..." onkeyup="filterMovies()">
+</header>
 
-        <p style="color: #cccccc; font-size: 1.2em;">Watch your favorite movies</p>
-    </header>
-    <div class="grid-container">
+<div class="grid-container">
+  <div class="grid-item">
+    <h3>Tourist Fam..</h3>
+    <img src="https://m.media-amazon.com/images/M/MV5BM2NlZTI0NzEtMTRjYi00YjA2LWJmMzEtMjkzMWNlZWQ4NTZlXkEyXkFqcGc@._V1_.jpg" alt="Tourist Fam..">
+    <a href="https://playerpage.github.io/playersrm/tourist.html" class="download-btn">View</a>
+  </div>
 
-	    <div class="grid-item">
-	    <h3>Tourist Fam..</h3>
-            <img src="https://m.media-amazon.com/images/M/MV5BM2NlZTI0NzEtMTRjYi00YjA2LWJmMzEtMjkzMWNlZWQ4NTZlXkEyXkFqcGc@._V1_.jpg" alt="Image 4">
-      	    <a href="https://playerpage.github.io/playersrm/tourist.html" class="download-btn" download>View</a>
-	    </div>
-	    
-	    <div class="grid-item">
-	    <h3>RETRO</h3>
-            <img src="https://m.media-amazon.com/images/M/MV5BM2FmYmFlMmItNDBmMy00ZmU2LTk2OWUtZjFmOGRlNTc1OTIzXkEyXkFqcGc@._V1_.jpg" alt="Image 4">
-      	    <a href="https://playerpage.github.io/playersrm/retro.html" class="download-btn" download>View</a>
-	    </div>
+  <div class="grid-item">
+    <h3>RETRO</h3>
+    <img src="https://m.media-amazon.com/images/M/MV5BM2FmYmFlMmItNDBmMy00ZmU2LTk2OWUtZjFmOGRlNTc1OTIzXkEyXkFqcGc@._V1_.jpg" alt="RETRO">
+    <a href="https://playerpage.github.io/playersrm/retro.html" class="download-btn">View</a>
+  </div>
 
-	    <div class="grid-item">
-	    <h3>Thudarum </h3>
-            <img src="https://m.media-amazon.com/images/M/MV5BZTI2OTg0MzgtOGJlMC00MWU2LTlkMDItYTAwNzhmOGIwOWRmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Image 4">
-      	    <a href="https://playerpage.github.io/playersrm/thudarum.html" class="download-btn" download>View</a>
-	    </div>
+  <div class="grid-item">
+    <h3>Thudarum</h3>
+    <img src="https://m.media-amazon.com/images/M/MV5BZTI2OTg0MzgtOGJlMC00MWU2LTlkMDItYTAwNzhmOGIwOWRmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Thudarum">
+    <a href="https://playerpage.github.io/playersrm/thudarum.html" class="download-btn">View</a>
+  </div>
 
-	    <div class="grid-item">
-	    <h3>HIT 3 </h3>
-            <img src="https://preview.redd.it/hit-3-new-poster-v0-und715r1y5se1.jpeg?auto=webp&s=587a5636c1db21ea74440890743e0c70df8bfe1e" alt="Image 4">
-      	    <a href="https://playerpage.github.io/playersrm/hit.html" class="download-btn" download>View</a>
-	    </div>
-	    
-	     <div class="grid-item">
-	    <h3>GBU</h3>
-            <img src="https://m.media-amazon.com/images/M/MV5BMWQ1OTIyNmQtZDc2OC00YzM0LTg3NzAtZGEwNGNkODYyZWZhXkEyXkFqcGc@._V1_.jpg" alt="Image 4">
-      	    <a href="https://playerpage.github.io/playersrm/gbu.html" class="download-btn" download>View</a>
-	    </div>
-	
-        <div class="grid-item">
-	<h3>Gangers</h3>
-            <img src="https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/gangers-et00440359-1744708561.jpg" alt="Image 4">
-      	    <a href="https://playerpage.github.io/playersrm/gangers.html" class="download-btn" download>View</a>
-	    </div>
+  <div class="grid-item">
+    <h3>HIT 3</h3>
+    <img src="https://preview.redd.it/hit-3-new-poster-v0-und715r1y5se1.jpeg?auto=webp&s=587a5636c1db21ea74440890743e0c70df8bfe1e" alt="HIT 3">
+    <a href="https://playerpage.github.io/playersrm/hit.html" class="download-btn">View</a>
+  </div>
 
-	     <div class="grid-item">
-	    <h3>Ten Hours</h3>
-            <img src="https://m.media-amazon.com/images/S/pv-target-images/761d11471bd63b16d208d211587f5ba7641dfc835ab846767165ca8393cbd02d.jpg" alt="Image 4">
-      	    <a href="https://playerpage.github.io/playersrm/ten.html" class="download-btn" download>View</a>
-	    </div>
-	
-	      <div class="grid-item">
+  <div class="grid-item">
+    <h3>GBU</h3>
+    <img src="https://m.media-amazon.com/images/M/MV5BMWQ1OTIyNmQtZDc2OC00YzM0LTg3NzAtZGEwNGNkODYyZWZhXkEyXkFqcGc@._V1_.jpg" alt="GBU">
+    <a href="https://playerpage.github.io/playersrm/gbu.html" class="download-btn">View</a>
+  </div>
+
+  <div class="grid-item">
+    <h3>Gangers</h3>
+    <img src="https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/gangers-et00440359-1744708561.jpg" alt="Gangers">
+    <a href="https://playerpage.github.io/playersrm/gangers.html" class="download-btn">View</a>
+  </div>
+
+  <div class="grid-item">
+    <h3>Ten Hours</h3>
+    <img src="https://m.media-amazon.com/images/S/pv-target-images/761d11471bd63b16d208d211587f5ba7641dfc835ab846767165ca8393cbd02d.jpg" alt="Ten Hours">
+    <a href="https://playerpage.github.io/playersrm/ten.html" class="download-btn">View</a>
+  </div>
+  
+    <div class="grid-item">
             <h3>Maranamass</h3>
             <img src="https://m.media-amazon.com/images/M/MV5BYjQzOWI3MzQtOWIyNC00ZTUxLWJmNDEtNjg3NzllMTFmZGRmXkEyXkFqcGc@._V1_.jpg" alt="Image 4">
       	    <a href="https://playerpage.github.io/playersrm/maranamass.html" class="download-btn" download>View</a>
@@ -543,7 +555,20 @@
             <img src="https://m.media-amazon.com/images/M/MV5BYjc1NDJmMjAtMTJmYi00ZGJmLWFhZTItNThmOTQyMzU4MGM3XkEyXkFqcGc@._V1_.jpg" alt="Image 4">
             <a href="https://download2389.mediafire.com/pgmi5zg6zorgKOnxWb4QYTxduQ2awDz6IDON87w3L8cQ_TgbklJLvakrxec_WqjfSsQlPVW4mETXOgSjUP1NhvFfO38Dh3fiAUExtVNgrFAXVp8OmfxnedrHvP4aPOXYym851DWIidQ03MUB3S761rxGGdln_W6x3V2tUCeYE4He/7pgy6ne50di8egu/Goat.mp4" class="download-btn" download>View</a>
             </div>
-	    
-    </div>
+			
+</div>
+
+<script>
+  function filterMovies() {
+    const input = document.getElementById('searchInput').value.toLowerCase();
+    const items = document.querySelectorAll('.grid-item');
+
+    items.forEach(item => {
+      const title = item.querySelector('h3').textContent.toLowerCase();
+      item.style.display = title.includes(input) ? '' : 'none';
+    });
+  }
+</script>
+
 </body>
 </html>
