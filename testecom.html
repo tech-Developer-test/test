@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flipkart Clone</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background: #f1f3f6; }
+    header { background: #2874f0; padding: 10px 20px; display: flex; align-items: center; color: #fff; }
+    header input { margin-left: 20px; padding: 5px; width: 300px; }
+    nav { background: #fff; display: flex; justify-content: space-around; padding: 10px 0; border-bottom: 1px solid #ccc; }
+    .banner img { width: 100%; height: auto; }
+    .section { background: #fff; margin: 20px; padding: 20px; border-radius: 5px; }
+    .section h2 { margin-bottom: 15px; }
+    .products { display: flex; gap: 20px; overflow-x: auto; }
+    .product { flex: 0 0 auto; width: 140px; text-align: center; }
+    .product img { width: 100px; height: 100px; object-fit: contain; }
+    .product p { margin: 5px 0; font-size: 14px; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Flipkart</h1>
+    <input type="text" placeholder="Search for Products, Brands and More" />
+    <div style="margin-left:auto;">
+      <span style="margin: 0 10px;">Login</span>
+      <span style="margin: 0 10px;">Cart</span>
+      <span style="margin: 0 10px;">Become a Seller</span>
+    </div>
+  </header>
+
+  <nav>
+    <span>Mobiles</span>
+    <span>Fashion</span>
+    <span>Electronics</span>
+    <span>Home</span>
+    <span>Appliances</span>
+    <span>Travel</span>
+    <span>Beauty, Toys & More</span>
+  </nav>
+
+  <div class="banner">
+    <img src="https://via.placeholder.com/1200x300?text=Banner" alt="Main Banner" />
+  </div>
+
+  <div class="section">
+    <h2>Best of Electronics</h2>
+    <div class="products">
+      <div class="product">
+        <img src="https://via.placeholder.com/100" />
+        <p>Earbuds</p>
+        <p>From ₹999</p>
+      </div>
+      <div class="product">
+        <img src="https://via.placeholder.com/100" />
+        <p>Shavers</p>
+        <p>From ₹1,499</p>
+      </div>
+      <div class="product">
+        <img src="https://via.placeholder.com/100" />
+        <p>Speakers</p>
+        <p>From ₹699</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Beauty, Food, Toys & More</h2>
+    <div class="products">
+      <div class="product">
+        <img src="https://via.placeholder.com/100" />
+        <p>Coffee Powder</p>
+        <p>Upto 80% Off</p>
+      </div>
+      <div class="product">
+        <img src="https://via.placeholder.com/100" />
+        <p>Bicycles</p>
+        <p>Upto 70% Off</p>
+      </div>
+      <div class="product">
+        <img src="https://via.placeholder.com/100" />
+        <p>Soft Toys</p>
+        <p>Upto 60% Off</p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
