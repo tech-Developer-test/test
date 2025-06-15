@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E-Commerce Home</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      gap: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .brand-toggle {
+      display: flex;
+      align-items: center;
+    }
+
+    .brand-toggle input {
+      margin-left: 5px;
+    }
+
+    .search-bar {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      background: #f0f0f0;
+      padding: 8px;
+      border-radius: 8px;
+    }
+
+    .search-bar input {
+      border: none;
+      background: transparent;
+      width: 100%;
+      outline: none;
+    }
+
+    .categories {
+      display: flex;
+      overflow-x: auto;
+      padding: 10px;
+      gap: 15px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .categories div {
+      text-align: center;
+      min-width: 60px;
+    }
+
+    .categories img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      margin-bottom: 5px;
+    }
+
+    .section-title {
+      font-weight: bold;
+      padding: 10px;
+    }
+
+    .brands, .deals {
+      display: flex;
+      overflow-x: auto;
+      padding: 10px;
+      gap: 10px;
+    }
+
+    .brands .item, .deals .item {
+      min-width: 120px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 5px;
+      text-align: center;
+    }
+
+    .brands img, .deals img {
+      width: 100%;
+      height: 100px;
+      object-fit: contain;
+      margin-bottom: 5px;
+    }
+
+    .deals .item span {
+      font-size: 14px;
+      color: #e53935;
+      font-weight: bold;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      background: #fff;
+      border-top: 1px solid #ddd;
+      padding: 10px 0;
+    }
+
+    .bottom-nav i {
+      font-size: 18px;
+    }
+
+    .bottom-nav span {
+      display: block;
+      font-size: 12px;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: 5px;
+      right: 12px;
+      background: red;
+      color: white;
+      font-size: 10px;
+      border-radius: 50%;
+      padding: 2px 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="brand-toggle">
+      <label>Brand Mall</label>
+      <input type="checkbox" checked />
+    </div>
+    <div class="search-bar">
+      <i class="fas fa-search"></i>
+      <input type="text" placeholder="Search for products" />
+    </div>
+  </div>
+
+  <div class="categories">
+    <div><img src="https://cdn-icons-png.flaticon.com/512/3081/3081559.png" /><div>Grocery</div></div>
+    <div><img src="https://cdn-icons-png.flaticon.com/512/949/949635.png" /><div>Fashion</div></div>
+    <div><img src="https://cdn-icons-png.flaticon.com/512/1041/1041916.png" /><div>Gadgets</div></div>
+    <div><img src="https://cdn-icons-png.flaticon.com/512/1674/1674291.png" /><div>Beauty</div></div>
+    <div><img src="https://cdn-icons-png.flaticon.com/512/1046/1046847.png" /><div>Home</div></div>
+  </div>
+
+  <div class="section-title">FAVORITE BRANDS FOR YOU</div>
+  <div class="brands">
+    <div class="item">
+      <img src="https://via.placeholder.com/100x100?text=Toppik" />
+      <div>toppik</div>
+    </div>
+    <div class="item">
+      <img src="https://via.placeholder.com/100x100?text=OPPO" />
+      <div>OPPO</div>
+    </div>
+    <div class="item">
+      <img src="https://via.placeholder.com/100x100?text=Moto" />
+      <div>MOTOROLA</div>
+    </div>
+    <div class="item">
+      <img src="https://via.placeholder.com/100x100?text=Nothing" />
+      <div>Nothing</div>
+    </div>
+  </div>
+
+  <div class="section-title">Fantastic Finds</div>
+  <div class="deals">
+    <div class="item">
+      <img src="https://via.placeholder.com/100x100?text=Grinder" />
+      <div>Deal your meal</div>
+      <span>Up to 70% Off</span>
+    </div>
+    <div class="item">
+      <img src="https://via.placeholder.com/100x100?text=Fridge" />
+      <div>Refrigerators</div>
+      <span>From ₹8,991</span>
+    </div>
+    <div class="item">
+      <img src="https://via.placeholder.com/100x100?text=Cover" />
+      <div>Mobile covers</div>
+      <span>From ₹129</span>
+    </div>
+  </div>
+
+  <div class="bottom-nav">
+    <div><i class="fas fa-home"></i><span>Home</span></div>
+    <div><i class="fas fa-gamepad"></i><span>Play</span></div>
+    <div><i class="fas fa-th"></i><span>Categories</span></div>
+    <div><i class="fas fa-user"></i><span>Account</span></div>
+    <div style="position: relative;">
+      <i class="fas fa-shopping-cart"></i><span>Cart</span>
+      <div class="cart-count">10</div>
+    </div>
+  </div>
+
+</body>
+</html>
