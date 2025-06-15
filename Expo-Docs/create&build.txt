@@ -1,0 +1,63 @@
+Mongodb
+103.224.35.175
+srinivasanmca7
+Onefusionmoto@4
+
+mongodb+srv://srinivasanmca7:Onefusionmoto@4@cluster0.dqppzoo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+
+Expo login 
+onefusionmoto4@gmail.com
+Onefusionmoto@4
+
+apple login
+srinivasanmca7@gmail.com
+G00gle@1
+
+Login to Expo -> Create project 
+
+npm install --global eas-cli 
+npx create-expo-app --template blank nutridelights
+cd nutridelights 
+eas init --id d971522b-3819-48e0-9872-1b754a67c568
+
+npm install @react-navigation/native
+npm install @react-navigation/bottom-tabs
+npm install react-native-webview
+npm install react-native-vector-icons
+npm install react-native-screens react-native-safe-area-context react-native-gesture-handler react-native-reanimated
+npm install @react-navigation/native react-native-screens react-native-safe-area-context react-native-vector-icons react-native-gesture-handler react-native-reanimated
+npm install @react-native-community/netinfo
+npm install @react-navigation/stack
+npm install react-native-screens react-native-gesture-handler
+
+(below is for IOS)
+npx pod-install
+
+Build
+
+npx expo login
+
+npm install -g eas-cli
+
+git config --global --add safe.directory F:\Ecom\nutridelights
+
+eas build:configure
+
+eas build --platform android
+
+-----------------------------
+
+npx expo install expo-dev-client
+
+git config --global --add safe.directory F:/Ecom/tamilmovie
+
+eas login
+
+--eas build --platform all
+
+--------------------------
+banner ads
+npx expo install react-native-google-mobile-ads
+
+git add .
+git commit -m "Small code change"
