@@ -15,7 +15,6 @@
       color: #333;
       line-height: 1.45;
     }
-
     header {
       background: linear-gradient(270deg, #ff416c, #ff4b2b, #1e90ff, #32cd32);
       background-size: 800% 800%;
@@ -25,19 +24,16 @@
       padding: clamp(1rem, 3vw, 1.5rem);
       box-shadow: 0 2px 6px rgba(0,0,0,.1);
     }
-
     @keyframes gradient-animation {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-
     header h1 {
       margin: 0 0 .3rem;
       font-size: clamp(1.6rem, 4vw, 2.2rem);
       text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
     }
-
     .header-buttons {
       display: flex;
       justify-content: center;
@@ -45,7 +41,6 @@
       margin-top: 0.8rem;
       flex-wrap: wrap;
     }
-
     .btn-cart {
       background: #2980b9;
       color: #fff;
@@ -58,7 +53,6 @@
       flex: none;
       white-space: nowrap;
     }
-
     .btn-cart:hover { opacity: .9; }
 
     .carousel-container {
@@ -96,7 +90,6 @@
       z-index: 10;
       border-radius: 50%;
     }
-
     .prev { left: 10px; }
     .next { right: 10px; }
 
@@ -182,19 +175,13 @@
       width: 90%;
     }
 
-    #cart-modal input[type="number"] {
-      width: 60px;
-    }
-
     @media (max-width: 640px) {
       .product-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
       .carousel-slide img { aspect-ratio: 2 / 1; }
     }
-
     @media (max-width: 400px) {
       .product-grid { grid-template-columns: 1fr; }
     }
-
     @media (max-width: 480px) {
       .btn-cart { width: 100%; margin: .5rem 0 0 0; }
       .actions input[type="number"], .btn-retail { flex: 1 1 100%; }
@@ -211,18 +198,17 @@
     </div>
   </header>
 
-  <!-- 🔍 Search Box -->
   <div style="text-align: center; margin: 1rem;">
     <input type="text" id="search-input" placeholder="Search products..." oninput="renderProducts()" style="padding: 0.5rem 1rem; font-size: 1rem; width: 90%; max-width: 400px; border: 1px solid #ccc; border-radius: 5px;" />
   </div>
 
   <div class="carousel-container">
     <div class="carousel-slide" id="carousel-slide">
-      <img src="https://images7.alphacoders.com/436/436244.jpg" />
-      <img src="https://t4.ftcdn.net/jpg/03/07/00/75/360_F_307007568_JwLoLkiZiSWv2xR4e8kERNz2I5qqcN8l.jpg" />
-      <img src="https://img.freepik.com/free-photo/raisin-currant_1339-7227.jpg" />
-      <img src="https://m.media-amazon.com/images/I/71643abOSLL._AC_UF894,1000_QL80_.jpg" />
-      <img src="https://agasthiaherbs.com/wp-content/uploads/2023/08/9ap5ybmS.webp" />
+      <img src="https://images.unsplash.com/photo-1551854838-5937a7b36b6a" />
+      <img src="https://images.unsplash.com/photo-1618354691444-f0b30c3f7c47" />
+      <img src="https://images.unsplash.com/photo-1556728141-dfd5094168e2" />
+      <img src="https://images.unsplash.com/photo-1519741491041-0a5aa7f6f3ba" />
+      <img src="https://images.unsplash.com/photo-1618354691045-df8e45010a4f" />
     </div>
     <button class="prev" onclick="moveSlide(-1)">❮</button>
     <button class="next" onclick="moveSlide(1)">❯</button>
@@ -247,16 +233,16 @@
   <script>
     const phoneNumber = '919345586790';
     const products = [
-      { id: 1, name: 'Almonds', retailPrice: 700, unit: 'kg', img: 'https://images7.alphacoders.com/436/436244.jpg' },
-      { id: 2, name: 'Cashews', retailPrice: 800, unit: 'kg', img: 'https://t4.ftcdn.net/jpg/03/07/00/75/360_F_307007568_JwLoLkiZiSWv2xR4e8kERNz2I5qqcN8l.jpg' },
-      { id: 3, name: 'Raisins', retailPrice: 350, unit: 'kg', img: 'https://img.freepik.com/free-photo/raisin-currant_1339-7227.jpg' },
-      { id: 4, name: 'Walnuts', retailPrice: 900, unit: 'kg', img: 'https://m.media-amazon.com/images/I/71643abOSLL._AC_UF894,1000_QL80_.jpg' },
-      { id: 5, name: 'ABC Malt Powder', retailPrice: 450, unit: 'kg', img: 'https://www.shutterstock.com/image-photo/barley-flour-closeup-measuring-spoon-600nw-1050856517.jpg' },
-      { id: 6, name: 'Red Banana Malt', retailPrice: 700, unit: 'kg', img: 'https://images7.alphacoders.com/436/436244.jpg' },
-      { id: 7, name: 'Dry Nuts Powder', retailPrice: 800, unit: 'kg', img: 'https://t4.ftcdn.net/jpg/03/07/00/75/360_F_307007568_JwLoLkiZiSWv2xR4e8kERNz2I5qqcN8l.jpg' },
-      { id: 8, name: 'Sprouted Health Mix', retailPrice: 350, unit: 'kg', img: 'https://img.freepik.com/free-photo/raisin-currant_1339-7227.jpg' },
-      { id: 9, name: 'Baby Weight Gain Mix', retailPrice: 900, unit: 'kg', img: 'https://m.media-amazon.com/images/I/71643abOSLL._AC_UF894,1000_QL80_.jpg' },
-      { id: 10, name: 'Ragi Malt', retailPrice: 450, unit: 'kg', img: 'https://www.shutterstock.com/image-photo/barley-flour-closeup-measuring-spoon-600nw-1050856517.jpg' }
+      { id: 1, name: 'Floral Summer Dress', retailPrice: 799, unit: 'piece', img: 'https://images.unsplash.com/photo-1551854838-5937a7b36b6a' },
+      { id: 2, name: 'Casual Cotton Kurti', retailPrice: 599, unit: 'piece', img: 'https://images.unsplash.com/photo-1618354691444-f0b30c3f7c47' },
+      { id: 3, name: 'Denim Jacket', retailPrice: 1299, unit: 'piece', img: 'https://images.unsplash.com/photo-1556728141-dfd5094168e2' },
+      { id: 4, name: 'Evening Gown', retailPrice: 1999, unit: 'piece', img: 'https://images.unsplash.com/photo-1519741491041-0a5aa7f6f3ba' },
+      { id: 5, name: 'Printed Palazzo Set', retailPrice: 899, unit: 'piece', img: 'https://images.unsplash.com/photo-1618354691045-df8e45010a4f' },
+      { id: 6, name: 'Party Wear Saree', retailPrice: 1599, unit: 'piece', img: 'https://images.unsplash.com/photo-1588746121584-8b6b4cdd7de6' },
+      { id: 7, name: 'Crop Top & Skirt', retailPrice: 1099, unit: 'piece', img: 'https://images.unsplash.com/photo-1618354690801-53c8b1a87698' },
+      { id: 8, name: 'Kurta with Dupatta', retailPrice: 1199, unit: 'piece', img: 'https://images.unsplash.com/photo-1621871987353-60d3ac09bff1' },
+      { id: 9, name: 'Casual Maxi Dress', retailPrice: 699, unit: 'piece', img: 'https://images.unsplash.com/photo-1602810318360-6f1e7fc0e417' },
+      { id: 10, name: 'Boho Tunic Top', retailPrice: 499, unit: 'piece', img: 'https://images.unsplash.com/photo-1542060748-10c28b62716d' }
     ];
 
     let cart = [];
@@ -265,14 +251,11 @@
       const list = document.getElementById('product-list');
       const searchTerm = document.getElementById('search-input')?.value?.toLowerCase() || '';
       list.innerHTML = '';
-
       const filtered = products.filter(p => p.name.toLowerCase().includes(searchTerm));
-
       if (filtered.length === 0) {
         list.innerHTML = '<p style="grid-column: 1 / -1; text-align: center;">No products found.</p>';
         return;
       }
-
       filtered.forEach(p => {
         const card = document.createElement('div');
         card.className = 'product-card';
