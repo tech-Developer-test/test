@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="refresh" content="600">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>S&M Fashion</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { font-size: clamp(14px, 1.2vw + .5rem, 18px); }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f7f7f7;
+      color: #333;
+      line-height: 1.45;
+    }
+
+    header {
+      background: linear-gradient(270deg, #ff416c, #ff4b2b, #1e90ff, #32cd32);
+      background-size: 800% 800%;
+      animation: gradient-animation 12s ease infinite;
+      color: #fff;
+      text-align: center;
+      padding: clamp(1rem, 3vw, 1.5rem);
+      box-shadow: 0 2px 6px rgba(0,0,0,.1);
+    }
+
+    @keyframes gradient-animation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header h1 {
+      margin: 0 0 .3rem;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+    }
+
+    .header-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-cart {
+      background: #2980b9;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: .55rem 1.2rem;
+      font-size: .95rem;
+      cursor: pointer;
+      margin: 0;
+      flex: none;
+      white-space: nowrap;
+    }
+
+    .btn-cart:hover { opacity: .9; }
+
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      max-width: 1000px;
+      margin: 1rem auto;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .carousel-slide {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      flex-shrink: 0;
+      aspect-ratio: 3 / 1;
+      object-fit: cover;
+    }
+
+    .prev, .next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0,0,0,0.3);
+      color: white;
+      border: none;
+      padding: 0.5rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+      z-index: 10;
+      border-radius: 50%;
+    }
+
+    .prev { left: 10px; }
+    .next { right: 10px; }
+
+    .container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .product-card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .product-card img {
+      width: 100%;
+      max-width: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+
+    .product-info h3 { margin: 0 0 .4rem; font-size: 1.1rem; }
+    .price { font-weight: 600; margin: .2rem 0 .8rem; }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      justify-content: center;
+    }
+
+    .actions input[type="number"] {
+      width: 68px;
+      padding: .4rem .5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: .9rem;
+    }
+
+    .btn-retail {
+      background: #27ae60;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: .55rem 1rem;
+      font-size: .9rem;
+      cursor: pointer;
+      transition: opacity .2s;
+    }
+
+    .btn-retail:hover { opacity: .9; }
+
+    #cart-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    #cart-modal .modal-content {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 10px;
+      max-width: 500px;
+      width: 90%;
+    }
+
+    #cart-modal input[type="number"] {
+      width: 60px;
+    }
+
+    @media (max-width: 640px) {
+      .product-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+      .carousel-slide img { aspect-ratio: 2 / 1; }
+    }
+
+    @media (max-width: 400px) {
+      .product-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .btn-cart { width: 100%; margin: .5rem 0 0 0; }
+      .actions input[type="number"], .btn-retail { flex: 1 1 100%; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>S&M fashion</h1>
+    <p>Premium quality Apparels</p>
+    <div class="header-buttons">
+      <button class="btn-cart" onclick="checkoutCart()">Checkout on Whatsapp</button>
+      <button class="btn-cart" onclick="toggleCart()">Cart (<span id="cart-count">0</span>)</button>
+    </div>
+  </header>
+
+  <!-- 🔍 Search Box -->
+  <div style="text-align: center; margin: 1rem;">
+    <input type="text" id="search-input" placeholder="Search products..." oninput="renderProducts()" style="padding: 0.5rem 1rem; font-size: 1rem; width: 90%; max-width: 400px; border: 1px solid #ccc; border-radius: 5px;" />
+  </div>
+
+  <div class="carousel-container">
+    <div class="carousel-slide" id="carousel-slide">
+      <img src="https://images7.alphacoders.com/436/436244.jpg" />
+      <img src="https://t4.ftcdn.net/jpg/03/07/00/75/360_F_307007568_JwLoLkiZiSWv2xR4e8kERNz2I5qqcN8l.jpg" />
+      <img src="https://img.freepik.com/free-photo/raisin-currant_1339-7227.jpg" />
+      <img src="https://m.media-amazon.com/images/I/71643abOSLL._AC_UF894,1000_QL80_.jpg" />
+      <img src="https://agasthiaherbs.com/wp-content/uploads/2023/08/9ap5ybmS.webp" />
+    </div>
+    <button class="prev" onclick="moveSlide(-1)">❮</button>
+    <button class="next" onclick="moveSlide(1)">❯</button>
+  </div>
+
+  <div class="container">
+    <div class="product-grid" id="product-list"></div>
+  </div>
+
+  <div id="cart-modal">
+    <div class="modal-content">
+      <h2>Your Cart</h2>
+      <div id="cart-items"></div>
+      <p id="cart-total" style="font-weight: bold; margin-top: 1rem;"></p>
+      <div style="margin-top:1rem; display:flex; justify-content:space-between;">
+        <button onclick="closeCart()">Close</button>
+        <button onclick="checkoutCart()" style="background:green;color:#fff;border:none;padding:.5rem 1rem;">Checkout</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const phoneNumber = '919345586790';
+    const products = [
+      { id: 1, name: 'Almonds', retailPrice: 700, unit: 'kg', img: 'https://images7.alphacoders.com/436/436244.jpg' },
+      { id: 2, name: 'Cashews', retailPrice: 800, unit: 'kg', img: 'https://t4.ftcdn.net/jpg/03/07/00/75/360_F_307007568_JwLoLkiZiSWv2xR4e8kERNz2I5qqcN8l.jpg' },
+      { id: 3, name: 'Raisins', retailPrice: 350, unit: 'kg', img: 'https://img.freepik.com/free-photo/raisin-currant_1339-7227.jpg' },
+      { id: 4, name: 'Walnuts', retailPrice: 900, unit: 'kg', img: 'https://m.media-amazon.com/images/I/71643abOSLL._AC_UF894,1000_QL80_.jpg' },
+      { id: 5, name: 'ABC Malt Powder', retailPrice: 450, unit: 'kg', img: 'https://www.shutterstock.com/image-photo/barley-flour-closeup-measuring-spoon-600nw-1050856517.jpg' },
+      { id: 6, name: 'Red Banana Malt', retailPrice: 700, unit: 'kg', img: 'https://images7.alphacoders.com/436/436244.jpg' },
+      { id: 7, name: 'Dry Nuts Powder', retailPrice: 800, unit: 'kg', img: 'https://t4.ftcdn.net/jpg/03/07/00/75/360_F_307007568_JwLoLkiZiSWv2xR4e8kERNz2I5qqcN8l.jpg' },
+      { id: 8, name: 'Sprouted Health Mix', retailPrice: 350, unit: 'kg', img: 'https://img.freepik.com/free-photo/raisin-currant_1339-7227.jpg' },
+      { id: 9, name: 'Baby Weight Gain Mix', retailPrice: 900, unit: 'kg', img: 'https://m.media-amazon.com/images/I/71643abOSLL._AC_UF894,1000_QL80_.jpg' },
+      { id: 10, name: 'Ragi Malt', retailPrice: 450, unit: 'kg', img: 'https://www.shutterstock.com/image-photo/barley-flour-closeup-measuring-spoon-600nw-1050856517.jpg' }
+    ];
+
+    let cart = [];
+
+    function renderProducts() {
+      const list = document.getElementById('product-list');
+      const searchTerm = document.getElementById('search-input')?.value?.toLowerCase() || '';
+      list.innerHTML = '';
+
+      const filtered = products.filter(p => p.name.toLowerCase().includes(searchTerm));
+
+      if (filtered.length === 0) {
+        list.innerHTML = '<p style="grid-column: 1 / -1; text-align: center;">No products found.</p>';
+        return;
+      }
+
+      filtered.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+          <img src="${p.img}" alt="${p.name}" />
+          <div class="product-info">
+            <h3>${p.name}</h3>
+            <p class="price">Retail: ₹${p.retailPrice}/${p.unit}</p>
+            <div class="actions">
+              <label>Qty (${p.unit}): <input type="number" id="qty-${p.id}" min="1" value="1"></label>
+              <button class="btn-retail" onclick="addToCart(${p.id})">Add to Cart</button>
+            </div>
+          </div>`;
+        list.appendChild(card);
+      });
+    }
+
+    function addToCart(id) {
+      const product = products.find(p => p.id === id);
+      const qty = parseFloat(document.getElementById(`qty-${id}`).value);
+      if (isNaN(qty) || qty <= 0) return;
+      const idx = cart.findIndex(item => item.id === id);
+      if (idx > -1) cart[idx].qty += qty;
+      else cart.push({ ...product, qty });
+      updateCartCount();
+    }
+
+    function updateCartCount() {
+      document.getElementById('cart-count').textContent = cart.length;
+    }
+
+    function toggleCart() {
+      document.getElementById('cart-modal').style.display = 'flex';
+      renderCart();
+    }
+
+    function closeCart() {
+      document.getElementById('cart-modal').style.display = 'none';
+    }
+
+    function renderCart() {
+      const container = document.getElementById('cart-items');
+      const totalElement = document.getElementById('cart-total');
+      container.innerHTML = '';
+      if (cart.length === 0) {
+        container.innerHTML = '<p>Your cart is empty.</p>';
+        totalElement.textContent = '';
+        return;
+      }
+
+      cart.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.innerHTML = `
+          <strong>${item.name}</strong><br/>
+          Qty: <input type="number" min="1" value="${item.qty}" onchange="updateItemQty(${index}, this.value)" />
+          <button onclick="removeItem(${index})" style="color:red;margin-left:5px;">Remove</button>
+        `;
+        container.appendChild(div);
+      });
+
+      const total = cart.reduce((sum, i) => sum + i.qty * i.retailPrice, 0);
+      totalElement.textContent = `Total: ₹${total}`;
+    }
+
+    function updateItemQty(index, value) {
+      const qty = parseFloat(value);
+      if (qty <= 0 || isNaN(qty)) return;
+      cart[index].qty = qty;
+      renderCart();
+    }
+
+    function removeItem(index) {
+      cart.splice(index, 1);
+      updateCartCount();
+      renderCart();
+    }
+
+    function checkoutCart() {
+      if (!cart.length) return;
+      closeCart();
+      const lines = ['Hello, I would like to place an order:'];
+      cart.forEach(i => lines.push(`• ${i.name}: ${i.qty} ${i.unit} – ₹${i.retailPrice * i.qty}`));
+      lines.push(`\nTotal: ₹${cart.reduce((s, i) => s + i.retailPrice * i.qty, 0)}`);
+      lines.push('Thank you!');
+      window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(lines.join('\n'))}`, '_blank');
+      cart = [];
+      updateCartCount();
+    }
+
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-slide img');
+    const slideContainer = document.querySelector('.carousel-slide');
+
+    function updateCarouselDimensions() {
+      slideContainer.style.width = `${slides.length * 100}%`;
+      slides.forEach(slide => slide.style.width = `${100 / slides.length}%`);
+    }
+
+    function showSlide(index) {
+      if (index >= slides.length) currentSlide = 0;
+      else if (index < 0) currentSlide = slides.length - 1;
+      else currentSlide = index;
+      slideContainer.style.transform = `translateX(-${currentSlide * (100 / slides.length)}%)`;
+    }
+
+    function moveSlide(direction) {
+      showSlide(currentSlide + direction);
+    }
+
+    updateCarouselDimensions();
+    setInterval(() => moveSlide(1), 4000);
+    showSlide(currentSlide);
+    renderProducts();
+    updateCartCount();
+  </script>
+</body>
+</html>
