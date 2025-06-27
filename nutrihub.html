@@ -256,16 +256,16 @@
   <script>
     const phoneNumber = '919345586790';
     const products = [
-      { id: 1, name: 'Almonds', retailPrice: 700, unit: 'kg', img: 'https://images7.alphacoders.com/436/436244.jpg' },
-      { id: 2, name: 'Cashews', retailPrice: 800, unit: 'kg', img: 'https://t4.ftcdn.net/jpg/03/07/00/75/360_F_307007568_JwLoLkiZiSWv2xR4e8kERNz2I5qqcN8l.jpg' },
-      { id: 3, name: 'Raisins', retailPrice: 350, unit: 'kg', img: 'https://img.freepik.com/free-photo/raisin-currant_1339-7227.jpg' },
-      { id: 4, name: 'Walnuts', retailPrice: 900, unit: 'kg', img: 'https://m.media-amazon.com/images/I/71643abOSLL._AC_UF894,1000_QL80_.jpg' },
-      { id: 5, name: 'ABC Malt Powder', retailPrice: 450, unit: 'kg', img: 'https://www.shutterstock.com/image-photo/barley-flour-closeup-measuring-spoon-600nw-1050856517.jpg' },
-      { id: 6, name: 'Red Banana Malt', retailPrice: 700, unit: 'kg', img: 'https://images7.alphacoders.com/436/436244.jpg' },
-      { id: 7, name: 'Dry Nuts Powder', retailPrice: 800, unit: 'kg', img: 'https://t4.ftcdn.net/jpg/03/07/00/75/360_F_307007568_JwLoLkiZiSWv2xR4e8kERNz2I5qqcN8l.jpg' },
-      { id: 8, name: 'Sprouted Health Mix', retailPrice: 350, unit: 'kg', img: 'https://img.freepik.com/free-photo/raisin-currant_1339-7227.jpg' },
-      { id: 9, name: 'Baby Weight Gain Mix', retailPrice: 900, unit: 'kg', img: 'https://m.media-amazon.com/images/I/71643abOSLL._AC_UF894,1000_QL80_.jpg' },
-      { id: 10, name: 'Ragi Malt', retailPrice: 450, unit: 'kg', img: 'https://www.shutterstock.com/image-photo/barley-flour-closeup-measuring-spoon-600nw-1050856517.jpg' }
+      { id: 1, name: 'Almonds', retailPrice: 700, unit: 'kg', img: 'https://images7.alphacoders.com/436/436244.jpg', whatsappNumber: '919345586790'  },
+      { id: 2, name: 'Cashews', retailPrice: 800, unit: 'kg', img: 'https://t4.ftcdn.net/jpg/03/07/00/75/360_F_307007568_JwLoLkiZiSWv2xR4e8kERNz2I5qqcN8l.jpg', whatsappNumber: '919751515268' },
+      { id: 3, name: 'Raisins', retailPrice: 350, unit: 'kg', img: 'https://img.freepik.com/free-photo/raisin-currant_1339-7227.jpg', whatsappNumber: '919345586790' },
+      { id: 4, name: 'Walnuts', retailPrice: 900, unit: 'kg', img: 'https://m.media-amazon.com/images/I/71643abOSLL._AC_UF894,1000_QL80_.jpg', whatsappNumber: '919345586790' },
+      { id: 5, name: 'ABC Malt Powder', retailPrice: 450, unit: 'kg', img: 'https://www.shutterstock.com/image-photo/barley-flour-closeup-measuring-spoon-600nw-1050856517.jpg', whatsappNumber: '919345586790' },
+      { id: 6, name: 'Red Banana Malt', retailPrice: 700, unit: 'kg', img: 'https://images7.alphacoders.com/436/436244.jpg', whatsappNumber: '919345586790' },
+      { id: 7, name: 'Dry Nuts Powder', retailPrice: 800, unit: 'kg', img: 'https://t4.ftcdn.net/jpg/03/07/00/75/360_F_307007568_JwLoLkiZiSWv2xR4e8kERNz2I5qqcN8l.jpg', whatsappNumber: '919345586790' },
+      { id: 8, name: 'Sprouted Health Mix', retailPrice: 350, unit: 'kg', img: 'https://img.freepik.com/free-photo/raisin-currant_1339-7227.jpg', whatsappNumber: '919345586790' },
+      { id: 9, name: 'Baby Weight Gain Mix', retailPrice: 900, unit: 'kg', img: 'https://m.media-amazon.com/images/I/71643abOSLL._AC_UF894,1000_QL80_.jpg', whatsappNumber: '919345586790' },
+      { id: 10, name: 'Ragi Malt', retailPrice: 450, unit: 'kg', img: 'https://www.shutterstock.com/image-photo/barley-flour-closeup-measuring-spoon-600nw-1050856517.jpg', whatsappNumber: '919751515268' }
     ];
 
     let cart = [];
@@ -300,14 +300,22 @@
     }
 
     function addToCart(id) {
-      const product = products.find(p => p.id === id);
-      const qty = parseFloat(document.getElementById(`qty-${id}`).value);
-      if (isNaN(qty) || qty <= 0) return;
-      const idx = cart.findIndex(item => item.id === id);
-      if (idx > -1) cart[idx].qty += qty;
-      else cart.push({ ...product, qty });
-      updateCartCount();
-    }
+  const product = products.find(p => p.id === id);
+  const qty = parseFloat(document.getElementById(`qty-${id}`).value);
+  if (isNaN(qty) || qty <= 0) return;
+
+  if (cart.length > 0 && cart[0].whatsappNumber !== product.whatsappNumber) {
+    alert('Products from different sellers cannot be added together. Please checkout current products first.');
+    return;
+  }
+
+  const idx = cart.findIndex(item => item.id === id);
+  if (idx > -1) cart[idx].qty += qty;
+  else cart.push({ ...product, qty });
+
+  updateCartCount();
+}
+
 
     function updateCartCount() {
       document.getElementById('cart-count').textContent = cart.length;
@@ -359,17 +367,20 @@
       renderCart();
     }
 
-    function checkoutCart() {
-      if (!cart.length) return;
-      closeCart();
-      const lines = ['Hello, I would like to place an order:'];
-      cart.forEach(i => lines.push(`• ${i.name}: ${i.qty} ${i.unit} – ₹${i.retailPrice * i.qty}`));
-      lines.push(`\nTotal: ₹${cart.reduce((s, i) => s + i.retailPrice * i.qty, 0)}`);
-      lines.push('Thank you!');
-      window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(lines.join('\n'))}`, '_blank');
-      cart = [];
-      updateCartCount();
-    }
+  function checkoutCart() {
+  if (!cart.length) return;
+  closeCart();
+  const lines = ['Hello, I would like to place an order:'];
+  cart.forEach(i => lines.push(`• ${i.name}: ${i.qty} ${i.unit} – ₹${i.retailPrice * i.qty}`));
+  lines.push(`\nTotal: ₹${cart.reduce((s, i) => s + i.retailPrice * i.qty, 0)}`);
+  lines.push('Thank you!');
+
+  const phone = cart[0].whatsappNumber;
+  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(lines.join('\n'))}`, '_blank');
+
+  cart = [];
+  updateCartCount();
+}
 
     let currentSlide = 0;
     const slides = document.querySelectorAll('.carousel-slide img');
