@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="refresh" content="400000000" />
+  <meta http-equiv="refresh" content="40" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nutri Delights</title>
   <style>
@@ -262,7 +262,7 @@
       { id: 3, name: 'Raisins', retailPrice: 350, unit: 'kg', img: 'https://img.freepik.com/free-photo/raisin-currant_1339-7227.jpg', whatsappNumber: '919345586790', seller: 'Royal Nuts Co.' },
       { id: 4, name: 'Walnuts', retailPrice: 900, unit: 'kg', img: 'https://m.media-amazon.com/images/I/71643abOSLL._AC_UF894,1000_QL80_.jpg', whatsappNumber: '919751515268', seller: 'S&M' },
       { id: 5, name: 'ABC Malt Powder', retailPrice: 450, unit: 'kg', img: 'https://www.shutterstock.com/image-photo/barley-flour-closeup-measuring-spoon-600nw-1050856517.jpg', whatsappNumber: '919345586790', seller: 'Royal Nuts Co.' },
-      { id: 6, name: 'Farm House Pizza', retailPrice: 700, unit: 'kg', img: 'https://www.dominos.co.in//files/items/Farmhouse.jpg', whatsappNumber: '917418150176', seller: 'Wheat Treat' },
+      { id: 6, name: 'Farm House Pizza', retailPrice: 700, unit: 'Medium Size', img: 'https://www.dominos.co.in//files/items/Farmhouse.jpg', whatsappNumber: '917418150176', seller: 'Wheat Treat' },
       { id: 7, name: 'Wheat Cake', retailPrice: 800, unit: 'kg', img: 'https://bizdomfs.blob.core.windows.net/post-image/23f7d20d-7886-4a99-9d5e-a9218a223acd.webp', whatsappNumber: '917418150176', seller: 'Wheat Treat' },
       { id: 8, name: 'Rose Gulkand', retailPrice: 100, unit: '100gm', img: 'https://farmm2home.com/wp-content/uploads/2022/04/10f6a694-72fc-41d9-bb83-4d01fef4888f-scaled.jpeg', whatsappNumber: '917339185826', seller: 'BPK' },
       { id: 9, name: 'Baby Weight Gain Mix', retailPrice: 900, unit: 'kg', img: 'https://m.media-amazon.com/images/I/71643abOSLL._AC_UF894,1000_QL80_.jpg', whatsappNumber: '919345586790', seller: 'Royal Nuts Co.' },
@@ -290,7 +290,7 @@
   <img src="${p.img}" alt="${p.name}" />
   <div class="product-info">
     <h3>${p.name}</h3>
-    <p class="price">Retail: ₹${p.retailPrice}/${p.unit}</p>
+    <p class="price">₹${p.retailPrice}/${p.unit}</p>
     <p style="font-size: 0.9rem; color: #555;">Seller: <strong>${p.seller}</strong></p>
     <div class="actions">
       <label>Qty (${p.unit}): <input type="number" id="qty-${p.id}" min="1" value="1"></label>
