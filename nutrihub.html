@@ -290,7 +290,7 @@
   <div class="product-info">
     <h3>${p.name}</h3>
     <p class="price">Retail: ₹${p.retailPrice}/${p.unit}</p>
-    <p style="font-size: 0.9rem; color: #555;">Seller: <strong>${p.sellerName}</strong></p>
+    <p style="font-size: 0.9rem; color: #555;">Seller: <strong>${p.seller}</strong></p>
     <div class="actions">
       <label>Qty (${p.unit}): <input type="number" id="qty-${p.id}" min="1" value="1"></label>
       <button class="btn-retail" onclick="addToCart(${p.id})">Add to Cart</button>
