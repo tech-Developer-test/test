@@ -299,13 +299,13 @@
       });
     }
 
-    function addToCart(id) {
+   function addToCart(id) {
   const product = products.find(p => p.id === id);
   const qty = parseFloat(document.getElementById(`qty-${id}`).value);
   if (isNaN(qty) || qty <= 0) return;
 
   if (cart.length > 0 && cart[0].whatsappNumber !== product.whatsappNumber) {
-    alert('Products from different sellers cannot be added together. Please checkout current products first.');
+    showCustomAlert('Products from different sellers cannot be added together. Please checkout current products first.');
     return;
   }
 
@@ -315,6 +315,7 @@
 
   updateCartCount();
 }
+
 
 
     function updateCartCount() {
@@ -367,6 +368,18 @@
       renderCart();
     }
 
+    function showCustomAlert(message) {
+  const alertBox = document.getElementById('custom-alert');
+  const alertText = document.getElementById('custom-alert-text');
+  alertText.textContent = message;
+  alertBox.style.display = 'block';
+
+  setTimeout(() => {
+    alertBox.style.display = 'none';
+  }, 3000); // Hide after 3 seconds
+}
+
+
   function checkoutCart() {
   if (!cart.length) return;
   closeCart();
@@ -408,5 +421,24 @@
     renderProducts();
     updateCartCount();
   </script>
+
+  <div id="custom-alert" style="
+  display: none;
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  color: #000;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  font-weight: 500;
+">
+  <p id="custom-alert-text" style="margin: 0;"></p>
+</div>
+
 </body>
 </html>
