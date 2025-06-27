@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="refresh" content="3000000000000" />
+  <meta http-equiv="refresh" content="30" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nutri Delights</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
   *, *::before, *::after { box-sizing: border-box; }
   html { font-size: clamp(14px, 1.2vw + .5rem, 18px); }
@@ -51,10 +52,13 @@
     color: #fff;
     border: none;
     border-radius: 4px;
-    padding: .45rem 1rem;
+    padding: .45rem .8rem; /* Adjusted padding */
     font-size: .9rem;
     cursor: pointer;
     white-space: nowrap;
+    display: flex; /* Added for icon alignment */
+    align-items: center; /* Added for icon alignment */
+    gap: 5px; /* Space between icon and text */
   }
 
   .btn-cart:hover { opacity: .9; }
@@ -175,15 +179,65 @@
   }
 
   #cart-modal .modal-content {
-    background: #fff;
-    padding: 1rem;
-    border-radius: 10px;
-    max-width: 500px;
-    width: 90%;
+   background: #fff;
+padding: 1rem;
+border-radius: 10px;
+max-width: 700px; /* Increased the maximum width /
+width: 90%;
+display: flex; / Added for better layout control /
+flex-direction: column; / Arrange content vertically */
   }
+  
+  #cart-items {
+  max-height: 60vh; /* Adjust this value as needed, e.g., 60% of viewport height */
+  overflow-y: auto; /* Enable vertical scrolling */
+  padding-right: 10px; /* Add some padding to prevent scrollbar from overlapping content */
+}
 
   #cart-modal input[type="number"] {
     width: 60px;
+  }
+
+  .seller-cart-group {
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 15px;
+      background-color: #fcfcfc;
+  }
+
+  .seller-cart-group h3 {
+      margin-top: 0;
+      color: #3498db;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  }
+
+  .seller-cart-group .item {
+      margin-bottom: 8px;
+      border-bottom: 1px dashed #eee;
+      padding-bottom: 5px;
+  }
+
+  .seller-cart-group .item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+  }
+
+  .seller-cart-group .checkout-btn {
+      background: #28a745;
+      color: #fff;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      float: right;
+  }
+
+  .seller-cart-group .checkout-btn:hover {
+      opacity: 0.9;
   }
 
   @media (max-width: 768px) {
@@ -193,8 +247,8 @@
       align-items: center;
     }
     .btn-cart {
-      width: 100%;
-      margin-top: 0.5rem;
+      width: auto; /* Adjusted for icon */
+      margin-top: 0; /* Adjusted for icon */
     }
   }
 
@@ -212,17 +266,14 @@
     <h1>Nutri Delights</h1>
     <p>Premium quality Dry Fruits & Malt Store</p>
     <div class="header-buttons">
-      <button class="btn-cart" onclick="checkoutCart()">Checkout on Whatsapp</button>
-      <button class="btn-cart" onclick="toggleCart()">Cart (<span id="cart-count">0</span>)</button>
+      <button class="btn-cart" onclick="toggleCart()"><i class="fas fa-shopping-cart"></i> (<span id="cart-count">0</span>)</button>
     </div>
   </header>
 
-  <!-- 🔍 Search Box -->
   <div style="text-align: center; margin: 1rem;">
     <input type="text" id="search-input" placeholder="Search products..." oninput="renderProducts()" style="padding: 0.5rem 1rem; font-size: 1rem; width: 90%; max-width: 400px; border: 1px solid #ccc; border-radius: 5px;" />
   </div>
 
-  <!-- 🖼️ Carousel -->
   <div class="carousel-container">
     <div class="carousel-slide" id="carousel-slide">
       <img src="https://images7.alphacoders.com/436/436244.jpg" />
@@ -235,12 +286,10 @@
     <button class="next" onclick="moveSlide(1)">❯</button>
   </div>
 
-  <!-- 🛒 Product Section -->
   <div class="container">
     <div class="product-grid" id="product-list"></div>
   </div>
 
-  <!-- 🧾 Cart Modal -->
   <div id="cart-modal">
     <div class="modal-content">
       <h2>Your Cart</h2>
@@ -248,14 +297,11 @@
       <p id="cart-total" style="font-weight: bold; margin-top: 1rem;"></p>
       <div style="margin-top:1rem; display:flex; justify-content:space-between;">
         <button onclick="closeCart()">Close</button>
-        <button onclick="checkoutCart()" style="background:green;color:#fff;border:none;padding:.5rem 1rem;">Checkout</button>
-      </div>
+        </div>
     </div>
   </div>
 
-  <!-- ⚙️ Script -->
   <script>
-    <!--const phoneNumber = '919345586790';-->
     const products = [
       { id: 1, name: 'Almonds', retailPrice: 700, unit: 'kg', img: 'https://images7.alphacoders.com/436/436244.jpg', whatsappNumber: '919345586790', seller: 'Royal Nuts Co.' },
       { id: 2, name: 'Cashews', retailPrice: 800, unit: 'kg', img: 'https://t4.ftcdn.net/jpg/03/07/00/75/360_F_307007568_JwLoLkiZiSWv2xR4e8kERNz2I5qqcN8l.jpg', whatsappNumber: '919751515268', seller: 'S&M' },
@@ -269,7 +315,8 @@
       { id: 10, name: 'Ragi Malt', retailPrice: 450, unit: 'kg', img: 'https://www.shutterstock.com/image-photo/barley-flour-closeup-measuring-spoon-600nw-1050856517.jpg', whatsappNumber: '919751515268', seller: 'S&M' }
     ];
 
-    let cart = [];
+    // Cart is now a Map to store items grouped by seller's WhatsApp number
+    let cart = new Map(); // Key: whatsappNumber, Value: Array of cart items for that seller
 
     function renderProducts() {
       const list = document.getElementById('product-list');
@@ -287,39 +334,49 @@
         const card = document.createElement('div');
         card.className = 'product-card';
         card.innerHTML = `
-  <img src="${p.img}" alt="${p.name}" />
-  <div class="product-info">
-    <h3>${p.name}</h3>
-    <p class="price">₹${p.retailPrice}/${p.unit}</p>
-    <p style="font-size: 0.9rem; color: #555;">Seller: <strong>${p.seller}</strong></p>
-    <div class="actions">
-      <label>Qty (${p.unit}): <input type="number" id="qty-${p.id}" min="1" value="1"></label>
-      <button class="btn-retail" onclick="addToCart(${p.id})">Add to Cart</button>
-    </div>
-  </div>`;
+          <img src="${p.img}" alt="${p.name}" />
+          <div class="product-info">
+            <h3>${p.name}</h3>
+            <p class="price">₹${p.retailPrice}/${p.unit}</p>
+            <p style="font-size: 0.9rem; color: #555;">Seller: <strong>${p.seller}</strong></p>
+            <div class="actions">
+              <label>Qty (${p.unit}): <input type="number" id="qty-${p.id}" min="1" value="1"></label>
+              <button class="btn-retail" onclick="addToCart(${p.id})">Add to Cart</button>
+            </div>
+          </div>`;
         list.appendChild(card);
       });
     }
 
- function addToCart(id) {
-  const product = products.find(p => p.id === id);
-  const qty = parseFloat(document.getElementById(`qty-${id}`).value);
-  if (isNaN(qty) || qty <= 0) return;
+    function addToCart(id) {
+      const product = products.find(p => p.id === id);
+      const qty = parseFloat(document.getElementById(`qty-${id}`).value);
+      if (isNaN(qty) || qty <= 0) return;
 
-  if (cart.length > 0 && cart[0].whatsappNumber !== product.whatsappNumber) {
-    showCustomAlert('Products from different sellers cannot be added together. Please checkout current products first.');
-    return;
-  }
+      const sellerWhatsappNumber = product.whatsappNumber;
 
-  const idx = cart.findIndex(item => item.id === id);
-  if (idx > -1) cart[idx].qty += qty;
-  else cart.push({ ...product, qty });
+      if (!cart.has(sellerWhatsappNumber)) {
+        cart.set(sellerWhatsappNumber, []);
+      }
 
-  updateCartCount();
-}
+      const sellerCart = cart.get(sellerWhatsappNumber);
+      const idx = sellerCart.findIndex(item => item.id === id);
+
+      if (idx > -1) {
+        sellerCart[idx].qty += qty;
+      } else {
+        sellerCart.push({ ...product, qty });
+      }
+
+      updateCartCount();
+    }
 
     function updateCartCount() {
-      document.getElementById('cart-count').textContent = cart.length;
+      let totalItems = 0;
+      cart.forEach(sellerItems => {
+        totalItems += sellerItems.length;
+      });
+      document.getElementById('cart-count').textContent = totalItems;
     }
 
     function toggleCart() {
@@ -335,67 +392,128 @@
       const container = document.getElementById('cart-items');
       const totalElement = document.getElementById('cart-total');
       container.innerHTML = '';
-      if (cart.length === 0) {
+      totalElement.textContent = ''; // Clear total initially
+
+      if (cart.size === 0) {
         container.innerHTML = '<p>Your cart is empty.</p>';
-        totalElement.textContent = '';
         return;
       }
 
-      cart.forEach((item, index) => {
-        const div = document.createElement('div');
-        div.innerHTML = `
-          <strong>${item.name}</strong><br/>
-          Qty: <input type="number" min="1" value="${item.qty}" onchange="updateItemQty(${index}, this.value)" />
-          <button onclick="removeItem(${index})" style="color:red;margin-left:5px;">Remove</button>
+      let grandTotal = 0;
+
+      cart.forEach((sellerItems, whatsappNumber) => {
+        if (sellerItems.length === 0) {
+            cart.delete(whatsappNumber); // Clean up empty seller entries
+            return;
+        }
+
+        const sellerName = sellerItems[0].seller; // Assuming seller name is consistent for items from same seller
+        const sellerGroupDiv = document.createElement('div');
+        sellerGroupDiv.className = 'seller-cart-group';
+        
+        let sellerTotal = 0;
+
+        sellerGroupDiv.innerHTML = `
+            <h3>${sellerName}</h3>
+            <div id="seller-items-${whatsappNumber}"></div>
+            <p style="font-weight: bold; text-align: right; margin-top: 10px;">Seller Total: ₹<span id="seller-subtotal-${whatsappNumber}"></span></p>
+            <button class="checkout-btn" onclick="checkoutForSeller('${whatsappNumber}')">Checkout for ${sellerName}</button>
+            <div style="clear:both;"></div>
         `;
-        container.appendChild(div);
+        container.appendChild(sellerGroupDiv);
+
+        const sellerItemsContainer = document.getElementById(`seller-items-${whatsappNumber}`);
+        sellerItemsContainer.innerHTML = ''; // Clear previous items for this seller
+
+        sellerItems.forEach(item => {
+          const itemDiv = document.createElement('div');
+          itemDiv.className = 'item';
+          const itemPrice = item.qty * item.retailPrice;
+          sellerTotal += itemPrice;
+          itemDiv.innerHTML = `
+            <strong>${item.name}</strong> - ₹${itemPrice}<br/>
+            Qty: <input type="number" min="1" value="${item.qty}" onchange="updateItemQty('${whatsappNumber}', ${item.id}, this.value)" />
+            <button onclick="removeItem('${whatsappNumber}', ${item.id})" style="color:red;margin-left:5px;">Remove</button>
+          `;
+          sellerItemsContainer.appendChild(itemDiv);
+        });
+
+        document.getElementById(`seller-subtotal-${whatsappNumber}`).textContent = sellerTotal;
+        grandTotal += sellerTotal;
       });
 
-      const total = cart.reduce((sum, i) => sum + i.qty * i.retailPrice, 0);
-      totalElement.textContent = `Total: ₹${total}`;
+      totalElement.textContent = `Grand Total for all items: ₹${grandTotal}`;
     }
 
-    function updateItemQty(index, value) {
+    function updateItemQty(sellerWhatsappNumber, productId, value) {
       const qty = parseFloat(value);
       if (qty <= 0 || isNaN(qty)) return;
-      cart[index].qty = qty;
+
+      const sellerCart = cart.get(sellerWhatsappNumber);
+      if (sellerCart) {
+        const item = sellerCart.find(i => i.id === productId);
+        if (item) {
+          item.qty = qty;
+        }
+      }
       renderCart();
     }
 
-    function removeItem(index) {
-      cart.splice(index, 1);
+    function removeItem(sellerWhatsappNumber, productId) {
+      const sellerCart = cart.get(sellerWhatsappNumber);
+      if (sellerCart) {
+        const initialLength = sellerCart.length;
+        const updatedCart = sellerCart.filter(item => item.id !== productId);
+        cart.set(sellerWhatsappNumber, updatedCart);
+
+        // If the seller's cart is now empty, remove the seller entry from the map
+        if (updatedCart.length === 0) {
+            cart.delete(sellerWhatsappNumber);
+        }
+      }
       updateCartCount();
       renderCart();
     }
 
-function showCustomAlert(message) {
-  const snackbar = document.getElementById('custom-snackbar');
-  const text = document.getElementById('custom-snackbar-text');
-  text.textContent = message;
-  snackbar.style.visibility = 'visible';
-  snackbar.style.opacity = '1';
+    function showCustomAlert(message) {
+      const snackbar = document.getElementById('custom-snackbar');
+      const text = document.getElementById('custom-snackbar-text');
+      text.textContent = message;
+      snackbar.style.visibility = 'visible';
+      snackbar.style.opacity = '1';
 
-  setTimeout(() => {
-    snackbar.style.opacity = '0';
-    snackbar.style.visibility = 'hidden';
-  }, 3000);
-}
+      setTimeout(() => {
+        snackbar.style.opacity = '0';
+        snackbar.style.visibility = 'hidden';
+      }, 3000);
+    }
 
+    // Modified checkout function to handle specific seller
+    function checkoutForSeller(sellerWhatsappNumber) {
+        const itemsToCheckout = cart.get(sellerWhatsappNumber);
 
-  function checkoutCart() {
-  if (!cart.length) return;
-  closeCart();
-  const lines = ['Hello, I would like to place an order:'];
-  cart.forEach(i => lines.push(`• ${i.name}: ${i.qty} ${i.unit} – ₹${i.retailPrice * i.qty}`));
-  lines.push(`\nTotal: ₹${cart.reduce((s, i) => s + i.retailPrice * i.qty, 0)}`);
-  lines.push('Thank you!');
+        if (!itemsToCheckout || itemsToCheckout.length === 0) {
+            showCustomAlert('No items to checkout for this seller.');
+            return;
+        }
 
-  const phone = cart[0].whatsappNumber;
-  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(lines.join('\n'))}`, '_blank');
+        const lines = ['Hello, I would like to place an order:'];
+        let subtotal = 0;
+        itemsToCheckout.forEach(i => {
+            lines.push(`• ${i.name}: ${i.qty} ${i.unit} – ₹${i.retailPrice * i.qty}`);
+            subtotal += i.retailPrice * i.qty;
+        });
+        lines.push(`\nTotal for ${itemsToCheckout[0].seller}: ₹${subtotal}`); // Assuming seller name is consistent
+        lines.push('Thank you!');
 
-  cart = [];
-  updateCartCount();
-}
+        window.open(`https://wa.me/${sellerWhatsappNumber}?text=${encodeURIComponent(lines.join('\n'))}`, '_blank');
+
+        // Remove the checked-out items from the cart
+        cart.delete(sellerWhatsappNumber);
+        updateCartCount();
+        renderCart(); // Re-render cart to reflect changes
+        closeCart(); // Close modal after checkout
+    }
 
     let currentSlide = 0;
     const slides = document.querySelectorAll('.carousel-slide img');
