@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nutri Delights</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <style>
+ <style>
   *, *::before, *::after { box-sizing: border-box; }
   html { font-size: clamp(14px, 1.2vw + .5rem, 18px); }
   body {
@@ -112,7 +112,7 @@
   .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 1.5rem;
+    gap: 1rem; /* Reduced gap */
   }
 
   .product-card {
@@ -129,14 +129,14 @@
   .product-card img {
     width: 100%;
     max-width: 200px;
-    height:70%;
+    height: 120px; /* Adjusted height */
     object-fit: cover;
     border-radius: 8px;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem; /* Adjusted margin */
   }
 
-  .product-info h3 { margin: 0 0 .4rem; font-size: 1.1rem; }
-  .price { font-weight: 600; margin: .2rem 0 .8rem; }
+  .product-info h3 { margin: 0 0 .2rem; font-size: 1.1rem; } /* Adjusted margin */
+  .price { font-weight: 600; margin: .1rem 0 .5rem; } /* Adjusted margin */
 
   .actions {
     display: flex;
@@ -179,65 +179,65 @@
   }
 
   #cart-modal .modal-content {
-   background: #fff;
-padding: 1rem;
-border-radius: 10px;
-max-width: 700px; /* Increased the maximum width /
-width: 90%;
-display: flex; / Added for better layout control /
-flex-direction: column; / Arrange content vertically */
+    background: #fff;
+    padding: 1rem;
+    border-radius: 10px;
+    max-width: 700px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
   }
   
   #cart-items {
-  max-height: 60vh; /* Adjust this value as needed, e.g., 60% of viewport height */
-  overflow-y: auto; /* Enable vertical scrolling */
-  padding-right: 10px; /* Add some padding to prevent scrollbar from overlapping content */
-}
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 10px;
+  }
 
   #cart-modal input[type="number"] {
     width: 60px;
   }
 
   .seller-cart-group {
-      border: 1px solid #eee;
-      border-radius: 8px;
-      padding: 10px;
-      margin-bottom: 15px;
-      background-color: #fcfcfc;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #fcfcfc;
   }
 
   .seller-cart-group h3 {
-      margin-top: 0;
-      color: #3498db;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    margin-top: 0;
+    color: #3498db;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .seller-cart-group .item {
-      margin-bottom: 8px;
-      border-bottom: 1px dashed #eee;
-      padding-bottom: 5px;
+    margin-bottom: 8px;
+    border-bottom: 1px dashed #eee;
+    padding-bottom: 5px;
   }
 
   .seller-cart-group .item:last-child {
-      border-bottom: none;
-      margin-bottom: 0;
-      padding-bottom: 0;
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
   }
 
   .seller-cart-group .checkout-btn {
-      background: #28a745;
-      color: #fff;
-      border: none;
-      padding: 8px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-      float: right;
+    background: #28a745;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    float: right;
   }
 
   .seller-cart-group .checkout-btn:hover {
-      opacity: 0.9;
+    opacity: 0.9;
   }
 
   @media (max-width: 768px) {
@@ -247,8 +247,8 @@ flex-direction: column; / Arrange content vertically */
       align-items: center;
     }
     .btn-cart {
-      width: auto; /* Adjusted for icon */
-      margin-top: 0; /* Adjusted for icon */
+      width: auto;
+      margin-top: 0;
     }
   }
 
