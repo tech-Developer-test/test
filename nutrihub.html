@@ -6,259 +6,327 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nutri Delights</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
- <style>
-  *, *::before, *::after { box-sizing: border-box; }
-  html { font-size: clamp(14px, 1.2vw + .5rem, 18px); }
-  body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f7f7f7;
-    color: #333;
-    line-height: 1.45;
-  }
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { font-size: clamp(14px, 1.2vw + .5rem, 18px); }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f7f7f7;
+      color: #333;
+      line-height: 1.45;
+    }
 
-  header {
-    background: linear-gradient(270deg, #ff416c, #ff4b2b, #1e90ff, #32cd32);
-    background-size: 800% 800%;
-    animation: gradient-animation 12s ease infinite;
-    color: #fff;
-    text-align: center;
-    padding: 0.5rem 1rem;
-    box-shadow: 0 2px 6px rgba(0,0,0,.1);
-  }
+    header {
+      background: linear-gradient(270deg, #ff416c, #ff4b2b, #1e90ff, #32cd32);
+      background-size: 800% 800%;
+      animation: gradient-animation 12s ease infinite;
+      color: #fff;
+      text-align: center;
+      padding: 0.5rem 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,.1);
+    }
 
-  @keyframes gradient-animation {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
+    @keyframes gradient-animation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
 
-  header h1 {
-    margin: 0 0 0.2rem;
-    font-size: clamp(1.2rem, 3vw, 1.6rem);
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
-  }
+    header h1 {
+      margin: 0 0 0.2rem;
+      font-size: clamp(1.2rem, 3vw, 1.6rem);
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+    }
 
-  .header-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-    flex-wrap: wrap;
-  }
-
-  .btn-cart {
-    background: #2980b9;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    padding: .45rem .8rem; /* Adjusted padding */
-    font-size: .9rem;
-    cursor: pointer;
-    white-space: nowrap;
-    display: flex; /* Added for icon alignment */
-    align-items: center; /* Added for icon alignment */
-    gap: 5px; /* Space between icon and text */
-  }
-
-  .btn-cart:hover { opacity: .9; }
-
-  .carousel-container {
-    position: relative;
-    width: 100%;
-    max-width: 1000px;
-    margin: 0.5rem auto;
-    overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-
-  .carousel-slide {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-  }
-
-  .carousel-slide img {
-    width: 100%;
-    flex-shrink: 0;
-    aspect-ratio: 16 / 4;
-    object-fit: cover;
-  }
-
-  .prev, .next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0,0,0,0.3);
-    color: white;
-    border: none;
-    padding: 0.5rem;
-    font-size: 1.5rem;
-    cursor: pointer;
-    z-index: 10;
-    border-radius: 50%;
-  }
-
-  .prev { left: 10px; }
-  .next { right: 10px; }
-
-  .container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 1rem auto;
-    padding: 0 1rem;
-  }
-
-  .product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 1rem; /* Reduced gap */
-  }
-
-  .product-card {
-    background: #fff;
-    border-radius: 8px;
-    padding: 1rem;
-    box-shadow: 0 1px 4px rgba(0,0,0,.08);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .product-card img {
-    width: 100%;
-    max-width: 200px;
-    height: 120px; /* Adjusted height */
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 0.5rem; /* Adjusted margin */
-  }
-
-  .product-info h3 { margin: 0 0 .2rem; font-size: 1.1rem; } /* Adjusted margin */
-  .price { font-weight: 600; margin: .1rem 0 .5rem; } /* Adjusted margin */
-
-  .actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: .5rem;
-    justify-content: center;
-  }
-
-  .actions input[type="number"] {
-    width: 68px;
-    padding: .4rem .5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: .9rem;
-  }
-
-  .btn-retail {
-    background: #27ae60;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    padding: .55rem 1rem;
-    font-size: .9rem;
-    cursor: pointer;
-    transition: opacity .2s;
-  }
-
-  .btn-retail:hover { opacity: .9; }
-
-  #cart-modal {
-    display: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0,0,0,0.5);
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-  }
-
-  #cart-modal .modal-content {
-    background: #fff;
-    padding: 1rem;
-    border-radius: 10px;
-    max-width: 700px;
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  #cart-items {
-    max-height: 60vh;
-    overflow-y: auto;
-    padding-right: 10px;
-  }
-
-  #cart-modal input[type="number"] {
-    width: 60px;
-  }
-
-  .seller-cart-group {
-    border: 1px solid #eee;
-    border-radius: 8px;
-    padding: 10px;
-    margin-bottom: 15px;
-    background-color: #fcfcfc;
-  }
-
-  .seller-cart-group h3 {
-    margin-top: 0;
-    color: #3498db;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .seller-cart-group .item {
-    margin-bottom: 8px;
-    border-bottom: 1px dashed #eee;
-    padding-bottom: 5px;
-  }
-
-  .seller-cart-group .item:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
-  }
-
-  .seller-cart-group .checkout-btn {
-    background: #28a745;
-    color: #fff;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    float: right;
-  }
-
-  .seller-cart-group .checkout-btn:hover {
-    opacity: 0.9;
-  }
-
-  @media (max-width: 768px) {
-    .carousel-slide img { aspect-ratio: 16 / 5; }
     .header-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+      flex-wrap: wrap;
+    }
+    
+    .product-info h3 {
+      margin: 0 0 .2rem;
+      font-size: 0.85rem;
+    }
+
+    /* Combined Price Styles */
+    .price-container {
+      display: flex; /* Makes the prices appear in a row */
+      align-items: baseline; /* Aligns text baselines */
+      gap: 8px; /* Space between prices */
+      margin: 0.1rem 0; /* Adjust margin as needed */
+      justify-content: center; /* Center the prices */
+    }
+
+    .retail-price {
+      font-size: 0.55rem;
+      font-weight: 600;
+      color: #777; /* Slightly muted for retail price */
+      text-decoration: line-through; /* Strikethrough for retail price */
+    }
+
+    .offer-price {
+      font-size: 0.9rem; /* Slightly larger for offer price */
+      font-weight: bold;
+      color: green;
+    }
+
+
+    .details, .note, .seller {
+      font-size: 0.6rem;
+      color: #444;
+      margin: 0.4rem 0 0.2rem;
+      text-align: left;
+      line-height: 1.4;
+    }
+
+    .actions label {
+      font-size: 0.75rem;
+    }
+
+
+    .btn-cart {
+      background: #2980b9;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: .45rem .8rem; /* Adjusted padding */
+      font-size: .9rem;
+      cursor: pointer;
+      white-space: nowrap;
+      display: flex; /* Added for icon alignment */
+      align-items: center; /* Added for icon alignment */
+      gap: 5px; /* Space between icon and text */
+    }
+
+    .btn-cart:hover { opacity: .9; }
+
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      max-width: 1000px;
+      margin: 0.5rem auto;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .carousel-slide {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      flex-shrink: 0;
+      aspect-ratio: 16 / 4;
+      object-fit: cover;
+    }
+
+    .prev, .next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0,0,0,0.3);
+      color: white;
+      border: none;
+      padding: 0.5rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+      z-index: 10;
+      border-radius: 50%;
+    }
+
+    .prev { left: 10px; }
+    .next { right: 10px; }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 1rem auto;
+      padding: 0 1rem;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem; /* Reduced gap */
+    }
+
+    .product-card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,.08);
+      display: flex;
       flex-direction: column;
       align-items: center;
+      text-align: center;
     }
-    .btn-cart {
-      width: auto;
-      margin-top: 0;
-    }
-  }
 
-  @media (max-width: 480px) {
-    .carousel-slide img { aspect-ratio: 16 / 6; }
-    .actions input[type="number"], .btn-retail {
-      flex: 1 1 100%;
+    .product-card img {
+      width: 100%;
+      max-width: 200px;
+      height: 120px; /* Adjusted height */
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 0.5rem; /* Adjusted margin */
     }
-  }
-</style>
+
+    .product-info h3 { margin: 0 0 .2rem; font-size: 1.1rem; } /* Adjusted margin */
+    /* .price { font-weight: 600; margin: .1rem 0 .5rem; } Removed, handled by price-container */
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      justify-content: center;
+    }
+
+    .actions input[type="number"] {
+      width: 68px;
+      padding: .4rem .5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: .9rem;
+    }
+
+    .btn-retail {
+      background: #27ae60;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: .55rem 1rem;
+      font-size: .9rem;
+      cursor: pointer;
+      transition: opacity .2s;
+    }
+
+    .btn-retail:hover { opacity: .9; }
+
+    #cart-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    #cart-modal .modal-content {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 10px;
+      max-width: 700px;
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    #cart-items {
+      max-height: 60vh;
+      overflow-y: auto;
+      padding-right: 10px;
+    }
+
+    #cart-modal input[type="number"] {
+      width: 60px;
+    }
+
+    .seller-cart-group {
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 15px;
+      background-color: #fcfcfc;
+    }
+
+    .seller-cart-group h3 {
+      margin-top: 0;
+      color: #3498db;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .seller-cart-group .item {
+      margin-bottom: 8px;
+      border-bottom: 1px dashed #eee;
+      padding-bottom: 5px;
+    }
+
+    .seller-cart-group .item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .seller-cart-group .checkout-btn {
+      background: #28a745;
+      color: #fff;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      float: right;
+    }
+
+    .seller-cart-group .checkout-btn:hover {
+      opacity: 0.9;
+    }
+
+    @media (max-width: 768px) {
+      .carousel-slide img { aspect-ratio: 16 / 5; }
+      .header-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      .btn-cart {
+        width: auto;
+        margin-top: 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .carousel-slide img { aspect-ratio: 16 / 6; }
+      .actions input[type="number"], .btn-retail {
+        flex: 1 1 100%;
+      }
+    }
+	
+	.qty-control {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  height: 32px;
+}
+
+.qty-control button {
+  background-color: #eee;
+  border: none;
+  padding: 0 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  height: 100%;
+}
+
+.qty-control input {
+  width: 40px;
+  text-align: center;
+  border: none;
+  font-size: 1rem;
+  height: 100%;
+}
+
+  </style>
 
 </head>
 <body>
@@ -303,15 +371,16 @@
 
   <script>
     const products = [
-      { id: 1, name: 'Almonds', retailPrice: 700, unit: 'kg', img: 'https://images7.alphacoders.com/436/436244.jpg', whatsappNumber: '919345586790', seller: 'Royal Nuts Co.' },
-      { id: 2, name: 'Cashews', retailPrice: 800, unit: 'kg', img: 'https://t4.ftcdn.net/jpg/03/07/00/75/360_F_307007568_JwLoLkiZiSWv2xR4e8kERNz2I5qqcN8l.jpg', whatsappNumber: '919751515268', seller: 'S&M' },
+      { id: 1, name: 'Almonds', retailPrice: 700, unit: 'kg', img: 'https://images7.alphacoders.com/436/436244.jpg', offerPrice: 650,
+    note: 'Delivered within 2 working days.', whatsappNumber: '919345586790', seller: 'Royal Nuts Co.' },
+      { id: 2, name: 'Cashews', retailPrice: 800, unit: 'kg', img: 'https://t4.ftcdn.net/jpg/03/07/00/75/360_F_307007568_JwLoLkiZiSWv2xR4e8kERNz2I5qqcN8l.jpg', offerPrice: 650, whatsappNumber: '919751515268', seller: 'S&M' },
       { id: 3, name: 'Raisins', retailPrice: 350, unit: 'kg', img: 'https://img.freepik.com/free-photo/raisin-currant_1339-7227.jpg', whatsappNumber: '919345586790', seller: 'Royal Nuts Co.' },
       { id: 4, name: 'Walnuts', retailPrice: 900, unit: 'kg', img: 'https://m.media-amazon.com/images/I/71643abOSLL._AC_UF894,1000_QL80_.jpg', whatsappNumber: '919751515268', seller: 'S&M' },
       { id: 5, name: 'ABC Malt Powder', retailPrice: 450, unit: 'kg', img: 'https://www.shutterstock.com/image-photo/barley-flour-closeup-measuring-spoon-600nw-1050856517.jpg', whatsappNumber: '919345586790', seller: 'Royal Nuts Co.' },
       { id: 6, name: 'Farm House Pizza', retailPrice: 700, unit: '10inch', img: 'https://www.dominos.co.in//files/items/Farmhouse.jpg', whatsappNumber: '917418150176', seller: 'Wheat Treat' },
-      { id: 7, name: 'Wheat Cake', retailPrice: 800, unit: 'kg', img: 'https://bizdomfs.blob.core.windows.net/post-image/23f7d20d-7886-4a99-9d5e-a9218a223acd.webp', whatsappNumber: '917418150176', seller: 'Wheat Treat' },
+      { id: 7, name: 'Wheat Cake', retailPrice: 800, unit: 'kg', img: 'https://bizdomfs.blob.core.windows.net/post-image/23f7d20d-7886-4a99-9d5e-a9218a223acd.webp', whatsappNumber: '917418150176', seller: 'Wheat Treat ( Only Erode)' },
       { id: 8, name: 'Rose Gulkand', retailPrice: 100, unit: '120gm', img: 'https://farmm2home.com/wp-content/uploads/2022/04/10f6a694-72fc-41d9-bb83-4d01fef4888f-scaled.jpeg', whatsappNumber: '917339185826', seller: 'BPK' },
-      { id: 9, name: 'Black Pepper Powder', retailPrice: 100, unit: '100gm', img: 'https://media.istockphoto.com/id/177423914/photo/milled-black-pepper-isolated-on-white.jpg?s=612x612&w=0&k=20&c=xZcAIz0PRMo8JBJa_DQl56_bXe9DVwgAwDuhfgUY6Lo=', whatsappNumber: '917339185826', seller: 'BPK' },
+      { id: 9, name: 'Pepper Powder', retailPrice: 100, unit: '100gm', img: 'https://media.istockphoto.com/id/177423914/photo/milled-black-pepper-isolated-on-white.jpg?s=612x612&w=0&k=20&c=xZcAIz0PRMo8JBJa_DQl56_bXe9DVwgAwDuhfgUY6Lo=', whatsappNumber: '917339185826', seller: 'BPK' },
       { id: 10, name: 'Biriyani Masala', retailPrice: 200, unit: '100gm', img: 'https://rumkisgoldenspoon.com/wp-content/uploads/2023/02/Homemade-biryani-masala-2.jpg', whatsappNumber: '917339185826', seller: 'BPK' }
     ];
 
@@ -337,13 +406,24 @@
           <img src="${p.img}" alt="${p.name}" />
           <div class="product-info">
             <h3>${p.name}</h3>
-            <p class="price">₹${p.retailPrice}/${p.unit}</p>
-            <p style="font-size: 0.9rem; color: #555;">Seller: <strong>${p.seller}</strong></p>
+            <div class="price-container">
+              ${p.retailPrice ? `<span class="retail-price">₹${p.retailPrice}/${p.unit}</span>` : ''}
+              ${p.offerPrice ? `<span class="offer-price">₹${p.offerPrice}/${p.unit}</span>` : `<span class="offer-price">₹${p.retailPrice || 'N/A'}/${p.unit}</span>`}
+            </div>
+            <!--p class="details">${p.details || "High quality and fresh"}</p--!>
+            <!--p class="note">${p.note || "Delivery in 2-3 days"}</p--!>
+            <p class="seller">Seller: <strong>${p.seller}</strong></p>
             <div class="actions">
-              <label>Qty (${p.unit}): <input type="number" id="qty-${p.id}" min="1" value="1"></label>
+              <div class="qty-control">
+  <button type="button" onclick="changeQty(${p.id}, -1)">−</button>
+  <input type="text" id="qty-${p.id}" value="1" readonly />
+  <button type="button" onclick="changeQty(${p.id}, 1)">+</button>
+</div>
+
               <button class="btn-retail" onclick="addToCart(${p.id})">Add to Cart</button>
             </div>
           </div>`;
+
         list.appendChild(card);
       });
     }
@@ -428,7 +508,9 @@
         sellerItems.forEach(item => {
           const itemDiv = document.createElement('div');
           itemDiv.className = 'item';
-          const itemPrice = item.qty * item.retailPrice;
+          // Use offerPrice if available, otherwise retailPrice for cart display
+          const priceToUse = item.offerPrice || item.retailPrice; 
+          const itemPrice = item.qty * priceToUse;
           sellerTotal += itemPrice;
           itemDiv.innerHTML = `
             <strong>${item.name}</strong> - ₹${itemPrice}<br/>
@@ -458,6 +540,15 @@
       }
       renderCart();
     }
+	
+	function changeQty(id, delta) {
+  const input = document.getElementById(`qty-${id}`);
+  let currentQty = parseInt(input.value) || 1;
+  currentQty += delta;
+  if (currentQty < 1) currentQty = 1;
+  input.value = currentQty;
+}
+
 
     function removeItem(sellerWhatsappNumber, productId) {
       const sellerCart = cart.get(sellerWhatsappNumber);
@@ -500,8 +591,10 @@
         const lines = ['Hello, I would like to place an order:'];
         let subtotal = 0;
         itemsToCheckout.forEach(i => {
-            lines.push(`• ${i.name}: ${i.qty} ${i.unit} – ₹${i.retailPrice * i.qty}`);
-            subtotal += i.retailPrice * i.qty;
+            // Use offerPrice if available, otherwise retailPrice for checkout message
+            const priceToUse = i.offerPrice || i.retailPrice; 
+            lines.push(`• ${i.name}: ${i.qty} ${i.unit} – ₹${priceToUse * i.qty}`);
+            subtotal += priceToUse * i.qty;
         });
         lines.push(`\nTotal for ${itemsToCheckout[0].seller}: ₹${subtotal}`); // Assuming seller name is consistent
         lines.push('Thank you!');
