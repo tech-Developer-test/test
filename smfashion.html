@@ -151,10 +151,11 @@
     }
 
     .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1rem; /* Reduced gap */
-    }
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Always 2 columns */
+  gap: 0.6rem; /* Optional: reduce gap for smaller screens */
+}
+
 
     .product-card {
       background: #fff;
