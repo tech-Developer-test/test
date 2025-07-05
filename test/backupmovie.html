@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="500000000000">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>Movie Time</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #000;
+    }
+
+    header {
+      text-align: center;
+      padding: 16px;
+      background-color: #000;
+    }
+
+    header h1 {
+      color: #fff;
+      font-size: 2.5em;
+      margin: 0;
+    }
+
+    header p {
+      color: #ccc;
+      font-size: 1.2em;
+      margin: 0.5em 0 1em;
+    }
+
+    #searchInput {
+      padding: 10px;
+      font-size: 1em;
+      width: 80%;
+      max-width: 400px;
+      border-radius: 8px;
+      border: none;
+      margin-top: 10px;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+      padding: 8px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .grid-item {
+      background-color: #000;
+      border-radius: 8px;
+      padding: 10px;
+      text-align: center;
+    }
+
+   .grid-item img {
+  width: 160px;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+
+    .download-btn {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 8px 16px;
+      background-color: #4CAF50;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 0.9em;
+    }
+
+    .download-btn:hover {
+      background-color: #45a049;
+    }
+
+    h3 {
+      color: white;
+      font-size: 1.1em;
+      margin: 8px 0;
+    }
+
+    @media (max-width: 400px) {
+      header h1 {
+        font-size: 1.5em;
+      }
+
+      .download-btn {
+        padding: 6px 12px;
+        font-size: 0.8em;
+      }
+
+      #searchInput {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🎬 <span style="color: #4CAF50;">Movie</span> <span style="color: #4CAF50;">Time</span> 🍿</h1>
+  <p>Watch your favorite movies</p>
+  <input type="text" id="searchInput" placeholder="Search movie..." onkeyup="filterMovies()">
+</header>
+
+<div class="grid-container">
+
+<div class="grid-item">
+    <h3>Good Wife</h3>
+    <img src="https://preview.redd.it/good-wife-tamil-directed-by-revathy-starring-priyamani-v0-mc75l3xu4qaf1.jpeg?width=640&crop=smart&auto=webp&s=64a63bc501a40c92ae4cd28ca453c6a4be75537f" alt="dd">
+    <a href="https://playerpage.github.io/playersrm/Goodwife.html" class="download-btn">View</a>
+  </div>
+
+<div class="grid-item">
+    <h3>Maaman</h3>
+    <img src="https://9moviesda.com/uploads/posters/maaman-2025.webp" alt="dd">
+    <a href="https://playerpage.github.io/playersrm/maman.html" class="download-btn">View</a>
+  </div>
+
+<div class="grid-item">
+    <h3>Azadi</h3>
+    <img src="https://9moviesda.com/uploads/posters/azadi-2025.webp" alt="dd">
+    <a href="https://playerpage.github.io/playersrm/asadi.html" class="download-btn">View</a>
+  </div>
+
+<div class="grid-item">
+    <h3>Ace</h3>
+    <img src="https://m.media-amazon.com/images/M/MV5BNzVmYWY1MTEtNzE5Ni00ZTBmLWE5Y2QtMTQ5OTdjOWViY2U5XkEyXkFqcGc@._V1_.jpg" alt="dd">
+    <a href="https://playerpage.github.io/playersrm/ace.html" class="download-btn">View</a>
+  </div>
+
+<div class="grid-item">
+    <h3>Eleven</h3>
+    <img src="https://m.media-amazon.com/images/M/MV5BNzNkMGU4YzYtNTY1MC00MmIzLWI0ZjctMzhlMzYwZjQ3MjZjXkEyXkFqcGc@._V1_.jpg" alt="dd">
+    <a href="https://playerpage.github.io/playersrm/eleven.html" class="download-btn">View</a>
+  </div>
+
+	<div class="grid-item">
+    <h3>AG</h3>
+    <img src="https://preview.redd.it/alappuzha-gymkhana-enters-50cr-ww-club-in-11-days-naslens-v0-5w8lmd8zd4we1.png?auto=webp&s=223f77940372ccdb6d08bb5d159032ec71ce68bf" alt="dd">
+    <a href="https://playerpage.github.io/playersrm/AG.html" class="download-btn">View</a>
+  </div>
+	
+<div class="grid-item">
+    <h3>DD</h3>
+    <img src="https://m.media-amazon.com/images/M/MV5BMmE5MDAwNjMtZTcyOC00NzE2LWE2YTEtODI4ZTdiYzNiN2RhXkEyXkFqcGc@._V1_QL75_UX175_.jpg" alt="dd">
+    <a href="https://playerpage.github.io/playersrm/dd.html" class="download-btn">View</a>
+  </div>
+	
+	<div class="grid-item">
+    <h3>JKT</h3>
+    <img src="https://m.media-amazon.com/images/M/MV5BYzhjZmVlMmQtNmY5NC00N2RjLTkxOWEtNTM2MjNmNzgzYjYxXkEyXkFqcGc@._V1_QL75_UX380_.jpg" alt="Single">
+    <a href="https://playerpage.github.io/playersrm/jkt.html" class="download-btn">View</a>
+  </div>
+
+<div class="grid-item">
+    <h3>Single</h3>
+    <img src="https://m.media-amazon.com/images/M/MV5BMDZkZmIwZjktM2JhNy00NjQ2LWEwNDAtM2Q5NDRlMTYzZTY4XkEyXkFqcGc@._V1_.jpg" alt="Single">
+    <a href="https://playerpage.github.io/playersrm/single.html" class="download-btn">View</a>
+  </div>
+	
+<div class="grid-item">
+    <h3>Vadakkan</h3>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQtOGazT6vDCENMrFD5SgC7uE6dKFpGId2OQ&s" alt="vadakkan">
+    <a href="https://playerpage.github.io/playersrm/Vadakkan.html" class="download-btn">View</a>
+  </div>
+
+	
+  <div class="grid-item">
+    <h3>Tourist Fam..</h3>
+    <img src="https://m.media-amazon.com/images/M/MV5BM2NlZTI0NzEtMTRjYi00YjA2LWJmMzEtMjkzMWNlZWQ4NTZlXkEyXkFqcGc@._V1_.jpg" alt="Tourist Fam">
+    <a href="https://playerpage.github.io/playersrm/tourist.html" class="download-btn">View</a>
+  </div>
+
+  <div class="grid-item">
+    <h3>RETRO</h3>
+    <img src="https://m.media-amazon.com/images/M/MV5BM2FmYmFlMmItNDBmMy00ZmU2LTk2OWUtZjFmOGRlNTc1OTIzXkEyXkFqcGc@._V1_.jpg" alt="RETRO">
+    <a href="https://playerpage.github.io/playersrm/retro.html" class="download-btn">View</a>
+  </div>
+
+  <div class="grid-item">
+    <h3>Thudarum</h3>
+    <img src="https://m.media-amazon.com/images/M/MV5BZTI2OTg0MzgtOGJlMC00MWU2LTlkMDItYTAwNzhmOGIwOWRmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Thudarum">
+    <a href="https://playerpage.github.io/playersrm/thudarum.html" class="download-btn">View</a>
+  </div>
+
+  <div class="grid-item">
+    <h3>HIT 3</h3>
+    <img src="https://preview.redd.it/hit-3-new-poster-v0-und715r1y5se1.jpeg?auto=webp&s=587a5636c1db21ea74440890743e0c70df8bfe1e" alt="HIT 3">
+    <a href="https://playerpage.github.io/playersrm/hit.html" class="download-btn">View</a>
+  </div>
+
+  <div class="grid-item">
+    <h3>GBU</h3>
+    <img src="https://m.media-amazon.com/images/M/MV5BMWQ1OTIyNmQtZDc2OC00YzM0LTg3NzAtZGEwNGNkODYyZWZhXkEyXkFqcGc@._V1_.jpg" alt="GBU">
+    <a href="https://playerpage.github.io/playersrm/gbu.html" class="download-btn">View</a>
+  </div>
+
+  <div class="grid-item">
+    <h3>Gangers</h3>
+    <img src="https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/gangers-et00440359-1744708561.jpg" alt="Gangers">
+    <a href="https://playerpage.github.io/playersrm/gangers.html" class="download-btn">View</a>
+  </div>
+
+  <div class="grid-item">
+    <h3>Ten Hours</h3>
+    <img src="https://m.media-amazon.com/images/S/pv-target-images/761d11471bd63b16d208d211587f5ba7641dfc835ab846767165ca8393cbd02d.jpg" alt="Ten Hours">
+    <a href="https://playerpage.github.io/playersrm/ten.html" class="download-btn">View</a>
+  </div>
+  
+    <div class="grid-item">
+            <h3>Maranamass</h3>
+            <img src="https://m.media-amazon.com/images/M/MV5BYjQzOWI3MzQtOWIyNC00ZTUxLWJmNDEtNjg3NzllMTFmZGRmXkEyXkFqcGc@._V1_.jpg" alt="Image 4">
+      	    <a href="https://playerpage.github.io/playersrm/maranamass.html" class="download-btn" download>View</a>
+	    </div>
+	    
+	     <div class="grid-item">
+            <h3>VDS</h3>
+            <img src="https://m.media-amazon.com/images/M/MV5BZDMzN2M3ZWMtYjljYS00OTFkLTk1MGUtMjQ5ZTY0ZGZhYzBkXkEyXkFqcGc@._V1_.jpg" alt="Image 4">
+      	    <a href="https://playerpage.github.io/playersrm/veerad.html" class="download-btn" download>View</a>
+	    </div>
+
+	     <div class="grid-item">
+            <h3>EMI</h3>
+            <img src="https://m.media-amazon.com/images/M/MV5BNjdhZDdkZTMtMDAzZi00OGFmLThlMzQtZjM1MDdjNTAzZTAwXkEyXkFqcGc@._V1_.jpg" alt="Image 4">
+      	    <a href="https://playerpage.github.io/playersrm/emi.html" class="download-btn" download>View</a>
+	    </div>
+
+	     <div class="grid-item">
+            <h3>Bromance</h3>
+            <img src="https://images.ottplay.com/posters/bef777bae2ff6ba9f69534a8ff7ef9f5.jpg" alt="Image 4">
+      	    <a href="https://playerpage.github.io/playersrm/Bromance.html" class="download-btn" download>View</a>
+	    </div>
+	
+<div class="grid-item">
+	    <h3>MGR</h3>
+            <img src="https://static.toiimg.com/photo/117158499.cms?imgsize=127701" alt="Image 4">
+      	    <a href="https://playerpage.github.io/playersrm/mgr.html" class="download-btn" download>View</a>
+	    </div>
+	    
+	    
+	    <div class="grid-item">
+            <h3>Empuraan</h3>
+            <img src="https://m.media-amazon.com/images/M/MV5BZTQ1YWZjYTAtNGVjYi00YjkwLTk0N2UtYmMzM2NkZjlmODIwXkEyXkFqcGc@._V1_.jpg" alt="Image 4">
+      	    <a href="https://drive.google.com/file/d/1k7LS_xF1Ek5gqevCT85sv37bBSdwoWs2/view?pli=1" class="download-btn" download>View</a>
+	    </div>
+
+	         <div class="grid-item">
+            <h3>Kingston</h3>
+            <img src="https://m.media-amazon.com/images/M/MV5BYjIwMTAzOGItMjIzNC00ZDlkLTg5NDctMDhkMjhmYmRkMGU2XkEyXkFqcGc@._V1_.jpg" alt="Image 4">
+            <a href="https://playerpage.github.io/playersrm/Kingston.html" class="download-btn" download>View</a>
+            </div>
+
+	       <div class="grid-item">
+            <h3>Test</h3>
+            <img src="https://m.media-amazon.com/images/M/MV5BYWY4MTYxYzctMzE4Ny00NGJjLThlMjQtN2NjOTUxNDc1ZjcxXkEyXkFqcGc@._V1_.jpg" alt="Image 4">
+            <a href="https://tech-developer-test.github.io/test/player.html" class="download-btn" download>View</a>
+            </div>
+
+	       <div class="grid-item">
+            <h3>Sweet Heart</h3>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSA_oxkDtxmsAcBVaEY1scu5pQ3ol1sQ1ufpQ&s" alt="Image 4">
+            <a href="https://playerpage.github.io/playersrm/sweet.html" class="download-btn" download>View</a>
+            </div>
+
+	         <div class="grid-item">
+            <h3>Perusu</h3>
+            <img src="https://m.media-amazon.com/images/M/MV5BMmY5YzU4MTMtZDhlOC00ZjAzLWI5MjQtNjRhYzcxNTFkZTAxXkEyXkFqcGc@._V1_.jpg" alt="Image 4">
+            <a href="https://playerpage.github.io/playersrm/perusu.html" class="download-btn" download>View</a>
+            </div>
+
+	    
+	    <div class="grid-item">
+            <h3>Mr Houseke..</h3>
+            <img height="500" src="https://m.media-amazon.com/images/M/MV5BMjMxYzVlMDktNTRmZi00NzJlLWIwNjYtNjJhZjBjMmNkMjk2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Image 2">
+	    <a href="https://playerpage.github.io/playersrm/mr.html" class="download-btn" download>View</a>
+            <!--a href="player.html" target="_blank" class="download-btn" download>View</a> -->	      
+            </div>
+	          
+	    <div class="grid-item">
+            <h3>Dragon</h3>
+            <img height="500" src="https://m.media-amazon.com/images/M/MV5BNWZmNGE1NzItZWVhMi00NjdhLWE1OWYtNjUwMWRmMWQ4ZjJjXkEyXkFqcGc@._V1_.jpg" alt="Image 1">
+             <!--a href="https://movietimedotcom.github.io/page/assets/videos/1.mp4" class="download-btn" download>View</a>-->
+            <!-- <button class="download-btn" onclick="downloadVideo()">Download</button> -->
+	    <a href="https://playerpage.github.io/playersrm/dragon.html" class="download-btn" download>View</a>	
+            </div>
+        
+	    <div class="grid-item">
+            <h3>Neek</h3>
+            <img height="500" src="https://static.moviecrow.com/gallery/20240313/227147-Nila2.jpeg" alt="Image 2">
+            <!--a href="https://download2393.mediafire.com/rg6981sv3j9gXB-e4-75YnA9oty72HTIpInZ3JfAVZU2Luul1f4RNbkh4grWQJBo12EzZhg5lEYYUA8us9OGLXAio6C2gOndswSC5nNmHDWXWksp5Apf6c2uN5FZHO6Cmn9ylHuZbKgWLRj82jpLqYYGfc00pgCNSysgjUvyP3Zl/r9bmubc9pp3vm8q/Nilavuku_Enmel_Ennadi_Kobam.mp4" class="download-btn" download>View</a>-->
+            <a href="https://playerpage.github.io/playersrm/neek.html" class="download-btn" download>View</a>	    
+            </div>
+     
+	    <div class="grid-item">
+            <h3>Aghathiyaa</h3>
+            <img src="https://m.media-amazon.com/images/M/MV5BNjc5MmMwN2MtODllZi00MWYwLWFmYWItMjViOTFmYWM3ZmUwXkEyXkFqcGc@._V1_.jpg" alt="Image 3">
+            <a href="https://download2388.mediafire.com/0m6dbbrmjltgjg0Rzz6o4F_JMY-yilRMVcP-2TF71WEyfAKHtP5QEoO8xWwxNtTSVPCx54Dk3TVIhCRG-Ot0R2gz29OcGaWjEgNwVqupV8UeynrdEzNOEi1ujOoNdRtcPJl4yUneS05nDJq7n1vPZezJw0mJ5C1ab8oNGVlTj1eO/rw90khf196odaoq/Aghathiyaa.mp4" class="download-btn" download>View</a>
+            </div>
+	    
+	    <div class="grid-item">
+            <h3>Ponman</h3>
+            <img src="https://m.media-amazon.com/images/M/MV5BNjcxYWJlYmUtYjBkNi00YTVjLTliYmUtOTkyMzJjMDUwMGM2XkEyXkFqcGc@._V1_.jpg" alt="Image 4">
+            <a href="https://download2286.mediafire.com/7f1zd9cebpsgbzn-G8Fp7G6agOiyDbBuKJsows4xhh4O1kuQIXTuwZUjsKGWdVxm8CpuxcBV8U9ZQu8V0VNUCFOEHbUvqSir_QXC8WT9TQser5yl478o3j-PdQ4aZMgYXlxgv7lQQgw2x0jUAzHVWeiMYOHsOUZ7GwJnHeV86zXH/4ptnizryqc1j3gl/Ponman.mp4" class="download-btn" download>View</a>
+            </div>
+	
+	    <div class="grid-item">
+            <h3>Kudumbasthan</h3>
+            <img src="https://upload.wikimedia.org/wikipedia/en/d/d9/Kudumbasthan.jpg" alt="Image 4">
+            <a href="https://download2392.mediafire.com/m6ow6hzf9j3gnEslCBrLk_5DuUwdKxgxj99fO9P0abj4QGNisueI4vZBJvxBlyV8x78jsbfPIv2GVk2M7PfzHuL0ttnYXIKYsltT1Q6tgwUinsujnbvyGJYZD5z4KtWDmdK9oSyLEm7CdAIvBz1mdnRakwamI5e3-F499Ow4GtQE/069udb9m0o5pla5/Kudumbasthan.mp4" class="download-btn" download>View</a>
+            </div>
+	
+	    <div class="grid-item">
+            <h3>MGR</h3>
+            <img src="https://image.tmdb.org/t/p/original/k5KkdUeGwwhNXbd9hpGnzPgRpd2.jpg" alt="Image 4">
+            <a href="https://download2389.mediafire.com/53lhgzd6sv5ghlYnzKB4rluuPyH7pyx8s4-C6Pxo_lvrCcPE4ObOVqnT_Uas-ROVh5gUSZ6LfE_TxtHTEKf1aly_blt_28SolGnYafRcmVExdCRYuxFrpeRfyhNAH4eBpmQXvg2WX4Zvj2JWsHCyZQyG_KRzE1ImAosw4uAN1Aj8/ds30ha4q1aows5n/Madha_Gaja_Raja.mp4" class="download-btn" download>View</a>
+            </div>
+   
+	    <div class="grid-item">
+            <h3>Vanangaan</h3>
+            <img src="https://m.media-amazon.com/images/M/MV5BMGM1MDRmNTEtZWVmNS00MDg2LWIwYTctYTk0NjExNTRlZmQxXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Image 4">
+            <a href="https://download2393.mediafire.com/xya9qt7s88cgRqxonyiI-L2OxZKdL_ioqSVE62PjJOPFMVT5WkXlTDhGHVaZOMY5ehC1_yMco6i17hKWjuUDoF6dznmQ2ImzOExspclg87t1WK_x2C6H_75H8nMLpxrV535D2RDeF5xME_Hqv99lLHIx4QTYnDs_owlftIgJXqEb/9hoq25g1zau3add/Vanangaan.mp4" class="download-btn" download>View</a>
+            </div>
+
+	    <div class="grid-item">
+            <h3>Thiru Manickam</h3>
+            <img src="https://m.media-amazon.com/images/M/MV5BMGE4MDQ0MmYtNjhmYy00NDg0LWI3MjYtMWY3MGI5OWE1Yzc5XkEyXkFqcGc@._V1_.jpg" alt="Image 4">
+            <a href="https://download2390.mediafire.com/5a7t1ccngcpgccXnFyHPiPRCdTFh_qg4SCfP6jxII34fe5ak1cWJ9Y8wrR6BBsqpOS_97litYvOsbBgMMxlW_7KBNmzN7xDfseCupooIqI0151xBsp5F2DeQ10AuoKZdgSz9lj4k_2tMvo1qzcinyjK_kFnrD7RHMUzHJLFD-QmT/ad88stqbq9yxe38/Thiru_Manickam.mp4" class="download-btn" download>View</a>
+            </div>
+	    
+	    <div class="grid-item">
+            <h3>Emaku Thoz..</h3>
+            <img src="https://m.media-amazon.com/images/M/MV5BNzkxMWRkMDgtZWMzNi00NDZjLThlZDAtZDQwMDc3ODkxZGY0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Image 4">
+            <a href="https://download2280.mediafire.com/bvhnwobkm0hgPCPqchtiungdPF5MGPhnnuEV6PVNjmMF-f7xeGDAKR-8RBWVuThd4jm2_2HaeHghtbfljX0GMG_V9VmeZ3CDRo3DoakDH-oUUJ4Fj2AhhP6TojAlC8nOGGM1nrlhGoNk9D3hD93dUll2KcBlatj05FH971MZn2eN/957z7fjc547bosx/Emakku_Thozhil_Romance.mp4" class="download-btn" download>View</a>
+            </div>
+	    
+	    <div class="grid-item">
+            <h3>Soodhu Kavvum 2</h3>
+            <img src="https://m.media-amazon.com/images/M/MV5BNTc0NDA5NTAtYWJiZC00YTI4LWIwODMtYzhlYzEwMTcwMTI2XkEyXkFqcGc@._V1_.jpg" alt="Image 4">
+            <a href="https://download2298.mediafire.com/i3ufb01qx2cgNjLmcHokQTatVstXZuYjjpzd-v8MsVGszKYySF7Wb9QVkFwIHV-DPyjAIdRgQmpbMLqbxt1nq3jAD551c_Lpm2SVq0_DUgn9jj2DdlKtdva08-kIzJHPUiIDVoaY1PlgXNthXeujgJXkXvjbNEGSjii_lSlqPqBu/7mqq9t1l5lmonbt/Soodhu_Kavvum_2.mp4" class="download-btn" download>View</a>
+            </div>
+	    
+	    <div class="grid-item">
+            <h3>Sookshmadarshini</h3>
+            <img src="https://m.media-amazon.com/images/M/MV5BNmI0MDgwZTItYmYzMC00ZWQwLWE3OGEtMDA5MTY5ZDU2OGZmXkEyXkFqcGc@._V1_.jpg" alt="Image 4">
+            <a href="https://download2284.mediafire.com/9695mm62rllgVeJgREid5-dMIA0ULF7MlIqGBosS-NG0GvnWYVWUyJvPpmn5cZ4iFMasVOQX3lgszn3B3_nCGnR4p12mt0NV_6yr69rQexkS3ReuitQUTbjF72dQX_VDRKUZF_HoEXyX09ZwTWWXTrysoTK5kw1zvllE0liYwbR-/wph5afpviz8s08e/Sookshmadarshini.mp4" class="download-btn" download>View</a>
+            </div>
+	    
+	    <div class="grid-item">
+            <h3>Viduthalai 2</h3>
+            <img src="https://m.media-amazon.com/images/M/MV5BM2ZjNTZjNWYtMDk2MC00YWFhLTg5MGEtMDM3OGIyMWI3YTA0XkEyXkFqcGc@._V1_.jpg" alt="Image 4">
+            <a href="https://download2389.mediafire.com/wfzl1ea7qv0gQVHdP8-4S4VFE2aHofT_vtRsJhdss-3Ape_7y2BwDEUdrgfi1jOekSDhQXF97--l1yN_lenUawvsN3t7SEP4G5la1c6ZjRsBPePQMffjoV1JEz1XRuZ9OnGME1tACR3SENO67fjO9h36HIF4zH0mMpYJk3NWA-e6/sr75n565tbmgw5q/Viduthalai_Part_2.mp4" class="download-btn" download>View</a>
+            </div>
+	    
+	    <div class="grid-item">
+            <h3>Sorgavaasal</h3>
+            <img src="https://m.media-amazon.com/images/M/MV5BMjc2MzE2MzEtMDBlZS00YWQxLTlhODUtNTNjNjQxZGFlZGVmXkEyXkFqcGc@._V1_.jpg" alt="Image 4">
+            <a href="https://download2392.mediafire.com/vwj763w9ibvgchNtwsKvpuKwoJB7UTt5K_v7FTyNZrahNdTdZMfyJ3WYw3Ri11DwZ5wgdIilvRrYVbhUrb-89dGg9_ekrUE9R_78zRCyY8uasWLGEHrzV1rsawyU11NN5bnMTkBBV9WzJlxbWXLTx_G62NThWKUPjfuTVeh5kiBP/vykr6o6p2zqwa06/Sorgavaasal.mp4" class="download-btn" download>View</a>
+            </div>
+	      
+	    <div class="grid-item">
+            <h3>Pushpa 2</h3>
+            <img src="https://m.media-amazon.com/images/M/MV5BZjllNTdiM2QtYjQ0Ni00ZGM1LWFlYmUtNWY0YjMzYWIxOTYxXkEyXkFqcGc@._V1_.jpg" alt="Image 4">
+            <a href="https://download2391.mediafire.com/xmiiwavvgiqgWeKi-Eb6tCfJxzWO-I3Klql6nujxwJb_auNPldTRYVD-wJxXC4ewztXJl7y5TOBPk_SLKdocJsgE66UiXKEydFRCTPqGj8wEHRgI2IinMI_YKfTUBA3SFU72GZVdCFvpOxSfGg2tcze0sAxaxdMf9BYkE5lhDQgy/2hcrgqe7yew3tfj/Pushpa_2.mp4" class="download-btn" download>View</a>
+            </div>
+	        
+	    <div class="grid-item">
+            <h3>Kanguva</h3>
+            <img src="https://m.media-amazon.com/images/M/MV5BZjgyMGE3ODEtOWQyMi00ODM1LTkyZDItMGE4ZDVjZjBhYWZhXkEyXkFqcGc@._V1_.jpg" alt="Image 4">
+            <a href="https://download2389.mediafire.com/ujz4ogxzhb5gkLyNo4sxl0_JR6PhGgw7bwaUoZvx3Ca4uF6upka1dEUsuqHlNel5yQjVNCN8RUUitJ0L1XuujqDUm5r3kCeYmipOkocZ7vemXcvHBCMxBRfcVGJ9ZwzdNHmAqRsegoj1GqggTqjM7UD5Dpf1Nm0H7RYvje_8MWIu/hqvygmf5fruwgzk/Bagheera.mp4" class="download-btn" download>View</a>
+            </div>
+	    
+	    <div class="grid-item">
+            <h3>Lucky Baskhar</h3>
+            <img src="https://m.media-amazon.com/images/M/MV5BMjEzN2ZjYjUtZTI3NC00MzMyLWJiNDAtMDBiZGEzNTBiY2RkXkEyXkFqcGc@._V1_.jpg" alt="Image 4">
+            <a href="https://download2392.mediafire.com/62ttf2fs7lngn2MOta1v_-1Q3c60pPqDp64DzWoHrXchUyN728pqPz1I1v8T9rlu7e3L7zlVYuTlFFTYpjHTGmIUIZaaDyDXCYntbOtWwlfeVVTgIY7OCfpXG6kluYWllM14obezI7FXMNz75AFkQNu_UlNIbpqLCYIojUFuN5F9/se9y8n94fp2duh2/Lucky_Baskhar.mp4" class="download-btn" download>View</a>
+            </div>
+	    
+	    <div class="grid-item">
+            <h3>Amaran</h3>
+            <img src="https://m.media-amazon.com/images/M/MV5BNTAzMGQ2MGItMjk5OC00YWIwLThmMjUtYmNjMTIxNzVlZWQ4XkEyXkFqcGc@._V1_.jpg" alt="Image 4">
+            <a href="https://download2393.mediafire.com/f3jlt2uo109gJB4hSOWS8NiFPu3WSqaBfWVQ0eBjPA42uZqr-VTSx1Cjnk5WjgxJfaVUByFv3KQjtxFj1BtjFd9Hv65W6eXwUcwxROVGOwXVBtFf5IoCLrAjbmISALpNk0QQtywfzhor_3m95k9fWSNHlAJpWdMuiC_UDysrLIjo/de7eefytbxnpls1/Amaran.mp4" class="download-btn" download>View</a>
+            </div>
+	    
+	    <div class="grid-item">
+            <h3>Bloody Beggar</h3>
+            <img src="https://m.media-amazon.com/images/M/MV5BMWQzYjU1NjAtOGMyYy00YjRlLTk1YzgtZTQ4YjFlMmViYWI1XkEyXkFqcGc@._V1_.jpg" alt="Image 4">
+            <a href="https://download2287.mediafire.com/0ycn9mqpw4cgBM81v3WALGmP-51C-xDNMKF-cXE2m0iY4Pur6n91GIdcfeV4jilc1dwHWRRa1QPFeLNssqDSIvnth67a1LcnAQNxy2U2_MZ1y2QfIXYAecrJ0lZevN6xXAYIe97xXbNfQN8Najv-nZ4FcKlyvRZRtCPjUWSPLjlq/4fku83kueryujra/Bloody_Beggar.mp4" class="download-btn" download>View</a>
+            </div>
+	    
+	    <div class="grid-item">
+            <h3>Brother</h3>
+            <img src="https://m.media-amazon.com/images/M/MV5BZDQ3NTRjZWEtYWViMy00NzNhLWFlNjQtNzMxYTY2NTBkMzM2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Image 4">
+            <a href="https://download2390.mediafire.com/08tjlube3yrgskuHDD-XkYfylkC-RLxFBHUQ7ijEb4X_jWNKoAEvFYEpnYF9zgD9on_smbr-v2BkEx4BYQWSxum1bKtSRgUsJtK-f6NmsGiJXsF6Qnxk8MxNd5qORUzTM0ycdraBTI9rFGNrRGFeBqLnzmFoboWgdbbOIw6VP1FL/g2q94fpcdafw5ik/Brother.mp4" class="download-btn" download>View</a>
+            </div>
+	    
+	     <div class="grid-item">
+            <h3>Luber Pandu</h3>
+            <img src="https://m.media-amazon.com/images/M/MV5BNDk0NzM3ZGQtNjk5Mi00Y2I4LWIwYzUtYjA2NzJiNmQyNDdlXkEyXkFqcGc@._V1_.jpg" alt="Image 4">
+            <a href="https://download2388.mediafire.com/ml9bsi8i7nwgBK86uXmVWQfqWW0v0D5qzrB8DmYCBMwprWdWqIfeeopH6yb131L3tJeUPFaB4-NSDOFFeNhvpec0Ua-jPuDImyOTY6cVjpLUAuo-pJswV3tpcyTk8v6HI7UFC5elcYkMDzuyidDPj_hIx1aQ2WQebsGCvTvbDEqv/yb1sz6zfzeg4yk3/Lubber_Pandhu.mp4" class="download-btn" download>View</a>
+            </div>
+
+	    <div class="grid-item">
+            <h3>Meiyazhagan</h3>
+            <img src="https://m.media-amazon.com/images/M/MV5BNzU0ZjBmNjctMTY4NS00ZmUyLWFiYjYtYjZhYTI4MWIyNmYxXkEyXkFqcGc@._V1_.jpg" alt="Image 4">
+            <a href="https://download2388.mediafire.com/5n8c0hufiw5ggdwZ1tcsehSBpUI_DblaWlaqEItm7A5aw3yqIcl7bbB3vOZJ-Zw0uZJ9vaAKNgD1wcTYWdzFP9C5vd8cvJzGWpZwTrSWTrBpCzWlrQSsNStjwYm81uzkzhvlO84ktPU09Uj4rIBwQlPeOKf7z4tRmMiSJfMJvzjT/o9o7waxem6zeeu6/Meiyazhagan.mp4" class="download-btn" download>View</a>
+            </div>
+
+	    <div class="grid-item">
+            <h3>Vettaiyan</h3>
+            <img src="https://m.media-amazon.com/images/M/MV5BZmRkMDEwMTItZGM3Ny00MjhjLWJjZWEtN2Q4MmQzM2NmYmEzXkEyXkFqcGc@._V1_.jpg" alt="Image 4">
+            <a href="https://download2391.mediafire.com/4bnyl98kqkfg3IKjSQSOpUgRun9iHnloNCM1XON9YUIRLv9Xb4NApAUqwFGXLc0T80Fxb2_tsWCeDoxCLjgm_MmRUTzQr3qCvv8kuOjhoN8xVTRzvXvKUOaTHgzBAyPVo4uryrK0f22SJ-OFgRuh2dYbrh7eUsqRrKOfQKQOzltw/a8s5sopydamvivf/Vettaiyan.mp4" class="download-btn" download>View</a>
+            </div>
+
+	    <div class="grid-item">
+            <h3>Kadaisi Por</h3>
+            <img src="https://m.media-amazon.com/images/M/MV5BNjNkOTJiMDAtYjE1My00Y2NmLWI2NTUtOWIzMjU0N2RhNTRmXkEyXkFqcGc@._V1_.jpg" alt="Image 4">
+            <a href="https://download2262.mediafire.com/05s3b5a96jlgeFrYjdWUXRRPc0g5L59q0ffYWsj_RVz_zyMZhgbNuLTFzfPp2foRYowWf24Pq1z3DNrgPe2UJvBcGhXuyCK6n-p8dhGleUbNbJN61MzYSdtmdBPCkOTDNljgcjjyERW_fhj9Goxs1D2HnXsAxaYHnQdtHNOTncpf/u8vxoirjdkxudgl/Kadaisi_Ulaga_Por.mp4" class="download-btn" download>View</a>
+            </div>
+
+	    <div class="grid-item">
+            <h3>Hitler</h3>
+            <img src="https://m.media-amazon.com/images/M/MV5BY2E2MjZkNDktOTQ5YS00OWQ1LThmZjQtNDRkNmFmNmMxNmY3XkEyXkFqcGc@._V1_.jpg" alt="Image 4">
+            <a href="https://download2283.mediafire.com/q89che6nhcrgPoNF6nmvfAn3knnaZNISCIaH5o2nz006QUh0H27e0REitsL5V78Aax76XnaezLQB4vd2kiRtlm8_YBZG1Wwu38QJy-zZVCy18u5DQo2u7Jwxa4TcEuMLc582j_Uw3OFW0g5WzJ3A_9WP5rJ4DXGe0jAN1Cez8yjp/bcf7wwmkig4dhwo/Hitler.mp4" class="download-btn" download>View</a>
+            </div>
+
+	    <div class="grid-item">
+            <h3>Vaazhai</h3>
+            <img src="https://m.media-amazon.com/images/M/MV5BNzk4MzZjNzUtOWM1Yy00ODJjLTgzNWUtNzhmOTE4Y2EwMjgwXkEyXkFqcGc@._V1_.jpg" alt="Image 4">
+            <a href="https://download2392.mediafire.com/w2lqs31uf8tg-V6Tkihd7aeoJDM1Dpstt_hrpmmeblhf37ZARHWnIDpHZrVWfZQLVoc-9QNk6sxBl_JbNI0fWidr9VQwSS8py9J1JCK0g8JlY6b1uKTAqxlFRZ2YLaX8t50XBgl03DNP_fkRmO9wiv9-LchsEGIOz9ItDL4RZGo0/ayweoigphnxvw7z/Vaazhai.mp4" class="download-btn" download>View</a>
+            </div>
+
+	    <div class="grid-item">
+            <h3>GOAT</h3>
+            <img src="https://m.media-amazon.com/images/M/MV5BYjc1NDJmMjAtMTJmYi00ZGJmLWFhZTItNThmOTQyMzU4MGM3XkEyXkFqcGc@._V1_.jpg" alt="Image 4">
+            <a href="https://download2389.mediafire.com/pgmi5zg6zorgKOnxWb4QYTxduQ2awDz6IDON87w3L8cQ_TgbklJLvakrxec_WqjfSsQlPVW4mETXOgSjUP1NhvFfO38Dh3fiAUExtVNgrFAXVp8OmfxnedrHvP4aPOXYym851DWIidQ03MUB3S761rxGGdln_W6x3V2tUCeYE4He/7pgy6ne50di8egu/Goat.mp4" class="download-btn" download>View</a>
+            </div>
+			
+</div>
+
+<script>
+  function filterMovies() {
+    const input = document.getElementById('searchInput').value.toLowerCase();
+    const items = document.querySelectorAll('.grid-item');
+
+    items.forEach(item => {
+      const title = item.querySelector('h3').textContent.toLowerCase();
+      item.style.display = title.includes(input) ? '' : 'none';
+    });
+  }
+</script>
+
+</body>
+</html>
