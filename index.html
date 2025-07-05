@@ -1,192 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <!-- Removed <meta http-equiv="refresh" content="500000000000"> as it causes unnecessary page reloads -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Movie Time</title>
-	<meta name="google-adsense-account" content="ca-pub-1543768696613509"> 
-	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1543768696613509"
-     crossorigin="anonymous"></script>
-    <!-- Tailwind CSS CDN for modern styling -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Base styles from original code */
-        * {
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="500000000000">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>Movie Time</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-        body {
-            margin: 0;
-            font-family: 'Inter', sans-serif; /* Changed to Inter for consistency with Tailwind */
-            background-color: #000;
-            display: flex; /* Added flex to body for column layout */
-            flex-direction: column;
-            min-height: 100vh; /* Ensure body takes full viewport height */
-        }
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #000;
+    }
 
-        header {
-            text-align: center;
-            padding: 16px;
-            background-color: #000;
-        }
+    header {
+      text-align: center;
+      padding: 16px;
+      background-color: #000;
+    }
 
-        header h1 {
-            color: #fff;
-            font-size: 2.5em;
-            margin: 0;
-        }
+    header h1 {
+      color: #fff;
+      font-size: 2.5em;
+      margin: 0;
+    }
 
-        header p {
-            color: #ccc;
-            font-size: 1.2em;
-            margin: 0.5em 0 1em;
-        }
+    header p {
+      color: #ccc;
+      font-size: 1.2em;
+      margin: 0.5em 0 1em;
+    }
 
-        #searchInput {
-            padding: 10px;
-            font-size: 1em;
-            width: 80%;
-            max-width: 400px;
-            border-radius: 8px;
-            border: none;
-            margin-top: 10px;
-        }
+    #searchInput {
+      padding: 10px;
+      font-size: 1em;
+      width: 80%;
+      max-width: 400px;
+      border-radius: 8px;
+      border: none;
+      margin-top: 10px;
+    }
 
-        .grid-container {
-            flex-grow: 1; /* Allows grid to take available space */
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); /* More flexible grid */
-            gap: 8px; /* Increased gap for better spacing */
-            padding: 8px;
-            max-width: 1000px;
-            margin: auto;
-        }
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+      padding: 8px;
+      max-width: 1000px;
+      margin: auto;
+    }
 
-        .grid-item {
-            background-color: #000;
-            border-radius: 8px;
-            padding: 10px;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Added subtle shadow */
-        }
+    .grid-item {
+      background-color: #000;
+      border-radius: 8px;
+      padding: 10px;
+      text-align: center;
+    }
 
-        .grid-item img {
-            width: 160px;
-            height: 240px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
+   .grid-item img {
+  width: 160px;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 8px;
+}
 
-        .download-btn {
-            display: inline-block;
-            margin-top: 8px;
-            padding: 8px 16px;
-            background-color: #4CAF50;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 0.9em;
-            transition: background-color 0.3s ease; /* Added transition for hover effect */
-        }
 
-        .download-btn:hover {
-            background-color: #45a049;
-        }
+    .download-btn {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 8px 16px;
+      background-color: #4CAF50;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 0.9em;
+    }
 
-        h3 {
-            color: white;
-            font-size: 1.1em;
-            margin: 8px 0;
-        }
+    .download-btn:hover {
+      background-color: #45a049;
+    }
 
-        /* Banner Ad Container Styles (copied from webview-banner-ad-html) */
-        .banner-ad-container {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            padding: 0.5rem 0;
-            background-color: #ffffff;
-            border-top: 1px solid #e0e0e0;
-            box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
-            position: sticky; /* Keeps the ad at the bottom */
-            bottom: 0;
-            z-index: 1000;
-        }
-        .banner-ad {
-            width: 320px; /* Common mobile banner size */
-            height: 50px; /* Common mobile banner size */
-            background-color: #4CAF50; /* Example background */
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 0.9rem;
-            font-weight: bold;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            overflow: hidden; /* Ensures content stays within bounds */
-        }
+    h3 {
+      color: white;
+      font-size: 1.1em;
+      margin: 8px 0;
+    }
 
-        /* Responsive adjustments for the banner and grid */
-        @media (max-width: 640px) {
-            header h1 {
-                font-size: 1.8em; /* Adjusted for better mobile fit */
-            }
+    @media (max-width: 400px) {
+      header h1 {
+        font-size: 1.5em;
+      }
 
-            .download-btn {
-                padding: 6px 12px;
-                font-size: 0.8em;
-            }
+      .download-btn {
+        padding: 6px 12px;
+        font-size: 0.8em;
+      }
 
-            #searchInput {
-                width: 90%;
-            }
-
-            .grid-container {
-                grid-template-columns: repeat(2, 1fr); /* Two columns on smaller screens */
-                gap: 4px; /* Smaller gap for mobile */
-            }
-
-            .grid-item img {
-                width: 100%; /* Make images fill their grid item */
-                height: auto; /* Maintain aspect ratio */
-                max-width: 160px; /* Max width for consistency */
-            }
-
-            .banner-ad {
-                width: 100%; /* Full width on smaller screens */
-                max-width: 320px; /* Max width for consistency */
-                height: 50px;
-                border-radius: 0; /* No rounded corners on full width */
-            }
-            .banner-ad-container {
-                padding: 0; /* No padding if banner is full width */
-            }
-        }
-
-        @media (min-width: 768px) {
-            .grid-container {
-                grid-template-columns: repeat(4, 1fr); /* Four columns on larger screens */
-            }
-        }
-    </style>
+      #searchInput {
+        width: 90%;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <h1>🎬 <span style="color: #4CAF50;">Movie</span> <span style="color: #4CAF50;">Time</span> 🍿</h1>
-        <p>Watch your favorite movies</p>
-        <input type="text" id="searchInput" placeholder="Search movie..." onkeyup="filterMovies()">
-    </header>
+<header>
+  <h1>🎬 <span style="color: #4CAF50;">Movie</span> <span style="color: #4CAF50;">Time</span> 🍿</h1>
+  <p>Watch your favorite movies</p>
+  <input type="text" id="searchInput" placeholder="Search movie..." onkeyup="filterMovies()">
+</header>
 
-    <div class="grid-container">
-        <!-- Existing Movie Item -->
-        <div class="grid-item">
-            <h3>Good Wife</h3>
-            <img src="https://preview.redd.it/good-wife-tamil-directed-by-revathy-starring-priyamani-v0-mc75l3xu4qaf1.jpeg?width=640&crop=smart&auto=webp&s=64a63bc501a40c92ae4cd28ca453c6a4be75537f" alt="Good Wife Movie Poster">
-            <a href="https://playerpage.github.io/playersrm/Goodwife.html" class="download-btn">View</a>
-        </div>
+<div class="grid-container">
+
+<div class="grid-item">
+    <h3>Good Wife</h3>
+    <img src="https://preview.redd.it/good-wife-tamil-directed-by-revathy-starring-priyamani-v0-mc75l3xu4qaf1.jpeg?width=640&crop=smart&auto=webp&s=64a63bc501a40c92ae4cd28ca453c6a4be75537f" alt="dd">
+    <a href="https://playerpage.github.io/playersrm/Goodwife.html" class="download-btn">View</a>
+  </div>
 
 <div class="grid-item">
     <h3>Maaman</h3>
@@ -512,39 +445,20 @@
             <img src="https://m.media-amazon.com/images/M/MV5BYjc1NDJmMjAtMTJmYi00ZGJmLWFhZTItNThmOTQyMzU4MGM3XkEyXkFqcGc@._V1_.jpg" alt="Image 4">
             <a href="https://download2389.mediafire.com/pgmi5zg6zorgKOnxWb4QYTxduQ2awDz6IDON87w3L8cQ_TgbklJLvakrxec_WqjfSsQlPVW4mETXOgSjUP1NhvFfO38Dh3fiAUExtVNgrFAXVp8OmfxnedrHvP4aPOXYym851DWIidQ03MUB3S761rxGGdln_W6x3V2tUCeYE4He/7pgy6ne50di8egu/Goat.mp4" class="download-btn" download>View</a>
             </div>
-        
-    </div>
+			
+</div>
 
-    <!-- Banner Ad Container -->
-    <div class="banner-ad-container">
-        <div class="banner-ad">
-            <!-- Replace this with your actual ad network code -->
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1543768696613509"
-     crossorigin="anonymous"></script>
-<!-- Mobile Banner AD -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-1543768696613509"
-     data-ad-slot="6856914703"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
 <script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
+  function filterMovies() {
+    const input = document.getElementById('searchInput').value.toLowerCase();
+    const items = document.querySelectorAll('.grid-item');
+
+    items.forEach(item => {
+      const title = item.querySelector('h3').textContent.toLowerCase();
+      item.style.display = title.includes(input) ? '' : 'none';
+    });
+  }
 </script>
-        </div>
-    </div>
-
-    <script>
-        function filterMovies() {
-            const input = document.getElementById('searchInput').value.toLowerCase();
-            const items = document.querySelectorAll('.grid-item');
-
-            items.forEach(item => {
-                const title = item.querySelector('h3').textContent.toLowerCase();
-                item.style.display = title.includes(input) ? '' : 'none';
-            });
-        }
-    </script>
 
 </body>
 </html>
