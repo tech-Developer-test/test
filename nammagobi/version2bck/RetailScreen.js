@@ -184,12 +184,12 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   categoriesScroll: {
-    paddingHorizontal: 10,
+    paddingHorizontal: 9,
   },
   categoryItem: {
     alignItems: 'center',
-    width: 80,
-    marginRight: 15,
+    width: 70,
+    marginRight: 8,
   },
   iconWrapper: {
     width: 60,
