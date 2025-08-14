@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Local Image Gallery API</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 8px;
+      padding: 8px;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.2s;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+    .gallery a {
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="gallery" id="gallery"></div>
+
+  <script>
+    // List of local images from your folder
+    const images = [
+      { id: 1, url: "images/img1.jpg" },
+      { id: 2, url: "images/img2.jpg" },
+      { id: 3, url: "images/img3.jpg" },
+      { id: 4, url: "images/img4.jpg" }
+    ];
+
+    const gallery = document.getElementById("gallery");
+
+    images.forEach(img => {
+      const link = document.createElement("a");
+      // API-like URL for each image
+      link.href = `/api/image/${img.id}`; 
+      link.target = "_blank";
+
+      const image = document.createElement("img");
+      image.src = img.url;
+      image.alt = `Image ${img.id}`;
+
+      link.appendChild(image);
+      gallery.appendChild(link);
+    });
+  </script>
+
+</body>
+</html>
