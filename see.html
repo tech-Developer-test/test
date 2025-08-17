@@ -3,62 +3,96 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Local Image Gallery API</title>
+  <title>Image Gallery</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
+      padding: 10px;
       background: #f4f4f4;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
     }
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-      gap: 8px;
-      padding: 8px;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 10px;
     }
     .gallery img {
       width: 100%;
-      border-radius: 8px;
+      height: 150px;
       object-fit: cover;
-      display: block;
-      transition: transform 0.2s;
+      border-radius: 8px;
+      transition: transform 0.3s;
+      cursor: pointer;
     }
     .gallery img:hover {
       transform: scale(1.05);
     }
-    .gallery a {
-      text-decoration: none;
+    /* Fullscreen modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      padding: 20px;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      text-align: center;
+    }
+    .modal img {
+      max-width: 90%;
+      max-height: 80%;
+      margin-top: 50px;
+      border-radius: 10px;
+    }
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      color: #fff;
+      font-size: 30px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
 
-  <div class="gallery" id="gallery"></div>
+  <h1>Image Gallery</h1>
+  <div class="gallery">
+    <img src="images/img1.jpg" alt="Image 1">
+    <img src="images/img2.jpg" alt="Image 2">
+    <img src="images/img3.jpg" alt="Image 3">
+    <img src="images/img4.jpg" alt="Image 4">
+    <img src="images/img5.jpg" alt="Image 5">
+    <img src="images/img6.jpg" alt="Image 6">
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <span class="close">&times;</span>
+    <img id="modalImg">
+  </div>
 
   <script>
-    // List of local images from your folder
-    const images = [
-      { id: 1, url: "images/img1.jpg" },
-      { id: 2, url: "images/img2.jpg" },
-      { id: 3, url: "images/img3.jpg" },
-      { id: 4, url: "images/img4.jpg" }
-    ];
-
-    const gallery = document.getElementById("gallery");
+    const modal = document.getElementById("modal");
+    const modalImg = document.getElementById("modalImg");
+    const images = document.querySelectorAll(".gallery img");
+    const close = document.querySelector(".close");
 
     images.forEach(img => {
-      const link = document.createElement("a");
-      // API-like URL for each image
-      link.href = `/api/image/${img.id}`; 
-      link.target = "_blank";
+      img.addEventListener("click", () => {
+        modal.style.display = "block";
+        modalImg.src = img.src;
+      });
+    });
 
-      const image = document.createElement("img");
-      image.src = img.url;
-      image.alt = `Image ${img.id}`;
-
-      link.appendChild(image);
-      gallery.appendChild(link);
+    close.addEventListener("click", () => {
+      modal.style.display = "none";
     });
   </script>
 
